@@ -1,8 +1,11 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const layout = () => {
   return (
-    <div>layout</div>
+    <div>
+        <Button className='cursor-pointer'>Click me</Button>
+    </div>
   )
 }
 
