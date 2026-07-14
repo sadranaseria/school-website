@@ -1,11 +1,17 @@
+import { AppSidebar } from '@/components/appSidebar'
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import React, { PropsWithChildren, ReactNode } from 'react'
 
-const layout = () => {
+const layout = ({ children } : { children : ReactNode }) => {
   return (
-    <div>
-        <Button className='cursor-pointer'>Click me</Button>
-    </div>
+    <SidebarProvider>
+        <AppSidebar />
+        <main>
+            <SidebarTrigger className='cursor-pointer' />
+            { children }
+        </main>
+    </SidebarProvider>
   )
 }
 
