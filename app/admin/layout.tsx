@@ -1,17 +1,17 @@
-import { AppSidebar } from '@/components/appSidebar'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { ReactNode } from 'react'
+import { AppSidebar } from "@/components/appSidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { ReactNode } from "react";
 
-const layout = ({ children } : { children : ReactNode }) => {
+const layout = ({ children }: { children: ReactNode }) => {
   return (
     <SidebarProvider>
-        <AppSidebar />
-        <main>
-            <SidebarTrigger className='cursor-pointer' />
-            { children }
-        </main>
+      <AppSidebar />
+      <SidebarTrigger className="cursor-pointer" />
+      <main className="size-svh flex justify-center items-center">
+        {children}
+      </main>
     </SidebarProvider>
-  )
-}
+  );
+};
 
-export default layout
+export default layout;
