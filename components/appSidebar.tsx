@@ -38,7 +38,7 @@ export function AppSidebar() {
                   <Link href={sidebarItem.href} 
                         className={classNames({
                             'text-zinc-950' : pathName === sidebarItem.href,
-                            'text-zinc-700 hover:text-zinc-900' : true
+                            'text-zinc-700 hover:text-zinc-800' : pathName !== sidebarItem.href
                         })}
                   >
                     {sidebarItem.lable}
