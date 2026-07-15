@@ -10,14 +10,20 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import "easymde/dist/easymde.min.css";
+import dynamic from "next/dynamic";
 import { useForm } from "react-hook-form";
 import z from "zod";
+
+const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), {
+ssr: false,
+});
 
 type FormData = z.infer<typeof createMajorSchema>;
 
 const NewMajorsPage = () => {
+
   const {
     register,
     handleSubmit,
@@ -38,7 +44,10 @@ const NewMajorsPage = () => {
           </Field>
           <Field>
             <FieldLabel htmlFor="description">توضیحات رشته</FieldLabel>
-            <Textarea {...register("description")} />
+            <SimpleMdeReact options={{
+              spellChecker : false,
+              direction : 'rtl'
+            }} />
             {errors.description && (
               <p className="text-red-500">{errors.description.message}</p>
             )}
