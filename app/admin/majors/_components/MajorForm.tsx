@@ -1,6 +1,6 @@
 "use client";
 
-import { createMajor } from "@/app/actions";
+import { createMajor } from "../../actions";
 import { CreateFormData, createMajorSchema } from "@/app/validation";
 import { Button } from "@/components/ui/button";
 import {
