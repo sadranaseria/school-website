@@ -17,7 +17,7 @@ datasource db {
 model Major {
   id Int @id @default(autoincrement())
   title String
-  description String @db.VarChar(225)
+  description String @db.Text
   cretedAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
