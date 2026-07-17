@@ -11,16 +11,20 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames";
 import "easymde/dist/easymde.min.css";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
+import { toast } from "sonner";
 
 const MajorForm = () => {
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,10 +40,13 @@ const MajorForm = () => {
       className="w-xl"
       onSubmit={handleSubmit(async (data: CreateFormData) => {
         try {
-          setLoading(true);
           await createMajor(data);
+          setLoading(true);
+          toast.success("رشته با موفقیت اضافه شد", { position: "top-center" });
+          router.push('/admin/majors');
         } catch (error) {
           setLoading(false);
+          toast.error("خطایی رخ داده است", { position: "top-center" });
         }
       })}
     >
@@ -72,7 +79,7 @@ const MajorForm = () => {
               type="submit"
               disabled={isLoading}
             >
-              { isLoading && <Spinner /> }
+              {isLoading && <Spinner />}
               ثبت
             </Button>
           </Field>

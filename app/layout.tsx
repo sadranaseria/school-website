@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const vazirmatn = Vazirmatn({
   subsets : ['latin']
@@ -28,6 +29,7 @@ export default function RootLayout({
       dir="rtl"
     >
       <body className='min-h-full flex flex-col'>
+        <Toaster />
         <main>{children}</main>
       </body>
     </html>
