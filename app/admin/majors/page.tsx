@@ -37,7 +37,9 @@ const MajorsPage = async () => {
           <TableBody>
             {majors.map((major) => (
               <TableRow key={major.id}>
-                <TableCell>{major.title}</TableCell>
+                <TableCell>
+                  <Link href={`/admin/majors/${major.id}`}>{major.title}</Link>
+                </TableCell>
                 <TableCell>{major.cretedAt.toDateString()}</TableCell>
                 <TableCell>{major.updatedAt.toDateString()}</TableCell>
               </TableRow>
