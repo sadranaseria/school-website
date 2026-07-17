@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
+import delay from 'delay';
 import Link from 'next/link'
 import React from 'react'
 
-const MajorsPage = () => {
+const MajorsPage = () => { 
   return (
     <div>
         MajorsPage

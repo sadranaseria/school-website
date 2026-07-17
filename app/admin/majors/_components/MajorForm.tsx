@@ -15,6 +15,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames";
+import delay from "delay";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -34,6 +35,7 @@ const MajorForm = () => {
     resolver: zodResolver(createMajorSchema),
     defaultValues: { description: "" },
   });
+
 
   return (
     <form
