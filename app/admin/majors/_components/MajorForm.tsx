@@ -11,12 +11,16 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import classNames from "classnames";
 import "easymde/dist/easymde.min.css";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
 
 const MajorForm = () => {
+  const [isLoading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,7 +35,12 @@ const MajorForm = () => {
     <form
       className="w-xl"
       onSubmit={handleSubmit(async (data: CreateFormData) => {
-        await createMajor(data);
+        try {
+          setLoading(true);
+          await createMajor(data);
+        } catch (error) {
+          setLoading(false);
+        }
       })}
     >
       <FieldSet>
@@ -58,7 +67,12 @@ const MajorForm = () => {
             <p className="text-red-500">{errors.description.message}</p>
           )}
           <Field>
-            <Button className="cursor-pointer" type="submit">
+            <Button
+              className="cursor-pointer"
+              type="submit"
+              disabled={isLoading}
+            >
+              { isLoading && <Spinner /> }
               ثبت
             </Button>
           </Field>
