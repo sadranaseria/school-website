@@ -1,6 +1,7 @@
 "use client";
 
-import { createMajorSchema } from "@/app/vallidation";
+import { createMajor } from "@/app/actions";
+import { CreateFormData, createMajorSchema } from "@/app/validation";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -13,25 +14,30 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import z from "zod";
+import { Controller, useForm } from "react-hook-form";
 
-const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), {
-ssr: false,
+const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
 });
 
-type FormData = z.infer<typeof createMajorSchema>;
-
 const NewMajorsPage = () => {
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(createMajorSchema) });
+    control
+  } = useForm<CreateFormData>({
+    resolver: zodResolver(createMajorSchema),
+    defaultValues: { description: "" },
+  });
 
   return (
-    <form className="w-xl" onSubmit={handleSubmit((data) => console.log(data))}>
+    <form
+      className="w-xl"
+      onSubmit={handleSubmit(async (data: CreateFormData) => {
+        await createMajor(data);
+      })}
+    >
       <FieldSet>
         <FieldLegend>ساخت رشته</FieldLegend>
         <FieldGroup>
@@ -44,13 +50,16 @@ const NewMajorsPage = () => {
           </Field>
           <Field>
             <FieldLabel htmlFor="description">توضیحات رشته</FieldLabel>
-            <SimpleMdeReact options={{
-              spellChecker : false,
-              direction : 'rtl'
-            }} />
-            {errors.description && (
-              <p className="text-red-500">{errors.description.message}</p>
-            )}
+            <Controller
+              name="description"
+              control={control}
+              render={({ field }) => (
+                <SimpleMdeReact
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
           </Field>
           <Field>
             <Button className="cursor-pointer" type="submit">
