@@ -11,10 +11,8 @@ const MajorDetalisPage = async ({ params } : { params : Promise<{ id : string }>
   return (
     <div className="flex flex-col gap-4 w-full max-w-3xl h-100">
         <h1>{major?.title}</h1>
-        <Card className='prose p-4'>
-            <ScrollArea>
+        <Card className='max-w-3xl min-h-100 prose p-4 wrap-anywhere'>
             <MarkDown>{major?.description}</MarkDown>
-            </ScrollArea>
         </Card>
     </div>
   )
