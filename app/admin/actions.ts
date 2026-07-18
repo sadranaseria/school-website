@@ -13,3 +13,16 @@ export async function createMajor(data : CreateFormData){
         data
     })
 }
+
+export async function deleteMajor(majorId : number){
+    const major = await prisma.major.findUnique({
+        where : { id : majorId }
+    });
+
+    if(!major)
+        throw new Error('The user doesnt exist');
+
+    await prisma.major.delete({
+        where : { id : majorId }
+    })
+}

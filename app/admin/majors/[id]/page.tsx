@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { prisma } from "@/prisma/client";
 import MarkDown from "react-markdown";
+import DeleteMajorButton from "./_components/DeleteMajorButton";
 
 const MajorDetalisPage = async ({
   params,
@@ -17,13 +18,13 @@ const MajorDetalisPage = async ({
     <div className="flex flex-col gap-4 w-full max-w-3xl h-100">
       <div className="flex justify-between items-center">
         <h1>{major?.title}</h1>
-        <Button variant='destructive'>حذف رشته</Button>
+        <DeleteMajorButton majorId={parseInt(id)} />
       </div>
-      <ScrollArea className="h-100 w-full rounded-md">
-        <Card className="max-w-3xl min-h-100 prose p-4 wrap-anywhere">
+      <Card className="max-w-3xl min-h-100 prose p-4 wrap-anywhere">
+        <ScrollArea className="h-100 w-full rounded-md">
           <MarkDown>{major?.description}</MarkDown>
-        </Card>
-      </ScrollArea>
+        </ScrollArea>
+      </Card>
     </div>
   );
 };
