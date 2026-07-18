@@ -19,7 +19,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
-import { createMajor } from "../../actions";
+import { createMajor, updateMajor } from "../../actions";
 
 const MajorForm = ({ major } : { major ?: Major }) => {
   console.log(major)
@@ -41,8 +41,11 @@ const MajorForm = ({ major } : { major ?: Major }) => {
       onSubmit={handleSubmit(async (data: MajorSchema) => {
         try {
           setLoading(true);
-          await createMajor(data);
-          toast.success("رشته با موفقیت اضافه شد", { position: "top-center" });
+          if(major)
+            await updateMajor(major.id , data);
+          else
+            await createMajor(data);
+          toast.success(major ? "رشته با موفقیت به روز شد" : "رشته با موفقیت اضافه شد", { position: "top-center" });
           router.push('/admin/majors');
         } catch (error) {
           setLoading(false);
