@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Major } from "@/lib/generated/prisma/client";
 import { prisma } from "@/prisma/client";
 import Link from "next/link";
 import MajorsTable from "./_components/MajorsTable";

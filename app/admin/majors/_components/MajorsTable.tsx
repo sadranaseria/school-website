@@ -1,5 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
+  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -7,8 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Major } from "@/lib/generated/prisma/client";
-
-import { Link, Table } from "lucide-react";
+import Link from "next/link";
 
 const MajorsTable = ({ majors }: { majors: Major[] }) => {
   return (
