@@ -2,9 +2,9 @@
 
 import { prisma } from "@/prisma/client";
 import { redirect } from "next/navigation";
-import { CreateFormData, createMajorSchema } from "../validation";
+import { MajorSchema, createMajorSchema } from "../validation";
 
-export async function createMajor(data : CreateFormData){
+export async function createMajor(data : MajorSchema){
     const validation = createMajorSchema.safeParse(data);
 
     if(!validation.success) return

@@ -5,4 +5,9 @@ export const createMajorSchema = z.object({
   description : z.string().min(1 , 'توضیحات الزامی است')
 })
 
-export type CreateFormData = z.infer<typeof createMajorSchema>;
+export type MajorSchema = z.infer<typeof createMajorSchema>;
+
+export const updateMajorSchema = z.object({
+  title : z.string().min(1 , 'عنوان رشته الزامی است').optional(),
+  description : z.string().min(1 , 'توضیحات الزامی است').optional()
+})

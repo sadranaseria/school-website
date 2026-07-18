@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateFormData, createMajorSchema } from "@/app/validation";
+import { MajorSchema, createMajorSchema } from "@/app/validation";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -30,18 +30,18 @@ const MajorForm = ({ major } : { major ?: Major }) => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<CreateFormData>({
-    resolver: zodResolver(createMajorSchema),
+  } = useForm<MajorSchema>({
+    resolver: zodResolver(createMajorSchema)
   });
 
 
   return (
     <form
       className="w-xl"
-      onSubmit={handleSubmit(async (data: CreateFormData) => {
+      onSubmit={handleSubmit(async (data: MajorSchema) => {
         try {
-          await createMajor(data);
           setLoading(true);
+          await createMajor(data);
           toast.success("رشته با موفقیت اضافه شد", { position: "top-center" });
           router.push('/admin/majors');
         } catch (error) {
@@ -81,7 +81,7 @@ const MajorForm = ({ major } : { major ?: Major }) => {
               disabled={isLoading}
             >
               {isLoading && <Spinner />}
-              { major ? "ویرایش" : "ثبت"}
+              { major ? "ویرایش" : "ثبت" }
             </Button>
           </Field>
         </FieldGroup>
