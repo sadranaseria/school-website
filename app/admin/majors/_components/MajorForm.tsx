@@ -34,11 +34,7 @@ const MajorForm = ({ major } : { major ?: Major }) => {
     resolver: zodResolver(createMajorSchema)
   });
 
-
-  return (
-    <form
-      className="w-xl"
-      onSubmit={handleSubmit(async (data: MajorSchema) => {
+  const onCraeteMajor = handleSubmit(async (data: MajorSchema) => {
         try {
           setLoading(true);
           if(major)
@@ -51,7 +47,13 @@ const MajorForm = ({ major } : { major ?: Major }) => {
           setLoading(false);
           toast.error("خطایی رخ داده است", { position: "top-center" });
         }
-      })}
+      })
+
+
+  return (
+    <form
+      className="w-xl"
+      onSubmit={onCraeteMajor}
     >
       <FieldSet>
         <FieldLegend>ساخت رشته</FieldLegend>

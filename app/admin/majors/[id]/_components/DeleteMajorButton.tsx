@@ -11,10 +11,7 @@ const DeleteMajorButton = ({ majorId } : { majorId : number }) => {
     const [isloading , setLoading] = useState(false);
     const router = useRouter();
 
-  return (
-    <Button 
-    variant="destructive" 
-    onClick={ async () => {
+    const onDeletemajor = async () => {
         try {
             setLoading(true);
             await deleteMajor(majorId);
@@ -24,7 +21,12 @@ const DeleteMajorButton = ({ majorId } : { majorId : number }) => {
             setLoading(false);
             toast.error('خطایی در هنگام حذف رشته رخ داد' , { position : 'top-center' });
         }
-    }}>
+    }
+
+  return (
+    <Button 
+    variant="destructive" 
+    onClick={onDeletemajor}>
         { isloading && <Spinner /> }
       حذف رشته
     </Button>
