@@ -1,6 +1,5 @@
 "use client";
 
-import { createMajor } from "../../actions";
 import { CreateFormData, createMajorSchema } from "@/app/validation";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,19 +10,18 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Toaster } from "@/components/ui/sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { Major } from "@/lib/generated/prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import classNames from "classnames";
-import delay from "delay";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
+import { createMajor } from "../../actions";
 
-const MajorForm = () => {
+const MajorForm = ({ major } : { major : Major }) => {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const {
