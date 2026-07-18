@@ -133,4 +133,7 @@
   html {
     @apply font-sans;
   }
+  Button {
+    @apply cursor-pointer;
+  }
 }
