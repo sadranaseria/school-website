@@ -17,7 +17,7 @@ const MajorsTable = ({ majors }: { majors: Major[] }) => {
         <TableHeader>
           <TableRow className="w-40">
             {columns.map((column) => (
-              <TableHead className="text-right" key={column.value}>
+              <TableHead className={`text-right ${column.className}`} key={column.value}>
                 {column.label}
               </TableHead>
             ))}
@@ -29,8 +29,8 @@ const MajorsTable = ({ majors }: { majors: Major[] }) => {
               <TableCell>
                 <Link href={`/admin/majors/${major.id}`}>{major.title}</Link>
               </TableCell>
-              <TableCell>{major.cretedAt.toDateString()}</TableCell>
-              <TableCell>{major.updatedAt.toDateString()}</TableCell>
+              <TableCell className='hidden md:table-cell'>{major.cretedAt.toDateString()}</TableCell>
+              <TableCell className='hidden md:table-cell'>{major.updatedAt.toDateString()}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -39,10 +39,10 @@ const MajorsTable = ({ majors }: { majors: Major[] }) => {
   );
 };
 
-const columns: { label: string; value: keyof Major }[] = [
+const columns: { label: string; value: keyof Major , className ?: string }[] = [
   { label: "عنوان", value: "title" },
-  { label: "ساخته شده", value: "cretedAt" },
-  { label: "آپدیت شده", value: "updatedAt" },
+  { label: "ساخته شده", value: "cretedAt" , className : 'hidden md:table-cell' },
+  { label: "آپدیت شده", value: "updatedAt" , className : 'hidden md:table-cell' },
 ];
 
 export default MajorsTable;
