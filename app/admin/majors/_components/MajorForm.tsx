@@ -21,7 +21,8 @@ import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
 import { createMajor } from "../../actions";
 
-const MajorForm = ({ major } : { major : Major }) => {
+const MajorForm = ({ major } : { major ?: Major }) => {
+  console.log(major)
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -31,7 +32,6 @@ const MajorForm = ({ major } : { major : Major }) => {
     control,
   } = useForm<CreateFormData>({
     resolver: zodResolver(createMajorSchema),
-    defaultValues: { description: "" },
   });
 
 
@@ -55,7 +55,7 @@ const MajorForm = ({ major } : { major : Major }) => {
         <FieldGroup>
           <Field>
             <FieldLabel htmlFor="title">عنوان رشته</FieldLabel>
-            <Input id="title" className="w-full" {...register("title")} />
+            <Input id="title" className="w-full" defaultValue={major?.title} {...register("title")} />
             {errors.title && (
               <p className="text-red-500">{errors.title.message}</p>
             )}
@@ -65,6 +65,7 @@ const MajorForm = ({ major } : { major : Major }) => {
             <Controller
               name="description"
               control={control}
+              defaultValue={major?.description}
               render={({ field }) => (
                 <SimpleMdeReact value={field.value} onChange={field.onChange} />
               )}
@@ -80,7 +81,7 @@ const MajorForm = ({ major } : { major : Major }) => {
               disabled={isLoading}
             >
               {isLoading && <Spinner />}
-              ثبت
+              { major ? "ویرایش" : "ثبت"}
             </Button>
           </Field>
         </FieldGroup>

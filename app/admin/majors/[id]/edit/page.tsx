@@ -1,5 +1,3 @@
-import React from "react";
-import dynamic from "next/dynamic";
 import { prisma } from "@/prisma/client";
 import EditForm from "./_components/EditForm";
 
