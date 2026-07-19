@@ -3,10 +3,11 @@ import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "./auth/AuthProvider";
 
 const vazirmatn = Vazirmatn({
-  subsets : ['latin']
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,16 +22,14 @@ export default function RootLayout({
   return (
     <html
       lang="fa"
-      className={cn(
-        "h-full",
-        "antialiased",
-        vazirmatn.className
-      )}
+      className={cn("h-full", "antialiased", vazirmatn.className)}
       dir="rtl"
     >
-      <body className='min-h-full flex flex-col'>
-        <Toaster />
-        <main>{children}</main>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
+          <Toaster />
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );
