@@ -1,10 +1,7 @@
 "use client"
 
 import {
-  BadgeCheckIcon,
-  BellIcon,
-  CreditCardIcon,
-  LogOutIcon,
+  LogOutIcon
 } from "lucide-react"
 
 import {
@@ -22,17 +19,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LogoutLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
-import Link from "next/link"
 
 export default function AuthStatus() {
-  const { user , isAuthenticated } = useKindeBrowserClient();
+  const { user } = useKindeBrowserClient();
 
   if(!user) return
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
-          <AvatarImage src='https://ui-avatars.com/api/?name=Sadra' alt="Admin" />
+          <AvatarImage src={`https://ui-avatars.com/api/?name=${user.given_name}`} alt="Admin" />
           <AvatarFallback>A</AvatarFallback>
         </Avatar></Button>} />
       <DropdownMenuContent align="end" className='w-50'>
