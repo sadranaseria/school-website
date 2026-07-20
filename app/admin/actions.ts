@@ -1,10 +1,16 @@
 'use server'
 
 import { prisma } from "@/prisma/client";
-import { redirect } from "next/navigation";
 import { MajorSchema, createMajorSchema, updateMajorSchema } from "../validation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export async function createMajor(data : MajorSchema){
+    const { getUser } = getKindeServerSession();
+    const user = await  getUser();
+
+    if(!user)
+        throw new Error('Unauthorized');
+
     const validation = createMajorSchema.safeParse(data);
 
     if(!validation.success) return
@@ -15,6 +21,12 @@ export async function createMajor(data : MajorSchema){
 }
 
 export async function deleteMajor(majorId : number){
+    const { getUser } = getKindeServerSession();
+    const user = await  getUser();
+
+    if(!user)
+        throw new Error('Unauthorized');
+
     const major = await prisma.major.findUnique({
         where : { id : majorId }
     });
@@ -28,6 +40,12 @@ export async function deleteMajor(majorId : number){
 }
 
 export async function updateMajor(majorId : number , updatedData : MajorSchema){
+    const { getUser } = getKindeServerSession();
+    const user = await  getUser();
+
+    if(!user)
+        throw new Error('Unauthorized');
+    
     const validation = updateMajorSchema.safeParse(updatedData);
 
     if(!validation.success)
