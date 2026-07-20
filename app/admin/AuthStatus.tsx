@@ -1,40 +1,51 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+"use client"
+
+import {
+  BadgeCheckIcon,
+  BellIcon,
+  CreditCardIcon,
+  LogOutIcon,
+} from "lucide-react"
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { LogoutLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+import Link from "next/link"
 
-const AuthStatus = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+export default function AuthStatus() {
+  const { user , isAuthenticated } = useKindeBrowserClient();
 
-  if (!user) throw new Error("Unauthorize");
+  if(!user) return
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-            <Avatar>
-              <AvatarImage src={user.picture!} alt="shadcn" />
-              <AvatarFallback>A</AvatarFallback>
-            </Avatar>
-        }
-      />
-      <DropdownMenuContent className="w-32">
+      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
+          <AvatarImage src='https://ui-avatars.com/api/?name=Sadra' alt="Admin" />
+          <AvatarFallback>A</AvatarFallback>
+        </Avatar></Button>} />
+      <DropdownMenuContent align="end" className='w-50'>
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>{user.email}</DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOutIcon />
+          <LogoutLink>خروج</LogoutLink>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default Avatar;

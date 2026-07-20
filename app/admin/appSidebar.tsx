@@ -1,6 +1,3 @@
-"use client";
-
-
 import {
   Sidebar,
   SidebarContent,
@@ -8,23 +5,13 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader
+  SidebarHeader,
 } from "@/components/ui/sidebar";
-import classNames from "classnames";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import AuthStatus from "./AuthStatus";
-
-const sidebarItems: { lable: string; value: string; href: string }[] = [
-  { lable: "داشبورد", value: "dashboard", href: "/admin" },
-  { lable: "مقالات", value: "articles", href: "/admin/articles" },
-  { lable: "گالری", value: "gallery", href: "/admin/gallery" },
-  { lable: "رشته ها", value: "majors", href: "/admin/majors" },
-];
+import NavBar from "./NavBar";
+import { Suspense } from "react";
 
 export function AppSidebar() {
-  const pathName = usePathname();
-
   return (
     <Sidebar>
       <SidebarHeader className="font-bold text-3xl">پنل مدیریت</SidebarHeader>
@@ -32,28 +19,13 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>خدمات</SidebarGroupLabel>
           <SidebarGroupContent>
-            <ul className="space-y-1">
-              {sidebarItems.map((sidebarItem) => (
-                <li key={sidebarItem.value}>
-                  <Link
-                    href={sidebarItem.href}
-                    className={classNames({
-                      "text-zinc-950": pathName === sidebarItem.href,
-                      "text-zinc-700 hover:text-zinc-800":
-                        pathName !== sidebarItem.href,
-                    })}
-                  >
-                    {sidebarItem.lable}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <NavBar />
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
-        <AuthStatus />
+          <AuthStatus />
       </SidebarFooter>
     </Sidebar>
   );
