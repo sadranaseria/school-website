@@ -12,10 +12,10 @@ import Link from "next/link";
 
 const MajorsTable = ({ majors }: { majors: Major[] }) => {
   return (
-    <ScrollArea className="h-100 w-full rounded-md border">
+    <ScrollArea className="h-100 rounded-md border">
       <Table>
         <TableHeader>
-          <TableRow className="w-40">
+          <TableRow className="w-20">
             {columns.map((column) => (
               <TableHead className={`text-right ${column.className}`} key={column.value}>
                 {column.label}

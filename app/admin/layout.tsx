@@ -7,7 +7,7 @@ const layout = ({ children }: { children: ReactNode }) => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger className="cursor-pointer" />
-      <main className="size-svh flex justify-center items-center">
+      <main className="h-screen w-screen flex justify-center items-center">
         {children}
       </main>
     </SidebarProvider>
