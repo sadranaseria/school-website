@@ -1,19 +1,19 @@
 "use client";
 
+
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
+  SidebarHeader
 } from "@/components/ui/sidebar";
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LuPlus } from "react-icons/lu";
+import AuthStatus from "./AuthStatus";
 
 const sidebarItems: { lable: string; value: string; href: string }[] = [
   { lable: "داشبورد", value: "dashboard", href: "/admin" },
@@ -35,11 +35,13 @@ export function AppSidebar() {
             <ul className="space-y-1">
               {sidebarItems.map((sidebarItem) => (
                 <li key={sidebarItem.value}>
-                  <Link href={sidebarItem.href} 
-                        className={classNames({
-                            'text-zinc-950' : pathName === sidebarItem.href,
-                            'text-zinc-700 hover:text-zinc-800' : pathName !== sidebarItem.href
-                        })}
+                  <Link
+                    href={sidebarItem.href}
+                    className={classNames({
+                      "text-zinc-950": pathName === sidebarItem.href,
+                      "text-zinc-700 hover:text-zinc-800":
+                        pathName !== sidebarItem.href,
+                    })}
                   >
                     {sidebarItem.lable}
                   </Link>
@@ -50,7 +52,9 @@ export function AppSidebar() {
         </SidebarGroup>
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <AuthStatus />
+      </SidebarFooter>
     </Sidebar>
   );
 }
