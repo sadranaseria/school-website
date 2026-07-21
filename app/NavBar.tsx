@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../public/icon0.svg";
@@ -12,7 +10,7 @@ const NavBar = () => {
       <ul className="flex gap-5">
         {links.map((link) => (
           <li key={link.value}>
-            <Link href={link.href} className="text-zinc-800 hover:text-zinc-700">
+            <Link href={link.href} scroll={true} className="text-zinc-800 hover:text-zinc-700">
               {link.lebel}
             </Link>
           </li>
