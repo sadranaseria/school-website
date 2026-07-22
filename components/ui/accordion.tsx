@@ -2,12 +2,14 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { IoIosArrowDown } from "react-icons/io";
+
 
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
+      className={cn("flex w-full flex-col border-none", className)}
       {...props}
     />
   )
@@ -17,7 +19,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("not-last:border-b", className)}
+      className={cn("", className)}
       {...props}
     />
   )
@@ -39,8 +41,8 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
+        <ChevronDownIcon size={30} className="pointer-events-none stroke-primary bg-blue-superlight rounded-full shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+        <ChevronUpIcon size={30} className="pointer-events-none stroke-primary bg-blue-superlight rounded-full hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
