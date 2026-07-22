@@ -2,6 +2,7 @@ import GalleySection from "./GalleySection";
 import HeaderContent from "./HeaderContent";
 import MajorSection from "./MajorSection";
 import NavBar from "./NavBar";
+import QuestionsSection from "./QuestionsSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
     <main>
       <MajorSection />
       <GalleySection />
+      <QuestionsSection />
     </main>
     </>
   );
