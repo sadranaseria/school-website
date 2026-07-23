@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "./auth/AuthProvider";
+import NavBar from "./NavBar";
 
 const vazirmatn = Vazirmatn({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <Toaster />
+          <NavBar />
           <main className="p-6">{children}</main>
         </AuthProvider>
       </body>
