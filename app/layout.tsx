@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import { ReactNode } from "react";
-import "./globals.css";
 import { AuthProvider } from "./auth/AuthProvider";
+import "./globals.css";
 
 const vazirmatn = Vazirmatn({
   subsets: ["latin"],
@@ -21,7 +21,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       className={cn("h-full", "antialiased", vazirmatn.className)}
       dir="rtl"
     >
-      <body className="min-h-full flex flex-col">
+      <body
+        className="min-h-full flex flex-col bg-[#FDFBFB]"
+      >
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

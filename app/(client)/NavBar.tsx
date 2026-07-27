@@ -5,7 +5,7 @@ import logo from "../../public/icon0.svg";
 const NavBar = () => {
 
   return (
-    <nav className="bg-white flex items-center gap-6 fixed top-5">
+    <nav className="bg-white flex items-center gap-6 fixed top-5 left-4 right-4">
       <Image width={60} src={logo} alt="logo" />
       <ul className="flex gap-5">
         {links.map((link) => (
