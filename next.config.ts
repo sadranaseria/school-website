@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
         search : ''
       }
     ]
-  }
+  },
+  experimental: {
+    globalNotFound: true,
+  },
 };
 
 export default nextConfig;

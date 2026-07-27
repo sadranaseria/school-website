@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from "@/prisma/client";
-import { MajorSchema, createMajorSchema, updateMajorSchema } from "../validation";
+import { MajorSchema, createMajorSchema, updateMajorSchema } from "@/app/(admin)/validation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export async function createMajor(data : MajorSchema){

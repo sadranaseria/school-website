@@ -1,6 +1,6 @@
 "use client";
 
-import { MajorSchema, createMajorSchema } from "@/app/validation";
+
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -20,6 +20,7 @@ import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
 import { createMajor, updateMajor } from "../../actions";
+import { createMajorSchema, MajorSchema } from "@/app/(admin)/validation";
 
 const MajorForm = ({ major } : { major ?: Major }) => {
   console.log(major)
