@@ -5,8 +5,8 @@ import logo from "../../public/icon0.svg";
 const NavBar = () => {
 
   return (
-    <nav className="bg-white flex items-center gap-6 fixed top-5 left-4 right-4">
-      <Image width={60} src={logo} alt="logo" />
+    <nav className="p-2 flex items-center gap-6 fixed top-5 left-4 right-4 rounded-xl bg-white shadow-2xl z-10">
+      <Image width={50} height={50} src={logo} alt="logo" />
       <ul className="flex gap-5">
         {links.map((link) => (
           <li key={link.value}>
