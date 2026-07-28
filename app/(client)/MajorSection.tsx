@@ -7,7 +7,7 @@ const MajorSection = async () => {
 
   return (
     <>
-      <SectionTitle title="رشته ها" href="#majors" />
+      <SectionTitle title="رشته ها" href="#majors" id="majors" />
       {majors.map((major) => (
         <MajorCard key={major.id} major={major} />
       ))}
