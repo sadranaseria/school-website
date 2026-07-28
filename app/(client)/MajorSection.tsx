@@ -6,12 +6,12 @@ const MajorSection = async () => {
   const majors = await prisma.major.findMany();
 
   return (
-    <div>
-      <SectionTitle title="رشته ها" />
+    <>
+      <SectionTitle title="رشته ها" href="#majors" />
       {majors.map((major) => (
         <MajorCard key={major.id} major={major} />
       ))}
-    </div>
+    </>
   );
 };
 

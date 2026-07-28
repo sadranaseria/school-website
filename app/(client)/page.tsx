@@ -7,7 +7,6 @@ import RoadMapSeciton from "./RoadMapSeciton";
 export default function Home() {
   return (
     <>
-      
       <HeaderContent />
       <MajorSection />
       <GalleySection />

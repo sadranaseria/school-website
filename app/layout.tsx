@@ -19,6 +19,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <html
       lang="fa"
       className={cn("h-full", "antialiased", vazirmatn.className)}
+      data-scroll-behavior="smooth"
       dir="rtl"
     >
       <body

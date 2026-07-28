@@ -137,11 +137,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-[linear-gradient(to_top,#cfd9df_0%,#e2ebf0_100%)];
-  }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth duration-200;
   }
   Button {
     @apply cursor-pointer;
