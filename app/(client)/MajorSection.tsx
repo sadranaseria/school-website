@@ -1,4 +1,5 @@
 import { prisma } from "@/prisma/client";
+import ObserverProvider from "./components/ObserverProvider";
 import SectionTitle from "./components/SectionTitle";
 import MajorCard from "./MajorCard";
 
@@ -7,10 +8,12 @@ const MajorSection = async () => {
 
   return (
     <>
-      <SectionTitle title="رشته ها" href="#majors" id="majors" />
+      <ObserverProvider id="majors">
+        <SectionTitle title="رشته ها" href="#majors" />
+      </ObserverProvider>
       {majors.map((major) => (
-        <MajorCard key={major.id} major={major} />
-      ))}
+          <MajorCard key={major.id} major={major} />
+        ))}
     </>
   );
 };

@@ -3,22 +3,19 @@ import { LuLink } from "react-icons/lu";
 
 interface Props {
   title: string;
-  id : string;
   href: string;
 }
 
-const SectionTitle = ({ title, id ,href }: Props) => {
+const SectionTitle = ({ title ,href }: Props) => {
   if (!href) return null;
 
   return (
-    <div className="group pt-14 flex items-center justify-center gap-2" id={id}>
-      <h2 className="text-center text-primary text-4xl my-20">
+      <h2 className="group flex items-center justify-center gap-2 text-center text-primary text-4xl my-10 pt-8">
         {title}
-      </h2>
         <Link href={href} className="hidden group-hover:block">
           <LuLink className="size-5 stroke-primary" />
         </Link>
-    </div>
+      </h2>
   );
 };
 
