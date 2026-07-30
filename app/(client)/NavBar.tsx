@@ -16,9 +16,16 @@ const NavBar = () => {
             <Link
               href={link.href}
               scroll={true}
-              className={linkId === link.value ? 'text-primary' : 'text-zinc-900'}
+              className={
+                linkId === link.value
+                  ? "text-primary relative"
+                  : "text-zinc-900 relative"
+              }
             >
               {link.lebel}
+              {linkId === link.value && (
+                <div className="before:absolute before:w-4 before:-translate-x-1/2 before:left-1/2 before:-bottom-1.5 before:p-0.5 before:bg-primary before:rounded-full"></div>
+              )}
             </Link>
           </li>
         ))}
