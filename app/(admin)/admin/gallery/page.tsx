@@ -3,17 +3,43 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 
 const GalleryPage = () => {
+  const [files, setFiles] = useState<
+    Array<{
+      id: string;
+      file: File;
+      uploading: boolean;
+      progress: number;
+      key?: string;
+      isDeleting: boolean;
+      error: boolean;
+      objectUrl?: string;
+    }>
+  >([]);
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
+    if (acceptedFiles) {
+      setFiles((prevFile) => [
+        ...prevFile,
+        ...acceptedFiles.map((file) => ({
+          id: "sjnda",
+          file: file,
+          uploading: false,
+          progress: 0,
+          isDeleting: false,
+          error: false,
+          objectUrl: URL.createObjectURL(file),
+        })),
+      ]);
+    }
   }, []);
 
   const onDropRejected = useCallback((fileRejections: FileRejection[]) => {
-    if (fileRejections.length > 0) {
+    if (fileRejections) {
       const toomanyFiles = fileRejections.find(
         (fileRgection) => fileRgection.errors[0].code === "too-many-files",
       );
@@ -37,11 +63,11 @@ const GalleryPage = () => {
   });
 
   return (
-    <div className="text-center">
+    <div>
       <h2 className="mb-5">عکس های هنرستان</h2>
       <Card
         className={cn(
-          "p-20 flex flex-col justify-center items-center transition-colors w-full h-full cursor-pointer",
+          "text-center p-20 flex flex-col justify-center items-center transition-colors w-full h-full cursor-pointer",
           isDragActive
             ? "border border-primary bg-blue-superlight"
             : "border border-dashed hover:border-primary",
@@ -53,6 +79,13 @@ const GalleryPage = () => {
           <Button>{isDragActive ? "در حال انتخاب فایل" : "آپلود عکس"}</Button>
         </CardContent>
       </Card>
+      <div className="grid grid-col-2 sm:grid-col-3 md:grid-col-4 gap-4">
+        {files.map((file) => (
+          <div key={file.id}>
+            <img src={file.objectUrl} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
