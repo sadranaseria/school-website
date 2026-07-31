@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from 'uuid';
 
 const GalleryPage = () => {
   const [files, setFiles] = useState<
@@ -26,7 +27,7 @@ const GalleryPage = () => {
       setFiles((prevFile) => [
         ...prevFile,
         ...acceptedFiles.map((file) => ({
-          id: "sjnda",
+          id: uuidv4(),
           file: file,
           uploading: false,
           progress: 0,
