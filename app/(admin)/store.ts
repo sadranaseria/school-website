@@ -15,6 +15,7 @@ interface UploadFile {
 interface FileState {
     files : UploadFile[];
     setFiles : (acceptedFiles : File[]) => void;
+    uploadFiles : (file : File) => void;
 }
 
 const useFile = create<FileState>((set) => ({
@@ -35,6 +36,11 @@ const useFile = create<FileState>((set) => ({
         })),
       ],
     })),
+    uploadFiles : (file) => set(state => ({
+      files : [
+        ...state.files.map(f => f.file === file ? { ...f , uploading : true } : f)
+      ]
+    }))
 }));
 
 export default useFile;

@@ -7,10 +7,15 @@ import { toast } from "sonner";
 
 const useDrop = () => {
   const setFiles = useFile((state) => state.setFiles);
-  const uploadFile = (file: File[]) => {
-    // setFiles((file) =>
-    //   prevfile.map((f) => (f.file === file ? { ...f, uploading: true } : f)),
-    // );
+  const uploadFiles = useFile((state) => state.uploadFiles);
+  const onUploadFile = (file: File) => {
+    uploadFiles(file);
+
+    try {
+      
+    } catch {
+      
+    }
   };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
