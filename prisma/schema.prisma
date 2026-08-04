@@ -27,3 +27,10 @@ model Admin {
   name  String
   email String
 }
+
+model Image {
+  id String @id
+  name String @db.VarChar(225)
+  uploadedAt DateTime @default(now())
+  type String
+}
