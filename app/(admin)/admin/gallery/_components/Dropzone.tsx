@@ -10,38 +10,11 @@ import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import DeleteButton from "./DeleteButton";
+import useDrop from "../_hooks/useDrop";
 
 const Dropzone = () => {
-  const setUploading = useImage(state => state.setUploading);
-  const setImages = useImage(state => state.setImages);
-  const images = useImage(state => state.images);
-  const uploadFile = async (image: File) => {
-    try {
-      setUploading(image , true);
-      const urlRrequest = await axios.get("/api/url");
-      const upload = await pinata.upload.public
-        .file(image)
-        .url(urlRrequest.data.url);
-      const files = pinata.files;
-      console.log(files);
-
-      toast.success(`عکس ${image.name} با موفقیت آپلود شد`);
-      setUploading(image , false , upload.id);
-    } catch (error) {
-      toast.error("عکس آپلود نشد");
-      setUploading(image , false);
-    }
-  };
-
-  
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop: (acceptedFiles: File[]) => {
-      if (acceptedFiles) {
-        setImages(acceptedFiles);
-        acceptedFiles.forEach(uploadFile);
-      }
-    },
-  });
+  const { isDragActive, getRootProps, getInputProps } = useDrop();
+  const images = useImage((state) => state.images);
 
   return (
     <>
@@ -65,7 +38,7 @@ const Dropzone = () => {
         )}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        {images.map(({ image, isUploading , id }) => (
+        {images.map(({ image, isUploading, id }) => (
           <div key={image.name} className="relative group cursor-pointer">
             <div className="relative">
               <Image
@@ -86,8 +59,7 @@ const Dropzone = () => {
             </div>
             <p className="mt-2 text-sm text-gray-500 truncate">{image.name}</p>
 
-              { !isUploading && <DeleteButton id={id!} imageName={image.name} /> }
-            
+            {!isUploading && <DeleteButton id={id!} imageName={image.name} />}
           </div>
         ))}
       </div>
