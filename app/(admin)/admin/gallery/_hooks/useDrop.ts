@@ -18,8 +18,6 @@ const useDrop = () => {
       const upload = await pinata.upload.public
         .file(image)
         .url(urlRrequest.data.url);
-      const files = pinata.files;
-      console.log(files);
 
       toast.success(`عکس ${image.name} با موفقیت آپلود شد`);
       setUploading(image, false, upload.cid);
