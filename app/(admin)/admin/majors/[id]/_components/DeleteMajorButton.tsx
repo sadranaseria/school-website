@@ -5,7 +5,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { deleteMajor } from "../../../actions";
+import { deleteMajor } from "../../actions";
 
 const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
   const [isloading, setLoading] = useState(false);

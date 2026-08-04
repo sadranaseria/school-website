@@ -1,46 +1,36 @@
-import { create } from "zustand";
-import { v4 as uuidv4 } from "uuid";
+import { create } from 'zustand';
 
-interface UploadFile {
-  id: string;
-  file: File;
-  uploading: boolean;
-  progress: number;
-  key?: string;
-  isDeleting: boolean;
-  error: boolean;
-  objectUrl?: string;
+interface Image {
+  image : File,
+  isUploading : boolean;
+  id ?: string;
 }
 
-interface FileState {
-    files : UploadFile[];
-    setFiles : (acceptedFiles : File[]) => void;
-    uploadFiles : (file : File) => void;
+interface ImageState {
+  images : Image[];
+  setImages : (acceptedImages : File[]) => void;
+  setUploading : (image : File , isUploading : boolean , id ?: string) => void;
+  deleteImageState : (imageId : string) => void;
 }
 
-const useFile = create<FileState>((set) => ({
-  files: [],
+const useImage = create<ImageState>(set => ({
+  images : [],
+  setImages : (acceptedImages) => set(({ images }) => ({
+    images : [
+      ...images,
+      ...acceptedImages.map(image => ({ image , isUploading : false}))
+    ]
+  })),
+  setUploading: (image , isUploading , id) => set(({ images }) => ({
+    images : [
+      ...images.map(img => img.image === image ? { ...img , isUploading , id } : img)
+    ]
+  })),
+  deleteImageState : (imageId) => set(({ images }) => ({
+    images : [
+      ...images.filter(img => img.id !== imageId)
+    ]
+  }))
+}))
 
-  setFiles: (acceptedFiles) =>
-    set((state) => ({
-      files: [
-        ...state.files,
-        ...acceptedFiles.map((file) => ({
-          id: uuidv4(),
-          file,
-          uploading: false,
-          progress: 0,
-          isDeleting: false,
-          error: false,
-          objectUrl: URL.createObjectURL(file),
-        })),
-      ],
-    })),
-    uploadFiles : (file) => set(state => ({
-      files : [
-        ...state.files.map(f => f.file === file ? { ...f , uploading : true } : f)
-      ]
-    }))
-}));
-
-export default useFile;
+export default useImage;

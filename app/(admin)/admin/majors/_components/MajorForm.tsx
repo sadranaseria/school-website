@@ -19,7 +19,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
-import { createMajor, updateMajor } from "../../actions";
+import { createMajor, updateMajor } from "../actions";
 import { createMajorSchema, MajorSchema } from "@/app/(admin)/validation";
 
 const MajorForm = ({ major } : { major ?: Major }) => {
