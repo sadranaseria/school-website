@@ -3,7 +3,7 @@ import { create } from 'zustand';
 interface Image {
   image : File,
   isUploading : boolean;
-  id ?: string;
+  cid ?: string;
 }
 
 interface ImageState {
@@ -21,14 +21,14 @@ const useImage = create<ImageState>(set => ({
       ...acceptedImages.map(image => ({ image , isUploading : false}))
     ]
   })),
-  setUploading: (image , isUploading , id) => set(({ images }) => ({
+  setUploading: (image , isUploading , cid) => set(({ images }) => ({
     images : [
-      ...images.map(img => img.image === image ? { ...img , isUploading , id } : img)
+      ...images.map(img => img.image === image ? { ...img , isUploading , cid: cid } : img)
     ]
   })),
   deleteImageState : (imageId) => set(({ images }) => ({
     images : [
-      ...images.filter(img => img.id !== imageId)
+      ...images.filter(img => img.cid !== imageId)
     ]
   }))
 }))

@@ -25,7 +25,7 @@ const ImageTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {images.map(({ image, id }) => (
+          {images.map(({ image, cid: id }) => (
             <TableRow key={image.name}>
               <TableCell>
                 <Image

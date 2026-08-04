@@ -22,7 +22,7 @@ const useDrop = () => {
       console.log(files);
 
       toast.success(`عکس ${image.name} با موفقیت آپلود شد`);
-      setUploading(image, false, upload.id);
+      setUploading(image, false, upload.cid);
     } catch (error) {
       toast.error("عکس آپلود نشد");
       setUploading(image, false);
