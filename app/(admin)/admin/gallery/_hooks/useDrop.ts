@@ -29,28 +29,31 @@ const useDrop = () => {
     }
   };
 
-  const rejectedFiles = useCallback((fileRejection: FileRejection[]) => {
-    if (fileRejection) {
-      const tooManyFiles = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "too-many-files",
+  const onDrop = useCallback((acceptedFiles: File[] , fileRegection : FileRejection[]) => {
+    if (fileRegection) {
+        return;
+    }
+    setImages(acceptedFiles);
+    acceptedFiles.forEach(uploadFile);
+  }, []);
+
+  const onDropRejected = useCallback((fileRejections: FileRejection[]) => {
+    if (fileRejections) {
+      const toomanyFiles = fileRejections.find(
+        (fileRgection) => fileRgection.errors[0].code === "too-many-files",
       );
-      const fileSizeTooBig = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "file-too-large",
+      const fileTooLarge = fileRejections.find(
+        (fileRegection) => fileRegection.errors[0].code === "file-too-large",
       );
-      if (tooManyFiles) toast.error("فقط میتوانید 5 عکس آپلود کنید");
-      if (fileSizeTooBig)
-        toast.error("حجم عکس آپلود شده بیشتر از 5 مگابایت است");
+
+      if (toomanyFiles) toast.error("شما فقط میتوانید 5 عکس را آپلود کنید");
+      if (fileTooLarge) toast.error("حداکثر حجم عکس 5 مگابایت است");
     }
   }, []);
 
   return useDropzone({
-    onDrop: (acceptedFiles: File[]) => {
-      if (acceptedFiles) {
-        setImages(acceptedFiles);
-        acceptedFiles.forEach(uploadFile);
-      }
-    },
-    onDropRejected : rejectedFiles,
+    onDrop,
+    onDropRejected,
     maxFiles: 5,
     maxSize: 1024 * 1024 * 5, // 5mb,
     accept: {

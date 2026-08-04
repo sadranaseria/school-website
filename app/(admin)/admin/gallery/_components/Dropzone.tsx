@@ -4,13 +4,10 @@ import useImage from "@/app/(admin)/store";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
-import { pinata } from "@/utils/config";
-import axios from "axios";
 import Image from "next/image";
-import { useDropzone } from "react-dropzone";
-import { toast } from "sonner";
-import DeleteButton from "./DeleteButton";
 import useDrop from "../_hooks/useDrop";
+import DeleteButton from "./DeleteButton";
+import ImageTable from "./ImageTable";
 
 const Dropzone = () => {
   const { isDragActive, getRootProps, getInputProps } = useDrop();
@@ -37,7 +34,7 @@ const Dropzone = () => {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {images.map(({ image, isUploading, id }) => (
           <div key={image.name} className="relative group cursor-pointer">
             <div className="relative">
@@ -62,7 +59,8 @@ const Dropzone = () => {
             {!isUploading && <DeleteButton id={id!} imageName={image.name} />}
           </div>
         ))}
-      </div>
+      </div> */}
+      
     </>
   );
 };
