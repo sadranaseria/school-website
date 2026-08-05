@@ -1,14 +1,9 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
 import { ReactNode } from "react";
 import "../globals.css";
 import { AppSidebar } from "./admin/appSidebar";
-
-const vazirmatn = Vazirmatn({
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
