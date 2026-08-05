@@ -9,19 +9,19 @@ import { deleteImage } from "../actions";
 import useImage from "@/app/(admin)/store";
 
 interface Props {
-  id: string;
+  cid: string;
   imageName: string;
 }
 
-const DeleteButton = ({ id, imageName }: Props) => {
+const DeleteButton = ({ cid, imageName }: Props) => {
   const [pending, setPending] = useState(false);
   const deleteImageState = useImage(state => state.deleteImageState);
   const handleDelete = async () => {
     try {
       setPending(true);
-      if (id) await deleteImage(id);
+      if (cid) await deleteImage(cid);
       toast.success(`عکس ${imageName} حذف شد`);
-      deleteImageState(id);
+      deleteImageState(cid);
       setPending(false);
     } catch (error) {
       console.log(error);
