@@ -17,27 +17,20 @@ export async function deleteImage(imageCid: string) {
   }
 }
 
-export async function uploadImages(image: File) {
-  console.log("Somthing");
+export async function uploadImages(upload: UploadResponse) {
+  console.log(upload);
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) throw new Error("Not authorized");
   try {
     // console.log(urlRrequest.data.url)
-    const urlRrequest = await axios.get("/api/url");
-    const upload = await pinata.upload.public
-      .file(image)
-      .url(urlRrequest.data.url);
     await prisma.image.create({
-      data: {
-        id: upload.cid,
-        name: upload.name,
-        type: upload.mime_type,
-      },
-    });
-    return {
-      cid : upload.cid
-    };
+      data : {
+        id : upload.cid,
+        name : upload.name,
+        type : upload.mime_type
+      }
+    })
   } catch (error) {
     console.log(error);
   }

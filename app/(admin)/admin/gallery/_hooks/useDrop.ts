@@ -1,6 +1,9 @@
 "use client";
 
 import useImage from "@/app/(admin)/store";
+import { prisma } from "@/prisma/client";
+import { pinata } from "@/utils/config";
+import axios from "axios";
 import { useCallback } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -14,9 +17,13 @@ const useDrop = () => {
     try {
       setUploading(image, true);
 
-      const result = await uploadImages(image);
+      const urlRrequest = await axios.get("/api/url");
+      const upload = await pinata.upload.public
+        .file(image)
+        .url(urlRrequest.data.url);
+      uploadImages(upload);
       toast.success(`عکس ${image.name} با موفقیت آپلود شد`);
-      setUploading(image, false, result?.cid);
+      setUploading(image, false, upload.cid);
     } catch (error) {
       console.log(error);
       toast.error("عکس آپلود نشد");
