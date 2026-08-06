@@ -47,7 +47,7 @@ const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>خیر</AlertDialogCancel>
-          <AlertDialogAction onClick={onDeletemajor}>
+          <AlertDialogAction disabled={isloading} onClick={onDeletemajor}>
             بله {isloading && <Spinner />}
           </AlertDialogAction>
         </AlertDialogFooter>
