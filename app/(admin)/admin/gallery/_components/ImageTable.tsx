@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import useImage from "../../../store";
+import useImage from "../store";
 import { getImages } from "../actions";
 import DeleteButton from "./DeleteButton";
 

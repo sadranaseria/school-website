@@ -1,6 +1,6 @@
 "use client";
 
-import useImage from "@/app/(admin)/store";
+import useImage from "@/app/(admin)/admin/gallery/store";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useState } from "react";

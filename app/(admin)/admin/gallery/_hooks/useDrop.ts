@@ -1,6 +1,6 @@
 "use client";
 
-import useImage from "@/app/(admin)/store";
+import useImage from "@/app/(admin)/admin/gallery/store";
 import { prisma } from "@/prisma/client";
 import { pinata } from "@/utils/config";
 import axios from "axios";
