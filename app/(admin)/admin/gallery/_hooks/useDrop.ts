@@ -7,10 +7,10 @@ import axios from "axios";
 import { useCallback } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
-import { uploadImages } from "../actions";
+import { postImagesToDb } from "../actions";
 
 const useDrop = () => {
-  const setImages = useImage((state) => state.setImages);
+  const uploadImages = useImage((state) => state.uploadImages);
   const setUploading = useImage((state) => state.setUploading);
 
   const uploadFile = async (image: File) => {
@@ -21,8 +21,9 @@ const useDrop = () => {
       const upload = await pinata.upload.public
         .file(image)
         .url(urlRrequest.data.url);
-      uploadImages(upload);
+      postImagesToDb(upload);
       toast.success(`عکس ${image.name} با موفقیت آپلود شد`);
+      console.log(upload.cid)
       setUploading(image, false, upload.cid);
     } catch (error) {
       console.log(error);
@@ -37,7 +38,7 @@ const useDrop = () => {
         return;
       }
 
-      setImages(acceptedFiles);
+      uploadImages(acceptedFiles);
       acceptedFiles.forEach(uploadFile);
     },
     [],

@@ -7,31 +7,38 @@ interface Image {
   url ?: string;
 }
 
+interface ImageFromDb {
+  cid : string;
+  url : string;
+}
+
 interface ImageState {
   images : Image[];
-  setUrl : (urls : string[]) => void;
-  setImages : (acceptedImages : File[]) => void;
-  setUploading : (image : File , isUploading : boolean , id ?: string) => void;
+  setImages : (images : ImageFromDb[]) => void;
+  uploadImages : (acceptedImages : File[]) => void;
+  setUploading : (image : File , isUploading : boolean , cid ?: string) => void;
   deleteImageState : (imageId : string) => void;
 }
 
 const useImage = create<ImageState>(set => ({
   images : [],
-  setImages : (acceptedImages) => set(({ images }) => ({
+  uploadImages : (acceptedImages) => set(({ images }) => ({
     images : [
       ...images,
-      ...acceptedImages.map(image => ({ image , isUploading : false}))
+      ...acceptedImages.map(image => ({ image , isUploading : false }))
     ]
   })),
-  setUrl : (urls) => set(({images}) => ({
-    images : [
-      ...images,
-      ...urls.map(url => ({ image : new File([] , '') , isUploading : false , url }))
-    ]
+  setImages : (imagesDb) => set(() => ({
+    images : imagesDb.map(imgDb => ({
+      image : new File([] , ''),
+      cid : imgDb.cid,
+      url : imgDb.url,
+      isUploading : false
+    }))
   })),
   setUploading: (image , isUploading , cid) => set(({ images }) => ({
     images : [
-      ...images.map(img => img.image === image ? { ...img , isUploading , cid: cid } : img)
+      ...images.map(img => img.image === image ? { ...img , isUploading , cid } : img)
     ]
   })),
   deleteImageState : (imageId) => set(({ images }) => ({

@@ -3,29 +3,33 @@
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useImage from "../../../store";
 import { getImages } from "../actions";
 import DeleteButton from "./DeleteButton";
 
 const ImageTable = () => {
   const images = useImage((state) => state.images);
-  const setUrl = useImage((state) => state.setUrl);
+  const setImages = useImage((state) => state.setImages);
   useEffect(() => {
+    let isMounted = true;
     async function fetchImages() {
-      const { urls } = await getImages();
-      setUrl(urls);
-      console.log(urls);
+      const result = await getImages();
+      if (isMounted) setImages(result);
     }
     fetchImages();
     return () => {
-      setUrl([""]);
+      isMounted = false;
     };
-  }, []);
+  }, [setImages]);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-      {images.map(({ image, isUploading, cid, url }) => (
-        <div key={Math.random()} className="relative group cursor-pointer">
+      {images.map(({ image, cid, isUploading, url }) => (
+        <div
+          key={cid || url || image.name + Date.now()}
+          className="relative group cursor-pointer"
+        >
           <div className="relative">
             <Image
               src={url ? url : URL.createObjectURL(image)}
@@ -43,7 +47,7 @@ const ImageTable = () => {
               </div>
             )}
           </div>
-          {!isUploading && <DeleteButton cid={cid!} imageName={image.name} />}
+          {!isUploading && <DeleteButton cid={cid} imageName={image.name} />}
         </div>
       ))}
     </div>

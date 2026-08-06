@@ -3,32 +3,43 @@
 import { prisma } from "@/prisma/client";
 import { pinata } from "@/utils/config";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import axios, { AxiosResponse } from "axios";
 import { UploadResponse } from "pinata";
 
 export async function deleteImage(imageCid: string) {
+  console.log(imageCid)
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) throw new Error("Not authorized");
   try {
-    await pinata.files.public.delete([imageCid]);
+    const image = await prisma.image.findUnique({
+      where : { cid : imageCid }
+    })
+    console.log(image?.cid)
+    if(!image) throw new Error('This image doesnt exist');
+    const response = await pinata.files.public.delete([image.pinataId]);
+    console.log(response)
+    await prisma.image.delete({
+      where : {
+        cid : imageCid,
+      }
+    })
+    return { success : true }
   } catch (error) {
     console.log(error);
+    return { success : false }
   }
 }
 
-export async function uploadImages(upload: UploadResponse) {
+export async function postImagesToDb(upload: UploadResponse) {
   console.log(upload);
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) throw new Error("Not authorized");
   try {
-    // console.log(urlRrequest.data.url)
     await prisma.image.create({
       data: {
-        id: upload.cid,
-        name: upload.name,
-        type: upload.mime_type,
+        cid: upload.cid,
+        pinataId : upload.id
       },
     });
   } catch (error) {
@@ -38,15 +49,14 @@ export async function uploadImages(upload: UploadResponse) {
 
 export async function getImages() {
   const images = await prisma.image.findMany();
-  const urls = await Promise.all(
-    images.map(async (image) => {
-      return await pinata.gateways.private.createAccessLink({
-        cid: image.id,
-        expires: 30,
-      });
-    }),
+  const result = await Promise.all(
+    images.map(async (image) => ({
+      cid : image.cid,
+      url : await pinata.gateways.private.createAccessLink({
+        cid : image.cid,
+        expires : 30
+      })
+    })),
   );
-  return {
-    urls , images
-  };
+  return result
 }
