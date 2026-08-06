@@ -6,6 +6,17 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { deleteMajor } from "../../actions";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
   const [isloading, setLoading] = useState(false);
@@ -24,10 +35,24 @@ const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
   };
 
   return (
-    <Button variant="destructive" onClick={onDeletemajor}>
-      {isloading && <Spinner />}
-      حذف رشته
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="destructive">حذف رشته</Button>}
+      />
+      <AlertDialogContent dir="rtl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            آیا از پاک کردن این رشته اطمینان دارید؟
+          </AlertDialogTitle>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>خیر</AlertDialogCancel>
+          <AlertDialogAction onClick={onDeletemajor}>
+            بله {isloading && <Spinner />}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 
