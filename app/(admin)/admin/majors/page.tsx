@@ -5,7 +5,7 @@ import MajorsTable from "./_components/MajorsTable";
 import { Metadata } from "next";
 
 const MajorsPage = async () => {
-  const majors = await prisma.major.findMany({ orderBy : { title : 'desc' }});
+  const majors = await prisma.major.findMany({ orderBy : { cretedAt : 'desc' }});
   return (
     <div className="w-full md:max-w-400 overflow-y-auto">
       <Button className='mb-5'>

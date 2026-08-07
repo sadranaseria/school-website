@@ -64,7 +64,7 @@ const DeleteButton = ({ cid, imageName }: Props) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>خیر</AlertDialogCancel>
-          <AlertDialogAction disabled={isLoading} onClick={handleDelete}>
+          <AlertDialogAction disabled={isLoading} variant='destructive' onClick={handleDelete}>
             بله {isLoading && <Spinner />}
           </AlertDialogAction>
         </AlertDialogFooter>

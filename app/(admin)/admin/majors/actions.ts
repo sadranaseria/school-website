@@ -3,6 +3,7 @@
 import { prisma } from "@/prisma/client";
 import { MajorSchema, createMajorSchema, updateMajorSchema } from "@/app/(admin)/validation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { refresh } from "next/cache";
 
 export async function createMajor(data : MajorSchema){
     const { getUser } = getKindeServerSession();
@@ -18,6 +19,8 @@ export async function createMajor(data : MajorSchema){
     await prisma.major.create({
         data
     })
+
+    refresh();
 }
 
 export async function deleteMajor(majorId : number){
@@ -62,4 +65,6 @@ export async function updateMajor(majorId : number , updatedData : MajorSchema){
         where : { id : majorId },
         data : updatedData
     })
+
+    refresh();
 }

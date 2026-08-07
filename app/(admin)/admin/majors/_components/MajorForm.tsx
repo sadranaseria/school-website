@@ -23,7 +23,6 @@ import { createMajor, updateMajor } from "../actions";
 import { createMajorSchema, MajorSchema } from "@/app/(admin)/validation";
 
 const MajorForm = ({ major } : { major ?: Major }) => {
-  console.log(major)
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -42,9 +41,8 @@ const MajorForm = ({ major } : { major ?: Major }) => {
             await updateMajor(major.id , data);
           else
             await createMajor(data);
-          toast.success(major ? "رشته با موفقیت به روز شد" : "رشته با موفقیت اضافه شد", { position: "top-center" });
           router.push('/admin/majors');
-          router.refresh();
+          toast.success(major ? "رشته با موفقیت به روز شد" : "رشته با موفقیت اضافه شد", { position: "top-center" });
         } catch (error) {
           setLoading(false);
           toast.error("خطایی رخ داده است", { position: "top-center" });
