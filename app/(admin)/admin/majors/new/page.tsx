@@ -1,17 +1,8 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import NewMajorPageLoading from "./loading";
 import { Metadata } from "next";
-;
-
-const MajorForm = dynamic(() => import("../_components/MajorForm"), {
-  ssr: false, 
-  loading : () => <NewMajorPageLoading />
-});
+import NewForm from "./_components/NewForm";
 
 const NewMajorsPage = () => {
-  return <MajorForm />;
+  return <NewForm />;
 };
 
 export const metadata : Metadata = {
