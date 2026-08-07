@@ -44,6 +44,7 @@ const MajorForm = ({ major } : { major ?: Major }) => {
             await createMajor(data);
           toast.success(major ? "رشته با موفقیت به روز شد" : "رشته با موفقیت اضافه شد", { position: "top-center" });
           router.push('/admin/majors');
+          router.refresh();
         } catch (error) {
           setLoading(false);
           toast.error("خطایی رخ داده است", { position: "top-center" });
