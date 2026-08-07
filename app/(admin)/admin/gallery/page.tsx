@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Dropzone from "./_components/Dropzone";
 import ImageTable from "./_components/ImageTable";
 
@@ -12,5 +13,10 @@ const GalleryPage = () => {
     </div>
   );
 };
+
+export const metadata : Metadata = {
+  title : 'طهرانی ادمین - گالری',
+  description : 'This page for admin and just admin can enter it. And this page is about. And admin can upload or see pictures'
+}
 
 export default GalleryPage;

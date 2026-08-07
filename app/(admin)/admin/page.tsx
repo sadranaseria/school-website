@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import LatestArticels from "./LatestArticels";
 import Summery from "./Summery";
+
 
 const Dashboard = () => {
   return (
@@ -9,5 +11,10 @@ const Dashboard = () => {
     </div>
   );
 };
+
+export const metadata : Metadata = {
+  title : 'طهرانی ادمین - داشبورد',
+  description : 'This page for admin and just admin can enter it. And admin can see some data in this page'
+}
 
 export default Dashboard;
