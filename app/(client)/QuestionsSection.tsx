@@ -7,10 +7,10 @@ const QuestionsSection = () => {
     <ObserverProvider id="questions">
       <SectionTitle title="سوالات متداول" href="#questions" />
       <div className="text-center space-y-2">
-        <h2 className="text-7xl text-secondary font-bold">
+        <h2 className="text-2xl md:text-6xl text-secondary font-bold">
           به پرسش های شما پاسخ می‌دهیم
         </h2>
-        <p className="w-190 mx-auto text-4xl text-secondary leading-14 font-extralight">
+        <p className="text-lg md:text-4xl text-secondary leading-8 md:leading-14 font-extralight">
           در این بخش می‌توانید پاسخ سوالات رایج درباره هنرستان و خدمات آموزشی ما
           را مشاهده کنید
         </p>

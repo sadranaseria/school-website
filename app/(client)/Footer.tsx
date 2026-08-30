@@ -7,7 +7,7 @@ import email from "../../public/Vector (1).png";
 
 const Footer = () => {
   return (
-    <footer className="flex gap-48 pt-6 bg-primary text-white mt-20">
+    <footer className="w-full flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-stretch pt-6 bg-primary text-white mt-20 p-4">
       <div className="flex flex-col items-center gap-3">
         <div className="size-20 pt-1.5 flex justify-center items-center bg-white rounded-full">
           <Image src={logo} alt="footer-logo" />

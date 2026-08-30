@@ -7,7 +7,7 @@ const MajorCard = ({ major }: { major: Major }) => {
   return (
     <ObserverProvider id="majors">
       <Card className="p-4 ring-0">
-        <CardTitle className="text-6xl text-primary">{major.title}</CardTitle>
+        <CardTitle className="text-2xl md:text-6xl text-primary">{major.title}</CardTitle>
         <CardDescription>
           <ExpendableText>{major.description}</ExpendableText>
         </CardDescription>

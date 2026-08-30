@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <>
           <NavBar />
-          <main className="p-6">{children}</main>
+          <main className="md:p-6 w-full">{children}</main>
           <Footer />
     </>
   );
