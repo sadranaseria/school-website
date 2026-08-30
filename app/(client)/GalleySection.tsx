@@ -1,17 +1,27 @@
 "use client";
 
-import "swiper/css";
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import ObserverProvider from "./components/ObserverProvider";
 import SectionTitle from "./components/SectionTitle";
 import Slider from "./components/Slider";
+import { useEffect, useState } from "react";
+import { getImages } from "../(admin)/admin/gallery/actions";
 
 const GalleySection = () => {
+  const [images , setImages] = useState<Array<string>>([]);
+  useEffect(() => {
+      let isMounted = true;
+      async function fetchImages() {
+        const result = await getImages();
+        setImages(result.map(r => r.url));
+      }
+      fetchImages();
+      return () => {
+        isMounted = false;
+      };
+    }, []);
+    console.log(images);
+    
   return (
     <ObserverProvider id="gallery">
       <SectionTitle title="گالری" href="#gallery" />
@@ -22,10 +32,13 @@ const GalleySection = () => {
           فعالیت هنرجویان را مشاهده کنید
         </p>
         <Slider>
-            <SwiperSlide className="bg-gray-700 size-48 my-3"></SwiperSlide>
-            <SwiperSlide className="bg-gray-700 size-48 my-3"></SwiperSlide>
-            <SwiperSlide className="bg-gray-700 size-48 my-3"></SwiperSlide>
-            <SwiperSlide className="bg-gray-700 size-48 my-3"></SwiperSlide>
+            <div>
+              {images.map(image => (
+                <SwiperSlide key={image}>
+                  <img src={image} alt="image" />
+                </SwiperSlide>
+              ))}
+            </div>
         </Slider>
       </div>
     </ObserverProvider>
