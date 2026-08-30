@@ -4,13 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/icon0.svg";
 import useActiveLink from "./store";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { Button } from "@/components/ui/button";
 
 const NavBar = () => {
   const linkId = useActiveLink((state) => state.linkId);
   return (
-    <nav className="p-2 flex items-center gap-6 fixed top-5 left-4 right-4 rounded-xl bg-white shadow-2xl z-10">
-      <Image width={50} height={50} src={logo} alt="logo" />
-      <ul className="flex gap-5">
+    <nav className="p-2 flex flex-row-reverse md:flex-row items-center justify-between md:justify-normal gap-2 fixed top-5 left-2 right-2 rounded-xl bg-white shadow-2xl z-10">
+      <Image width={50} height={50} src={logo} alt="logo" className="size-10 md:size-14" />
+      <ul className="hidden md:flex gap-5">
         {links.map((link) => (
           <li key={link.value}>
             <Link
@@ -30,6 +32,9 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
+      <Button variant='ghost'>
+        <RxHamburgerMenu className="size-5 md:hidden cursor-pointer" />
+      </Button>
     </nav>
   );
 };
