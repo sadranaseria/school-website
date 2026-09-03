@@ -9,9 +9,9 @@ const NavBar = () => {
 
   const sidebarItems: { lable: string; value: string; href: string }[] = [
     { lable: "داشبورد", value: "dashboard", href: "/admin" },
-    { lable: "مقالات", value: "articles", href: "/admin/articles" },
     { lable: "گالری", value: "gallery", href: "/admin/gallery" },
     { lable: "رشته ها", value: "majors", href: "/admin/majors" },
+    { lable: "اخبار", value: "news", href: "/admin/news" },
   ];
 
   return (
