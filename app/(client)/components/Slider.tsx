@@ -29,7 +29,7 @@ const Slider = ({ children }: PropsWithChildren) => {
       }}
       navigation={true}
       modules={[Pagination, Navigation]}
-      className="mySwiper"
+      className="mySwiper my-20"
     >
       {children}
     </Swiper>
