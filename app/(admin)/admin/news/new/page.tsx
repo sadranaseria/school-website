@@ -12,25 +12,38 @@ import { Input } from "@/components/ui/input";
 import { UploadDropzone } from "@/utils/uploadthing";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
+import { Controller, useForm } from "react-hook-form";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createNewsShema , NewsShema } from "@/app/(admin)/validation";
 
 const NewNewsPage = () => {
+  const { register , handleSubmit , formState : { errors } , control } = useForm<NewsShema>({ resolver : zodResolver(createNewsShema) });
+  
   return (
     <div className="max-w-3xl w-full">
-      <form>
+      <form onSubmit={handleSubmit(data => console.log(data))}>
         <FieldSet>
           <FieldLegend>ساخت خبر جدید</FieldLegend>
           <FieldGroup>
             <FieldLabel>عنوان خبر</FieldLabel>
-            <Input />
-            <FieldError></FieldError>
+            <Input {...register('title')} />
+            {errors.title && <FieldError>{errors.title.message}</FieldError>}
           </FieldGroup>
           <FieldGroup>
             <FieldLabel>توضیحات</FieldLabel>
-            <SimpleMdeReact className="text-right" />
-            <FieldError></FieldError>
+            <Controller
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } , fieldState : { error } }) => (
+                <>
+                  <SimpleMdeReact className="text-right" value={value} onChange={onChange} />
+                  {error && <FieldError>{error.message}</FieldError>}
+                </>
+              )}
+            />
           </FieldGroup>
         </FieldSet>
         <UploadDropzone
