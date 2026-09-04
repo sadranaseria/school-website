@@ -72,7 +72,7 @@ const MajorForm = ({ major } : { major ?: Major }) => {
               control={control}
               defaultValue={major?.description}
               render={({ field }) => (
-                <SimpleMdeReact value={field.value} onChange={field.onChange} />
+                <SimpleMdeReact value={field.value} onChange={field.onChange} className="text-right" />
               )}
             />
           </Field>
