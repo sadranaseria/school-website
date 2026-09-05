@@ -1,6 +1,6 @@
 "use client";
 
-import { createNewsShema, NewsShema } from "@/app/(admin)/validation";
+import { createNewsShema, CreateNewsShema } from "@/app/(admin)/validation";
 import { Button } from "@/components/ui/button";
 import {
   FieldError,
@@ -15,6 +15,7 @@ import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
 import { Controller, useForm } from "react-hook-form";
 import ImageDropzone from "../../_components/ImageDropzone";
+import { createNews } from "../actions";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
@@ -25,11 +26,19 @@ const NewNewsPage = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<NewsShema>({ resolver: zodResolver(createNewsShema) });
+  } = useForm<CreateNewsShema>({ resolver: zodResolver(createNewsShema) });
+
+  const onSubmit = handleSubmit(async(data) => {
+    try {
+      await createNews(data);
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
   return (
     <div className="max-w-3xl w-full">
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={onSubmit}>
         <FieldSet>
           <FieldLegend>ساخت خبر جدید</FieldLegend>
           <FieldGroup>

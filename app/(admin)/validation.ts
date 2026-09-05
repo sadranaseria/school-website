@@ -18,4 +18,4 @@ export const createNewsShema = z.object({
   images : z.array(z.object({ url : z.string() , key : z.string() }))
 })
 
-export type NewsShema = z.infer<typeof createNewsShema>;
+export type CreateNewsShema = z.infer<typeof createNewsShema>;
