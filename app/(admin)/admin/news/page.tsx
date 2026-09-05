@@ -33,7 +33,7 @@ const NewsPage = async () => {
           <TableHeader>
             <TableRow>
               {columns.map((column) => (
-                <TableHead className="text-right" key={column.value}>
+                <TableHead className={`text-right ${column.className}`} key={column.value}>
                   {column.label}
                 </TableHead>
               ))}
@@ -63,11 +63,11 @@ const NewsPage = async () => {
   );
 };
 
-const columns: { label: string; value: keyof NewsWithImages }[] = [
+const columns: { label: string; value: keyof NewsWithImages , className ?: string }[] = [
   { label: "آی دی", value: "id" },
   { label: "عکس", value: "images" },
   { label: "عنوان", value: "title" },
-  { label: "توضیحات", value: "description" },
+  { label: "توضیحات", value: "description" , className : 'hidden md:table-cell' },
 ];
 
 export default NewsPage;
