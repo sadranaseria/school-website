@@ -52,7 +52,7 @@ const NewsPage = async () => {
                     className="rounded-xl object-cover"
                   />
                 </TableCell>
-                <TableCell>{n.title}</TableCell>
+                <TableCell><Button variant='link'><Link href={`/admin/news/${n.id}`}>{n.title}</Link></Button></TableCell>
                 <TableCell><Markdown>{n.description.substring(0 ,20)}</Markdown></TableCell>
               </TableRow>
             ))}
