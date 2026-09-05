@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { HiX } from "react-icons/hi";
 import { deleteImage } from "../action";
+import { Spinner } from "@/components/ui/spinner";
 
-type ImageType = Array<{ url: string; key: string }>;
+type ImageType = Array<{ url: string; key: string , deletting ?: boolean }>;
 
 interface Props {
   value?: ImageType;
@@ -18,6 +19,7 @@ const ImageDropzone = ({ onChange, value }: Props) => {
   const [images, setImages] = useState<ImageType>(value ?? []);
 
   const handleDelete = async (key: string) => {
+    setImages(prev => prev.map(img => img.key === key ? { ...img , deletting : true } : img))
     const { success, message } = await deleteImage(key);
     if (success)
       setImages(images.filter(img => img.key !== key));
@@ -66,7 +68,7 @@ const ImageDropzone = ({ onChange, value }: Props) => {
               variant="destructive"
               className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
             >
-              <HiX />
+              {image.deletting ? <Spinner /> : <HiX />}
             </Button>
           </div>
         ))}
