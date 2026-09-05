@@ -18,12 +18,15 @@ import ImageDropzone from "../../_components/ImageDropzone";
 import { createNews } from "../actions";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
 const NewNewsPage = () => {
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -35,10 +38,13 @@ const NewNewsPage = () => {
     try {
       setLoading(true);
       await createNews(data);
+      toast.success('خبر با موفقیت ساخته شد');
     } catch (error) {
       console.log(error);
+      toast.error('خبر ساخته نشد');
     } finally {
       setLoading(false);
+      router.push('/admin/news');
     }
   })
 

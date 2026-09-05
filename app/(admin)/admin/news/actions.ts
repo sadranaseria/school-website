@@ -23,5 +23,4 @@ export async function createNews(data :CreateNewsShema) {
   })
 
   refresh();
-  redirect('/admin/news');
 }
