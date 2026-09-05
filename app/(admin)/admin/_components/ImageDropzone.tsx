@@ -1,8 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { UploadDropzone } from "@/utils/uploadthing";
 import Image from "next/image";
 import { useState } from "react";
+import { HiX } from "react-icons/hi";
 
 type ImageType = Array<{ url: string; key: string }>;
 
@@ -41,15 +43,17 @@ const ImageDropzone = ({ onChange, value }: Props) => {
       />
       <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {images.map((image) => (
-          <Image
-            key={image.key}
-            src={image.url}
-            alt="image"
-            className="size-40 object-cover rounded-xl"
-            width={200}
-            height={200}
-            loading="eager"
-          />
+          <div key={image.key} className="relative group">
+            <Image
+              src={image.url}
+              alt="image"
+              className="size-40 object-cover rounded-xl"
+              width={200}
+              height={200}
+              loading="eager"
+            />
+            <Button variant='destructive' className='absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity'><HiX /></Button>
+          </div>
         ))}
       </div>
     </>
