@@ -18,9 +18,12 @@ const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
 });
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createNewsShema , NewsShema } from "@/app/(admin)/validation";
+import { useState } from "react";
+import Image from "next/image";
 
 const NewNewsPage = () => {
-  const { register , handleSubmit , formState : { errors } , control } = useForm<NewsShema>({ resolver : zodResolver(createNewsShema) });
+  const [images , setImages] = useState<Array<{ url : string , key : string }>>([]);
+  const { register, handleSubmit, formState: { errors }, control } = useForm<NewsShema>({ resolver: zodResolver(createNewsShema) });
   
   return (
     <div className="max-w-3xl w-full">
@@ -28,18 +31,18 @@ const NewNewsPage = () => {
         <FieldSet>
           <FieldLegend>ساخت خبر جدید</FieldLegend>
           <FieldGroup>
-            <FieldLabel>عنوان خبر</FieldLabel>
-            <Input {...register('title')} />
+            <FieldLabel htmlFor="title">عنوان خبر</FieldLabel>
+            <Input id="title" {...register('title')} />
             {errors.title && <FieldError>{errors.title.message}</FieldError>}
           </FieldGroup>
           <FieldGroup>
-            <FieldLabel>توضیحات</FieldLabel>
+            <FieldLabel htmlFor="description">توضیحات</FieldLabel>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } , fieldState : { error } }) => (
                 <>
-                  <SimpleMdeReact className="text-right" value={value} onChange={onChange} />
+                  <SimpleMdeReact id="description" className="text-right" value={value} onChange={onChange} />
                   {error && <FieldError>{error.message}</FieldError>}
                 </>
               )}
@@ -52,7 +55,11 @@ const NewNewsPage = () => {
           onClientUploadComplete={(res) => {
             // Do something with the response
             console.log("Files: ", res);
-            alert("Upload Completed");
+            setImages(prev => [
+              ...prev,
+              ...res.map(r => ({ url : r.ufsUrl , key : r.key }))
+            ])
+            console.log(images);
           }}
           onUploadError={(error: Error) => {
             // Do something with the error.
@@ -60,9 +67,13 @@ const NewNewsPage = () => {
           }}
           content={{
             label: 'عکسی را بکشید یا آپلود کنید',
-            button: 'آپلود'
           }}
         />
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {images.map(image => (
+            <Image key={image.key} src={image.url} alt='image' className="size-40 object-cover rounded-xl" width={200} height={200} loading="eager" />
+          ))}
+        </div>
         <Button className='w-full mt-4' type='submit'>ساخت خبر</Button>
       </form>
     </div>
