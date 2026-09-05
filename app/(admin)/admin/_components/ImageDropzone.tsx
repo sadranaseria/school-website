@@ -52,11 +52,11 @@ const ImageDropzone = ({ onChange, value }: Props) => {
             ...newImages,
           ]);
 
-          console.log(images);
+          toast.success('عکس با موفقیت آپلود شد')
         }}
         onUploadError={(error: Error) => {
           // Do something with the error.
-          alert(`ERROR! ${error.message}`);
+          toast.error('عکس با آپلود نشد');
         }}
         content={{
           label: "عکسی را بکشید یا آپلود کنید",
