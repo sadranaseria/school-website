@@ -14,7 +14,7 @@ export async function deleteImage(key: string) {
     return { success : true }
   } catch (error) {
     console.log(error);
-    return { success : false , message : 'آپلود انجام نشد' }
+    return { success : false , message : 'عکس پاک نشد' }
   }
   
 }

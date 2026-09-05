@@ -7,8 +7,9 @@ import { useState } from "react";
 import { HiX } from "react-icons/hi";
 import { deleteImage } from "../action";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
-type ImageType = Array<{ url: string; key: string , deletting ?: boolean }>;
+type ImageType = Array<{ url: string; key: string; deletting?: boolean }>;
 
 interface Props {
   value?: ImageType;
@@ -19,12 +20,21 @@ const ImageDropzone = ({ onChange, value }: Props) => {
   const [images, setImages] = useState<ImageType>(value ?? []);
 
   const handleDelete = async (key: string) => {
-    setImages(prev => prev.map(img => img.key === key ? { ...img , deletting : true } : img))
+    setImages((prev) =>
+      prev.map((img) => (img.key === key ? { ...img, deletting: true } : img)),
+    );
     const { success, message } = await deleteImage(key);
-    if (success)
-      setImages(images.filter(img => img.key !== key));
-    else
-      console.log(message);
+    if (success) {
+      setImages(images.filter((img) => img.key !== key));
+      toast.success("عکس با موفقیت پاک شد");
+    } else {
+      toast.error(message);
+      setImages((prev) =>
+        prev.map((img) =>
+          img.key === key ? { ...img, deletting: false } : img,
+        ),
+      );
+    }
   };
 
   return (
