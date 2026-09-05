@@ -16,11 +16,14 @@ import dynamic from "next/dynamic";
 import { Controller, useForm } from "react-hook-form";
 import ImageDropzone from "../../_components/ImageDropzone";
 import { createNews } from "../actions";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
 const NewNewsPage = () => {
+  const [loading , setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,9 +33,12 @@ const NewNewsPage = () => {
 
   const onSubmit = handleSubmit(async(data) => {
     try {
+      setLoading(true);
       await createNews(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   })
 
@@ -79,7 +85,12 @@ const NewNewsPage = () => {
           )}
         />
         <Button className="w-full mt-4" type="submit">
-          ساخت خبر
+          {loading ? (
+            <div className="flex items-center gpa-4">
+              <Spinner />
+              در حال ساخت خبر
+            </div>
+          ) : 'ساخت خبر'}
         </Button>
       </form>
     </div>
