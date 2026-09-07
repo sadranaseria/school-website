@@ -26,7 +26,7 @@ const DeleteButton = ({ newsId }: { newsId: number }) => {
   };
 
   return (
-    <Button variant='destructive' className="w-full mt-4" type="submit" onClick={() => handleDelete(newsId)}>
+    <Button variant='destructive' className="w-full" type="submit" onClick={() => handleDelete(newsId)}>
       {loading ? (
         <div className="flex items-center gpa-4">
           <Spinner />

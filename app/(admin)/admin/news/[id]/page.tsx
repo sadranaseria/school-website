@@ -1,9 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 import Markdown from "react-markdown";
 import DeleteButton from "./DeleteButton";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const NewsDetailsPage = async ({
   params,
@@ -23,7 +24,12 @@ const NewsDetailsPage = async ({
       <CardHeader className="w-4xl mx-auto my-14 flex justify-between items-center">
         <div className="flex flex-col gap-5">
           <CardTitle className="text-3xl">{news.title}</CardTitle>
-          <DeleteButton newsId={news.id} />
+          <div className="flex gap-4 items-center mt-4">
+            <DeleteButton newsId={news.id} />
+            <Button className="bg-violet-400 hover:bg-violet-500">
+              <Link href={`/admin/news/${news.id}/edit`}>ویرایش</Link>
+            </Button>
+          </div>
         </div>
         <div>
           {news.images.map((image) => (
