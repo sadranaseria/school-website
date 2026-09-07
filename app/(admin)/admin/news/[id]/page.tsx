@@ -3,6 +3,7 @@ import { prisma } from "@/prisma/client";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import DeleteButton from "./DeleteButton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const NewsDetailsPage = async ({
   params,
@@ -18,7 +19,7 @@ const NewsDetailsPage = async ({
   if (!news) return null;
 
   return (
-    <Card className="w-7xl h-full">
+    <Card className="w-5xl">
       <CardHeader className="w-4xl mx-auto my-14 flex justify-between items-center">
         <div className="flex flex-col gap-5">
           <CardTitle className="text-3xl">{news.title}</CardTitle>
@@ -30,8 +31,8 @@ const NewsDetailsPage = async ({
               key={image.id}
               src={image.url}
               alt={`Image for news ${image.newsId}`}
-              width={200}
-              height={200}
+              width={500}
+              height={500}
               className="w-100 object-cover rounded-4xl"
             />
           ))}
