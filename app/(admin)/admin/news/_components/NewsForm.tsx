@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateNewsShema, createNewsShema } from "@/app/(admin)/validation";
+import { NewsShema, createNewsShema } from "@/app/(admin)/validation";
 import { Button } from "@/components/ui/button";
 import {
   FieldError,
@@ -18,7 +18,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import ImageDropzone from "../../_components/ImageDropzone";
-import { createNews } from "../actions";
+import { createNews, updateNews } from "../actions";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
@@ -33,7 +33,7 @@ const NewsForm = ({ news } : { news ?: NewsWithImages }) => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<CreateNewsShema>({
+  } = useForm<NewsShema>({
     resolver: zodResolver(createNewsShema),
     defaultValues: {
       title: news?.title ?? '',
@@ -45,11 +45,20 @@ const NewsForm = ({ news } : { news ?: NewsWithImages }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      await createNews(data);
-      toast.success("خبر با موفقیت ساخته شد");
+      if (news)
+        await updateNews(news.id, data);
+      else
+          await createNews(data);
+      if(news)
+        toast.success("خبر با موفقیت ویرایش شد");
+      else
+        toast.success("خبر با موفقیت ساخته شد");
     } catch (error) {
       console.log(error);
-      toast.error("خبر ساخته نشد");
+      if(news)
+        toast.error("خبر با ویرایش نشد");
+      else
+        toast.error("خبر با ساخته نشد");
     } finally {
       setLoading(false);
       router.push("/admin/news");
@@ -98,11 +107,12 @@ const NewsForm = ({ news } : { news ?: NewsWithImages }) => {
         {loading ? (
           <div className="flex items-center gpa-4">
             <Spinner />
-            در حال ساخت خبر
+            {news ? 'در حال ویرایش' : 'در حال ساخت'}
           </div>
         ) : (
-          "ساخت خبر"
-        )}
+            <div>{news ? 'ویرایش خبر' : 'ساخت خبر'}</div>
+        )
+        }
       </Button>
     </form>
   );

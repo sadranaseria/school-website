@@ -18,4 +18,10 @@ export const createNewsShema = z.object({
   images : z.array(z.object({ url : z.string() , key : z.string() }))
 })
 
-export type CreateNewsShema = z.infer<typeof createNewsShema>;
+export type NewsShema = z.infer<typeof createNewsShema>;
+
+export const updateNewsShema = z.object({
+  title: z.string().min(1, { error: 'عنوان خبر الزامی است' }).optional(),
+  description: z.string({ error : 'توضیحات الزامی است'}).optional(),
+  images : z.array(z.object({ url : z.string() , key : z.string() })).optional()
+})
