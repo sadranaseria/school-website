@@ -23,8 +23,9 @@ const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 import "easymde/dist/easymde.min.css";
+import { NewsWithImages } from "../types";
 
-const NewsForm = () => {
+const NewsForm = ({ news } : { news ?: NewsWithImages }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -32,7 +33,14 @@ const NewsForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<CreateNewsShema>({ resolver: zodResolver(createNewsShema) });
+  } = useForm<CreateNewsShema>({
+    resolver: zodResolver(createNewsShema),
+    defaultValues: {
+      title: news?.title ?? '',
+      description: news?.description ?? '',
+      images : news?.images.map(img => ({ url : img.url , key : img.key })) ?? []
+    }
+  });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
