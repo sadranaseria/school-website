@@ -10,16 +10,16 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import ImageDropzone from "../../_components/ImageDropzone";
 import { createNews } from "../actions";
-import { useState } from "react";
-import { Spinner } from "@/components/ui/spinner";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
@@ -34,19 +34,19 @@ const NewNewsPage = () => {
     control,
   } = useForm<CreateNewsShema>({ resolver: zodResolver(createNewsShema) });
 
-  const onSubmit = handleSubmit(async(data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
       await createNews(data);
-      toast.success('خبر با موفقیت ساخته شد');
+      toast.success("خبر با موفقیت ساخته شد");
     } catch (error) {
       console.log(error);
-      toast.error('خبر ساخته نشد');
+      toast.error("خبر ساخته نشد");
     } finally {
       setLoading(false);
-      router.push('/admin/news');
+      router.push("/admin/news");
     }
-  })
+  });
 
   return (
     <div className="max-w-3xl w-full">
@@ -83,7 +83,7 @@ const NewNewsPage = () => {
         <Controller
           name="images"
           control={control}
-          render={({ field : { value , onChange }  , fieldState : { error }}) => (
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
               <ImageDropzone value={value} onChange={onChange} />
               {error && <FieldError>{error.message}</FieldError>}
@@ -96,7 +96,9 @@ const NewNewsPage = () => {
               <Spinner />
               در حال ساخت خبر
             </div>
-          ) : 'ساخت خبر'}
+          ) : (
+            "ساخت خبر"
+          )}
         </Button>
       </form>
     </div>
