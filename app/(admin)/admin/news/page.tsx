@@ -24,7 +24,7 @@ const NewsPage = async () => {
   if (!news) return null;
 
   return (
-    <div className="w-4xl">
+    <div className="max-w-4xl mx-auto">
       <Button className="mb-4">
         <Link href="/admin/news/new">جدید</Link>
       </Button>
@@ -53,7 +53,7 @@ const NewsPage = async () => {
                   />
                 </TableCell>
                 <TableCell><Button variant='link'><Link href={`/admin/news/${n.id}`}>{n.title}</Link></Button></TableCell>
-                <TableCell><Markdown>{n.description.substring(0 ,20)}</Markdown></TableCell>
+                <TableCell className="hidden md:table-cell"><Markdown>{n.description.substring(0 ,20)}</Markdown></TableCell>
               </TableRow>
             ))}
           </TableBody>

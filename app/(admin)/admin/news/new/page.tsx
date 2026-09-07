@@ -49,7 +49,7 @@ const NewNewsPage = () => {
   });
 
   return (
-    <div className="max-w-3xl w-full">
+    <div className="max-w-3xl mx-auto">
       <form onSubmit={onSubmit}>
         <FieldSet>
           <FieldLegend>ساخت خبر جدید</FieldLegend>

@@ -1,15 +1,14 @@
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarHeader,
 } from "@/components/ui/sidebar";
 import AuthStatus from "./AuthStatus";
 import NavBar from "./NavBar";
-import { Suspense } from "react";
 
 export function AppSidebar() {
   return (
@@ -25,7 +24,7 @@ export function AppSidebar() {
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
-          <AuthStatus />
+        <AuthStatus />
       </SidebarFooter>
     </Sidebar>
   );

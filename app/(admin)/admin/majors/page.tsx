@@ -7,7 +7,7 @@ import { Metadata } from "next";
 const MajorsPage = async () => {
   const majors = await prisma.major.findMany({ orderBy : { cretedAt : 'desc' }});
   return (
-    <div className="w-full md:max-w-400 overflow-y-auto">
+    <div className="max-w-5xl mx-auto overflow-y-auto">
       <Button className='mb-5'>
         <Link href="/admin/majors/new">رشته جدید</Link>
       </Button>

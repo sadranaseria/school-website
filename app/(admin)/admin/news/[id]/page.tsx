@@ -19,7 +19,7 @@ const NewsDetailsPage = async ({
   if (!news) return null;
 
   return (
-    <Card className="w-5xl">
+    <Card className="max-w-5xl mx-auto">
       <CardHeader className="w-4xl mx-auto my-14 flex justify-between items-center">
         <div className="flex flex-col gap-5">
           <CardTitle className="text-3xl">{news.title}</CardTitle>

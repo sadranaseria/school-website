@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const MajorsLoadingPage = () => {
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-5">
+    <div className="flex w-full max-w-2xl mx-auto flex-col gap-5">
       <Skeleton className="h-10 w-20 bg-gray-200" />
       {Array.from({ length: 5 }).map((_, index) => (
         <div className="flex gap-4 w-full" key={index}>

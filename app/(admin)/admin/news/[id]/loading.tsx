@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const NewsDetailsLoadingPage = () => {
   return (
-    <div className="w-5xl">
+    <div className="max-w-5xl mx-auto">
       <div className="flex justify-around items-center">
         <div className="space-y-4">
           <Skeleton className="w-50 p-3 bg-gray-200" />

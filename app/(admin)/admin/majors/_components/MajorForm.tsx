@@ -52,7 +52,7 @@ const MajorForm = ({ major } : { major ?: Major }) => {
 
   return (
     <form
-      className="w-full md:max-w-2xl"
+      className="max-w-2xl mx-auto"
       onSubmit={onCraeteMajor}
     >
       <FieldSet>

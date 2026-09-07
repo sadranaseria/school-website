@@ -4,7 +4,7 @@ import React from 'react'
 
 const loading = () => {
   return (
-    <Card className="w-full max-w-2xl">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <Skeleton className="h-4 w-2/3 bg-gray-200" />
         <Skeleton className="h-4 w-1/2 bg-gray-200" />
