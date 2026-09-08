@@ -14,8 +14,8 @@ export const updateMajorSchema = z.object({
 
 export const createNewsShema = z.object({
   title: z.string().min(1, { error: 'عنوان خبر الزامی است' }),
-  description: z.string({ error : 'توضیحات الزامی است'}),
-  images : z.array(z.object({ url : z.string() , key : z.string() }))
+  description: z.string().min(1 , { error : 'توضیحات الزامی است'}),
+  images : z.array(z.object({ url : z.string() , key : z.string() })).min(1 , { error : 'توضیحات الزامی است'})
 })
 
 export type NewsShema = z.infer<typeof createNewsShema>;
@@ -25,3 +25,11 @@ export const updateNewsShema = z.object({
   description: z.string({ error : 'توضیحات الزامی است'}).optional(),
   images : z.array(z.object({ url : z.string() , key : z.string() })).optional()
 })
+
+export const creactPassedSchema = z.object({
+  name: z.string().min(1, { error: 'نام هنرجو الزامی است' }),
+  images: z.array(z.object({ url: z.string(), key: z.string() }) , { error: 'عکس هنرجو الزامی است' }),
+  univercity : z.string().min(1 , { error : 'دانشگاه الزامی است'})
+})
+
+export type PassedShema = z.infer<typeof creactPassedSchema>;
