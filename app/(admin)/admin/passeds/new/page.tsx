@@ -14,9 +14,11 @@ import { useState } from "react";
 import { creactPassedSchema, PassedShema } from "@/app/(admin)/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { creaetPassed } from "../actions";
+import { toast } from "sonner";
 
 const NewPassedUnivercity = () => {
-  const [isLoading , setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
   
   const {
     register,
@@ -31,10 +33,13 @@ const NewPassedUnivercity = () => {
     try {
       setLoading(true);
       await creaetPassed(data);
+      toast.success('قبولی جدید با موفقیت ساخته شد');
     } catch (error) {
       console.log(error);
+      toast.error('قبولی جدید ساخته نشد');
     } finally {
       setLoading(false);
+      router.push('/admin/passeds');
     }
   })
   

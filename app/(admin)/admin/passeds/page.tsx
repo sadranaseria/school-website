@@ -18,7 +18,7 @@ import { PassedWithImages } from "./types";
 const PassUnivercityPage = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-4">
-      <Button><Link href='/admin/pass-univercity/new'>جدید</Link></Button>
+      <Button><Link href='/admin/passeds/new'>جدید</Link></Button>
       <ScrollArea className="h-100 rounded-md border">
         <Table>
           <TableHeader>
