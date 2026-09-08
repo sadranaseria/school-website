@@ -5,6 +5,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useState } from "react";
 import { HiTrash } from "react-icons/hi2";
 import { deletePassed } from "../actions";
+import { toast } from "sonner";
 
 const DeletePassedButton = ({ passedId }: { passedId: number }) => {
   const [isLoading, setLoading] = useState(false);
@@ -13,8 +14,10 @@ const DeletePassedButton = ({ passedId }: { passedId: number }) => {
     try {
       setLoading(true);
       await deletePassed(passedId);
+      toast.success('قبولی با موفقیت حذف شد');
     } catch (error) {
       console.log(error);
+      toast.error('قبولی حذف نشد');
     } finally {
       setLoading(false);
     }
