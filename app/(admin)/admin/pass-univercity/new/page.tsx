@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { creaetPassed } from "../actions";
 
 const NewPassedUnivercity = () => {
+  const [isLoading , setLoading] = useState(false);
   
   const {
     register,
@@ -28,11 +29,12 @@ const NewPassedUnivercity = () => {
 
   const onSubmit = handleSubmit(async(data) => {
     try {
+      setLoading(true);
       await creaetPassed(data);
     } catch (error) {
       console.log(error);
     } finally {
-  
+      setLoading(false);
     }
   })
   
@@ -62,7 +64,11 @@ const NewPassedUnivercity = () => {
             </>
           )}
         />
-        <Button className="w-full mt-4" type="submit">ساخت قبولی جدید</Button>
+        <Button className="w-full mt-4" type="submit">{
+          isLoading ? (
+            <div className="flex items-center gap-2"><Spinner />در حال ساخت قبولی جدید</div>
+          ) : 'ساخت قبولی جدید'
+          }</Button>
       </form>
     </div>
   )
