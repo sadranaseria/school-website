@@ -8,20 +8,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { prisma } from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { PassedWithImages } from "./types";
-import { prisma } from "@/prisma/client";
 
 const PassUnivercityPage = async () => {
   const passeds = await prisma.passed.findMany({
-    include : { images : true }
-  })
-  
+    include: { images: true },
+  });
+
   return (
     <div className="max-w-4xl mx-auto space-y-4">
-      <Button><Link href='/admin/passeds/new'>جدید</Link></Button>
+      <Button>
+        <Link href="/admin/passeds/new">جدید</Link>
+      </Button>
       <ScrollArea className="h-100 rounded-md border">
         <Table>
           <TableHeader>
@@ -37,14 +38,22 @@ const PassUnivercityPage = async () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {passeds.map(passed => (
+            {passeds.map((passed) => (
               <TableRow key={passed.id}>
                 <TableCell>{passed.id}</TableCell>
                 <TableCell>
-                  <Image src={passed.images[0].url} alt={`Image of passed ${passed.images[0].passedId}`} width={500} height={500} className="w-30 rounded-lg" />
+                  <Image
+                    src={passed.images[0].url}
+                    alt={`Image of passed ${passed.images[0].passedId}`}
+                    width={500}
+                    height={500}
+                    className="w-30 rounded-lg"
+                  />
                 </TableCell>
-                <TableCell>{passed.name}</TableCell>
-                <TableCell className="hidden md:table-cell">{passed.univercity}</TableCell>
+                <TableCell><Button variant='link'><Link href={`/admin/passeds/${passed.id}`}>{passed.name}</Link></Button></TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {passed.univercity}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -62,7 +71,7 @@ const columns: {
   { label: "آی دی", value: "id" },
   { label: "عکس", value: "images" },
   { label: "نام هنرجو", value: "name" },
-  { label: "دانشگاه", value: "univercity" , className : 'hidden md:table-cell' },
+  { label: "دانشگاه", value: "univercity", className: "hidden md:table-cell" },
 ];
 
 export default PassUnivercityPage;
