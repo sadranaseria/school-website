@@ -32,6 +32,7 @@ const sidebarItems: { lable: string; value: string; href: string }[] = [
   { lable: "گالری", value: "gallery", href: "/admin/gallery" },
   { lable: "رشته ها", value: "majors", href: "/admin/majors" },
   { lable: "اخبار", value: "news", href: "/admin/news" },
+  { lable: "قبول شدگان دانشگاه", value: "passUnivercity", href: "/admin/pass-univercity" },
 ];
 
 export default NavBar;
