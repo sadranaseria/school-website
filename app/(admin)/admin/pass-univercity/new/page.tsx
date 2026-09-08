@@ -13,8 +13,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { creactPassedSchema, PassedShema } from "@/app/(admin)/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { creaetPassed } from "../actions";
 
 const NewPassedUnivercity = () => {
+  
   const {
     register,
     handleSubmit,
@@ -23,10 +25,20 @@ const NewPassedUnivercity = () => {
   } = useForm<PassedShema>({
     resolver: zodResolver(creactPassedSchema),
   });
+
+  const onSubmit = handleSubmit(async(data) => {
+    try {
+      await creaetPassed(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+  
+    }
+  })
   
   return (
     <div className="max-w-4xl mx-auto">
-      <form onSubmit={handleSubmit(data => console.log(data))}>
+      <form onSubmit={onSubmit}>
         <FieldSet>
           <FieldLegend>ساخت قبولی جدید</FieldLegend>
           <FieldGroup>
