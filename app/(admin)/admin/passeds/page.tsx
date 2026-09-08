@@ -11,9 +11,9 @@ import {
 import { prisma } from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { PassedWithImages } from "./types";
-import { HiTrash } from "react-icons/hi2";
 import DeletePassedButton from "./_components/DeletePassedButton";
+import { PassedWithImages } from "./types";
+import { HiPencilAlt } from "react-icons/hi";
 
 const PassUnivercityPage = async () => {
   const passeds = await prisma.passed.findMany({
@@ -57,8 +57,9 @@ const PassUnivercityPage = async () => {
                 <TableCell className="hidden md:table-cell">
                   {passed.univercity}
                 </TableCell>
-                <TableCell>
+                <TableCell className="space-x-2">
                   <DeletePassedButton passedId={passed.id} />
+                  <Button className='bg-violet-400 hover:bg-violet-500'><Link href={`/admin/passeds/${passed.id}/edit`}><HiPencilAlt /></Link></Button>
                 </TableCell>
               </TableRow>
             ))}
