@@ -1,25 +1,28 @@
-'use client';
+"use client";
 
-import { FieldSet, FieldLegend, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
-import { Spinner } from "@/components/ui/spinner";
-import { register } from "module";
-import { Controller, useForm } from "react-hook-form";
-import SimpleMdeReact from "react-simplemde-editor";
-import ImageDropzone from "../../_components/ImageDropzone";
-import loading from "../../majors/loading";
-import { Input } from "@/components/ui/input";
+import { creactPassedSchema, PassedShema } from "@/app/(admin)/validation";
 import { Button } from "@/components/ui/button";
+import {
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldLegend,
+    FieldSet,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { creactPassedSchema, PassedShema } from "@/app/(admin)/validation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { creaetPassed } from "../actions";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import ImageDropzone from "../../_components/ImageDropzone";
+import { creaetPassed } from "../actions";
 
 const NewPassedUnivercity = () => {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
@@ -29,20 +32,20 @@ const NewPassedUnivercity = () => {
     resolver: zodResolver(creactPassedSchema),
   });
 
-  const onSubmit = handleSubmit(async(data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
       await creaetPassed(data);
-      toast.success('قبولی جدید با موفقیت ساخته شد');
+      toast.success("قبولی جدید با موفقیت ساخته شد");
     } catch (error) {
       console.log(error);
-      toast.error('قبولی جدید ساخته نشد');
+      toast.error("قبولی جدید ساخته نشد");
     } finally {
       setLoading(false);
-      router.push('/admin/passeds');
+      router.push("/admin/passeds");
     }
-  })
-  
+  });
+
   return (
     <div className="max-w-4xl mx-auto">
       <form onSubmit={onSubmit}>
@@ -55,8 +58,10 @@ const NewPassedUnivercity = () => {
           </FieldGroup>
           <FieldGroup>
             <FieldLabel htmlFor="univercity">نام دانشگاه</FieldLabel>
-            <Input id="univercity" {...register('univercity')} />
-            {errors.univercity && <FieldError>{errors.univercity.message}</FieldError>}
+            <Input id="univercity" {...register("univercity")} />
+            {errors.univercity && (
+              <FieldError>{errors.univercity.message}</FieldError>
+            )}
           </FieldGroup>
         </FieldSet>
         <Controller
@@ -69,14 +74,19 @@ const NewPassedUnivercity = () => {
             </>
           )}
         />
-        <Button className="w-full mt-4" type="submit">{
-          isLoading ? (
-            <div className="flex items-center gap-2"><Spinner />در حال ساخت قبولی جدید</div>
-          ) : 'ساخت قبولی جدید'
-          }</Button>
+        <Button className="w-full mt-4" type="submit">
+          {isLoading ? (
+            <div className="flex items-center gap-2">
+              <Spinner />
+              در حال ساخت قبولی جدید
+            </div>
+          ) : (
+            "ساخت قبولی جدید"
+          )}
+        </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default NewPassedUnivercity;
