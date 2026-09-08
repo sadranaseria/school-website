@@ -41,10 +41,10 @@ const PassUnivercityPage = async () => {
               <TableRow key={passed.id}>
                 <TableCell>{passed.id}</TableCell>
                 <TableCell>
-                  <Image src={passed.images[0].url} alt={`Image of passed ${passed.images[0].passedId}`} width={500} height={500} className="w-40" />
+                  <Image src={passed.images[0].url} alt={`Image of passed ${passed.images[0].passedId}`} width={500} height={500} className="w-30 rounded-lg" />
                 </TableCell>
                 <TableCell>{passed.name}</TableCell>
-                <TableCell>{passed.univercity}</TableCell>
+                <TableCell className="hidden md:table-cell">{passed.univercity}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -62,7 +62,7 @@ const columns: {
   { label: "آی دی", value: "id" },
   { label: "عکس", value: "images" },
   { label: "نام هنرجو", value: "name" },
-  { label: "دانشگاه", value: "univercity" },
+  { label: "دانشگاه", value: "univercity" , className : 'hidden md:table-cell' },
 ];
 
 export default PassUnivercityPage;
