@@ -50,7 +50,7 @@ model NewsImage {
 
 model Passed {
     id Int @id @default(autoincrement())
-    image PassedImage[]
+    images PassedImage[]
     name String
     univercity String
 }
