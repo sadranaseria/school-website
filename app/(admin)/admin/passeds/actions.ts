@@ -2,6 +2,7 @@
 
 import { prisma } from "@/prisma/client";
 import { PassedShema , creactPassedSchema } from "../../validation";
+import { refresh } from "next/cache";
 
 export async function creaetPassed(data: PassedShema) {
   const validation = creactPassedSchema.safeParse(data);
@@ -19,4 +20,20 @@ export async function creaetPassed(data: PassedShema) {
       }
     }
   })
+
+  refresh();
+}
+
+export async function deletePassed(passedId: number) {
+  const passed = await prisma.passed.findUnique({
+    where : { id : passedId }
+  })
+
+  if (!passed) throw new Error('This passed does not exist');
+
+  await prisma.passed.delete({
+    where : { id : passedId }
+  })
+
+  refresh();
 }

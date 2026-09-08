@@ -58,7 +58,7 @@ const PassUnivercityPage = async () => {
                   {passed.univercity}
                 </TableCell>
                 <TableCell>
-                  <DeletePassedButton />
+                  <DeletePassedButton passedId={passed.id} />
                 </TableCell>
               </TableRow>
             ))}
