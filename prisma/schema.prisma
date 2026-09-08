@@ -47,3 +47,18 @@ model NewsImage {
     newsId Int
     news News @relation(fields: [newsId], references: [id] , onDelete: Cascade)
 }
+
+model Passed {
+    id Int @id @default(autoincrement())
+    image PassedImage[]
+    name String
+    univercity String
+}
+
+model PassedImage {
+    id Int @id @default(autoincrement())
+    url String
+    key String
+    passedId Int
+    passed Passed @relation(fields : [passedId] , references : [id] , onDelete : Cascade)
+}
