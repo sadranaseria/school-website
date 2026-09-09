@@ -30,7 +30,7 @@ const ImageTable = () => {
           key={cid || url || image.name + Date.now()}
           className="relative group cursor-pointer"
         >
-          <div className="relative">
+          <div className="relative hover:scale-98 transition-transform">
             <Image
               src={url ? url : URL.createObjectURL(image)}
               alt={image.name}

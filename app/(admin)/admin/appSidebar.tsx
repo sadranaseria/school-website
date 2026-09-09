@@ -21,7 +21,6 @@ export function AppSidebar() {
             <NavBar />
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
         <AuthStatus />
