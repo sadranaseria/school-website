@@ -5,11 +5,11 @@ import { FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/com
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { Controller, useForm } from "react-hook-form";
-import { creaetPassed } from "../actions";
+import { creaetPassed, updatePassed } from "../actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { creactPassedSchema, PassedShema } from "@/app/(admin)/validation";
+import { creactPassedSchema, PassedSchema } from "@/app/(admin)/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ImageDropzone from "../../_components/ImageDropzone";
 import { PassedWithImages } from "../types";
@@ -23,7 +23,7 @@ const PassedForm = ({ passed } : { passed ?: PassedWithImages }) => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<PassedShema>({
+  } = useForm<PassedSchema>({
     resolver: zodResolver(creactPassedSchema),
     defaultValues: {
       name: passed?.name ?? '',
@@ -33,13 +33,23 @@ const PassedForm = ({ passed } : { passed ?: PassedWithImages }) => {
   });
   
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     try {
       setLoading(true);
-      await creaetPassed(data);
-      toast.success("قبولی جدید با موفقیت ساخته شد");
+      if (passed)
+        await updatePassed(passed?.id, data);
+      else
+        await creaetPassed(data);
+      if (passed)
+        toast.success('قبولی با موفقیت ویرایش شد');
+      else
+        toast.success("قبولی جدید با موفقیت ساخته شد");
     } catch (error) {
       console.log(error);
-      toast.error("قبولی جدید ساخته نشد");
+      if (passed)
+        toast.success('قبولی ویرایش نشد');
+      else
+        toast.success("قبولی ساخته نشد");
     } finally {
       setLoading(false);
       router.push("/admin/passeds");
@@ -75,13 +85,14 @@ const PassedForm = ({ passed } : { passed ?: PassedWithImages }) => {
       />
       <Button className="w-full mt-4" type="submit">
         {isLoading ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gpa-4">
             <Spinner />
-            در حال ساخت قبولی جدید
+            {passed ? 'در حال ویرایش' : 'در حال ساخت'}
           </div>
         ) : (
-          "ساخت قبولی جدید"
-        )}
+            <div>{passed ? 'ویرایش قبولی' : 'ساخت قبولی'}</div>
+        )
+        }
       </Button>
     </form>
   )

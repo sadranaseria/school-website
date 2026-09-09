@@ -24,9 +24,13 @@ const ImageDropzone = ({ onChange, value }: Props) => {
       prev.map((img) => (img.key === key ? { ...img, deletting: true } : img)),
     );
     const { success, message } = await deleteImage(key);
-    if (success) {
-      setImages(images.filter((img) => img.key !== key));
+    const deletedImage = images.filter(img => img.key !== key);
+    if (success !== undefined) {
+      setImages(deletedImage);
+      onChange?.(deletedImage);
+      console.log(images.filter((img) => img.key !== key));
       toast.success("عکس با موفقیت پاک شد");
+      console.log(value);
     } else {
       toast.error(message);
       setImages((prev) =>

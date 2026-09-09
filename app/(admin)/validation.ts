@@ -32,4 +32,10 @@ export const creactPassedSchema = z.object({
   univercity : z.string().min(1 , { error : 'دانشگاه الزامی است'})
 })
 
-export type PassedShema = z.infer<typeof creactPassedSchema>;
+export const updatePassedSchema = z.object({
+  name: z.string().min(1, { error: 'نام هنرجو الزامی است' }).optional(),
+  images: z.array(z.object({ url: z.string(), key: z.string() }) , { error: 'عکس هنرجو الزامی است' }).optional(),
+  univercity : z.string().min(1 , { error : 'دانشگاه الزامی است'}).optional()
+})
+
+export type PassedSchema = z.infer<typeof creactPassedSchema>;
