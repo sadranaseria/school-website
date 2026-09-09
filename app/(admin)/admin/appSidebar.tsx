@@ -12,7 +12,7 @@ import NavBar from "./NavBar";
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="border-none bg-white">
       <SidebarHeader className="font-bold text-3xl">پنل مدیریت</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
