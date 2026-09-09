@@ -1,13 +1,17 @@
 import { Metadata } from "next";
-import LatestArticels from "./LatestArticels";
 import Summery from "./Summery";
+import { prisma } from "@/prisma/client";
 
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const countOfMajors = await prisma.major.count();
+  const countOfImages = await prisma.image.count();
+  const countOfNews = await prisma.news.count();
+  const countOfPasseds = await prisma.passed.count();
+  
   return (
-    <div className="w-300 h-screen mt-30">
-      <Summery />
-      <LatestArticels />
+    <div>
+      <Summery majors={countOfMajors} images={countOfImages} news={countOfNews} passeds={countOfPasseds} />
     </div>
   );
 };
