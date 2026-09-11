@@ -5,6 +5,7 @@ import MajorSection from "./MajorSection";
 import QuestionsSection from "./QuestionsSection";
 import RoadMapSeciton from "./RoadMapSeciton";
 import NewsSection from "./NewsSection";
+import PassedsSection from "./PassedsSection";
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <HeaderContent />
       <MajorSection />
+      <PassedsSection />
       <GalleySection />
       <NewsSection />
       <QuestionsSection />

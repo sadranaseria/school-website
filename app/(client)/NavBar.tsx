@@ -62,6 +62,7 @@ const NavBar = () => {
 
 const links: { lebel: string; value: string; href: string }[] = [
   { lebel: "رشته ها", value: "majors", href: "#majors" },
+  { lebel: "قبولی ها", value: "passeds", href: "#passeds" },
   { lebel: "گالری آثار", value: "gallery", href: "#gallery" },
   { lebel: "اخبار", value: "news", href: "#news" },
   { lebel: "سوالات متداول", value: "questions", href: "#questions" },
