@@ -5,10 +5,12 @@ import NewsSection from "./NewsSection";
 import PassedsSection from "./PassedsSection";
 import QuestionsSection from "./QuestionsSection";
 import RoadMapSeciton from "./RoadMapSeciton";
+import InfoSection from "./InfoSectoin";
 
 export default function Home() {
   return (
     <>
+      <InfoSection />
       <MajorSection />
       <PassedsSection />
       <GalleySection />

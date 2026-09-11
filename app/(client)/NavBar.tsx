@@ -1,21 +1,21 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 import logo from "../../public/icon0.svg";
 import useActiveLink from "./store";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 
 const NavBar = () => {
   const [isShow, setShow] = useState(false);
   console.log(isShow);
   const linkId = useActiveLink((state) => state.linkId);
-  
+
   return (
-    <nav className="max-w-160 mx-auto p-2 flex flex-row-reverse md:flex-row items-center justify-between md:justify-center gap-2 fixed top-10 left-2 right-2 rounded-full bg-white shadow-2xl z-30">
+    <nav className="max-w-200 mx-auto p-2 flex flex-row-reverse md:flex-row items-center justify-between md:justify-center gap-2 fixed top-10 left-2 right-2 rounded-full bg-white shadow-2xl z-30">
       <div className="flex gap-2">
         <Image
           width={50}
@@ -56,7 +56,11 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
-      <Button variant="ghost" onClick={() => setShow(true)} className='md:hidden'>
+      <Button
+        variant="ghost"
+        onClick={() => setShow(true)}
+        className="md:hidden"
+      >
         <RxHamburgerMenu className="size-5 cursor-pointer" />
       </Button>
     </nav>
@@ -64,6 +68,7 @@ const NavBar = () => {
 };
 
 const links: { lebel: string; value: string; href: string }[] = [
+  { lebel: "درباره هنرستان", value: "info", href: "#info" },
   { lebel: "رشته ها", value: "majors", href: "#majors" },
   { lebel: "قبولی ها", value: "passeds", href: "#passeds" },
   { lebel: "گالری آثار", value: "gallery", href: "#gallery" },
