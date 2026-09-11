@@ -3,9 +3,9 @@
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import useImage from "../store";
+import { useEffect } from "react";
 import { getImages } from "../actions";
+import useImage from "../store";
 import DeleteButton from "./DeleteButton";
 
 const ImageTable = () => {
@@ -30,7 +30,7 @@ const ImageTable = () => {
           key={cid || url || image.name + Date.now()}
           className="relative group cursor-pointer"
         >
-          <div className="relative hover:scale-98 transition-transform">
+          <div className="relative overflow-hidden rounded-lg">
             <Image
               src={url ? url : URL.createObjectURL(image)}
               alt={image.name}
@@ -38,7 +38,7 @@ const ImageTable = () => {
               height={200}
               className={cn(
                 isUploading ? "opacity-50" : "",
-                "rounded-lg size-36 object-cover",
+                "size-36 object-cover hover:scale-107 transition-transform",
               )}
               loading="eager"
             />

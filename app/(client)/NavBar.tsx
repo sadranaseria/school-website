@@ -30,7 +30,7 @@ const NavBar = () => {
       )}
       <ul
         className={cn(
-          "w-100 fixed md:static top-0 bottom-0 bg-white p-6 space-y-4 md:space-y-0 md:flex gap-5 md:p-0 rounded-l-xl transition-all",
+          "fixed md:static top-0 bottom-0 bg-white p-6 space-y-4 md:space-y-0 md:flex items-center gap-5 md:p-0 rounded-l-xl transition-all",
           isShow ? "right-0" : "-right-100",
         )}
       >
@@ -63,6 +63,7 @@ const NavBar = () => {
 const links: { lebel: string; value: string; href: string }[] = [
   { lebel: "رشته ها", value: "majors", href: "#majors" },
   { lebel: "گالری آثار", value: "gallery", href: "#gallery" },
+  { lebel: "اخبار", value: "news", href: "#news" },
   { lebel: "سوالات متداول", value: "questions", href: "#questions" },
   { lebel: "قدم های ثبت نام", value: "roadmap", href: "#roadmap" },
 ];

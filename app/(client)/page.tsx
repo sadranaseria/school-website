@@ -4,6 +4,7 @@ import HeaderContent from "./HeaderContent";
 import MajorSection from "./MajorSection";
 import QuestionsSection from "./QuestionsSection";
 import RoadMapSeciton from "./RoadMapSeciton";
+import NewsSection from "./NewsSection";
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <HeaderContent />
       <MajorSection />
       <GalleySection />
+      <NewsSection />
       <QuestionsSection />
       <RoadMapSeciton />
     </>
