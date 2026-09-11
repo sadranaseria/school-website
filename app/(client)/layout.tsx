@@ -4,6 +4,7 @@ import { Vazirmatn } from "next/font/google";
 import "../globals.css";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import HeaderContent from "./HeaderContent";
 
 const vazirmatn = Vazirmatn({
   subsets: ["latin"],
@@ -21,9 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <>
-          <NavBar />
-          <main className="md:p-6 w-full">{children}</main>
-          <Footer />
+      <NavBar />
+      <HeaderContent />
+      <main className="md:p-6 w-full">{children}</main>
+      <Footer />
     </>
   );
 }

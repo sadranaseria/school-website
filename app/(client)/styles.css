@@ -1,0 +1,4 @@
+.header-content {
+    background: url('@/public/jellies.webp') no-repeat;
+    background-size: cover;
+}

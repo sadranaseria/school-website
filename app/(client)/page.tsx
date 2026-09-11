@@ -1,17 +1,14 @@
 import { Metadata } from "next";
 import GalleySection from "./GalleySection";
-import HeaderContent from "./HeaderContent";
 import MajorSection from "./MajorSection";
-import QuestionsSection from "./QuestionsSection";
-import RoadMapSeciton from "./RoadMapSeciton";
 import NewsSection from "./NewsSection";
 import PassedsSection from "./PassedsSection";
-
+import QuestionsSection from "./QuestionsSection";
+import RoadMapSeciton from "./RoadMapSeciton";
 
 export default function Home() {
   return (
     <>
-      <HeaderContent />
       <MajorSection />
       <PassedsSection />
       <GalleySection />
