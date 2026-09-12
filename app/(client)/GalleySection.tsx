@@ -43,7 +43,7 @@ const GalleySection = () => {
                     alt="image"
                     width={500}
                     height={500}
-                    className="object-cover"
+                    className="w-100 h-70 object-cover"
                   />
                 </SwiperSlide>
               ))}
