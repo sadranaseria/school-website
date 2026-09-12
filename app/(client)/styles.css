@@ -2,3 +2,23 @@
     background: url('@/public/jellies.webp') no-repeat;
     background-size: cover;
 }
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-rows: '2rem' , '2rem';
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  height: calc((100% - 30px) / 2) !important;
+
+  /* Center slide text vertically */
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}

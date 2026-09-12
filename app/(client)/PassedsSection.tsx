@@ -10,6 +10,11 @@ import ObserverProvider from "./components/ObserverProvider";
 import SectionTitle from "./components/SectionTitle";
 import { prisma } from "@/prisma/client";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { FaUniversity } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Grid, Pagination } from "swiper/modules";
+import PassedCard from "./PassedCard";
 
 const PassedsSection = async () => {
   const passeds = await prisma.passed.findMany({
@@ -20,23 +25,9 @@ const PassedsSection = async () => {
     <>
       <ObserverProvider id="passeds">
         <SectionTitle title="قبولی ها" href="#passeds" />
-        <div className="flex gap-4 my-60">
+        <div className="flex gap-4 my-20">
           {passeds.map((passed) => (
-            <Card key={passed.id} className="max-w-90 w-full flex flex-row items-center">
-              <CardHeader className="w-35">
-                <Image
-                  src={passed.images[0].url}
-                  alt={`Image of passed ${passed.images[0].passedId}`}
-                  width={500}
-                  height={500}
-                  className="size-20 object-cover rounded-full"
-                />
-              </CardHeader>
-              <div>
-                <CardTitle>{passed.name}</CardTitle>
-                <CardDescription>{passed.univercity}</CardDescription>
-              </div>
-            </Card>
+            <PassedCard key={passed.id} passed={passed} />
           ))}
         </div>
       </ObserverProvider>
