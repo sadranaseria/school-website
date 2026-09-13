@@ -38,10 +38,13 @@ const Footer = () => {
 };
 
 const links: { lebel: string; value: string; href: string }[] = [
-  { lebel: "رشته ها", value: "Majros", href: "#majors" },
-  { lebel: "گالری آثار", value: "Gallery", href: "#gallery" },
-  { lebel: "سوالات متداول", value: "Questions", href: "#questions" },
-  { lebel: "قدم های ثبت نام", value: "Roadmap", href: "#roadmap" },
+  { lebel: "درباره هنرستان", value: "info", href: "#info" },
+  { lebel: "رشته ها", value: "majors", href: "#majors" },
+  { lebel: "قبولی ها", value: "passeds", href: "#passeds" },
+  { lebel: "گالری آثار", value: "gallery", href: "#gallery" },
+  { lebel: "اخبار", value: "news", href: "#news" },
+  { lebel: "سوالات متداول", value: "questions", href: "#questions" },
+  { lebel: "قدم های ثبت نام", value: "roadmap", href: "#roadmap" },
 ];
 
 const contacts: { id: number; value: string; logo: StaticImageData }[] = [
