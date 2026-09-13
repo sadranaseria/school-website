@@ -1,17 +1,25 @@
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { Major } from "@/lib/generated/prisma/client";
-import ExpendableText from "./components/ExpandableText";
+import Image from "next/image";
+import { MajorsWithImages } from "../(admin)/admin/majors/types";
 import ObserverProvider from "./components/ObserverProvider";
 
-const MajorCard = ({ major }: { major: Major }) => {
+const MajorCard = ({ major }: { major: MajorsWithImages }) => {
   return (
     <ObserverProvider id="majors">
-      <Card className="p-4 ring-0">
-        <CardTitle className="text-2xl md:text-6xl text-primary">{major.title}</CardTitle>
-        <CardDescription>
-          <ExpendableText>{major.description}</ExpendableText>
-        </CardDescription>
-      </Card>
+      <div
+        className={`flex w-full px-25 justify-around mx-auto ${major.id % 2 === 0 && "flex-row-reverse"}`}
+      >
+        <Image
+          src={major.images[0].url}
+          alt="Major Image"
+          width={500}
+          height={500}
+          className="w-140 h-110 rounded-[40px]"
+        />
+        <div>
+          <h3 className="text-xl text-secondary mb-5">{major.title}</h3>
+          <p className="text-gray-600">{major.description}</p>
+        </div>
+      </div>
     </ObserverProvider>
   );
 };
