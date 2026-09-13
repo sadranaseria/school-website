@@ -14,10 +14,18 @@ export async function createMajor(data : MajorSchema){
 
     const validation = createMajorSchema.safeParse(data);
 
-    if(!validation.success) return
+  if (!validation.success) return
+
+  const { title , description , images } = validation.data;
 
     await prisma.major.create({
-        data
+      data: {
+        title,
+        description,
+        images: {
+          create: images.map(({ url , key }) => ({ url , key }))
+        }
+        }
     })
 
     refresh();
