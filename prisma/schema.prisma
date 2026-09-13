@@ -20,6 +20,15 @@ model Major {
   description String   @db.Text
   cretedAt    DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  images MajorImage[]
+}
+
+model MajorImage {
+    id Int @id @default(autoincrement())
+    url String
+    key String
+    majorId Int
+    major Major @relation(fields: [majorId], references: [id] , onDelete: Cascade)
 }
 
 model Admin {
