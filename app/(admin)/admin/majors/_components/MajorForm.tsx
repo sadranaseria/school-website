@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Field,
+  FieldError,
   FieldGroup,
   FieldLabel,
   FieldLegend,
@@ -21,6 +22,7 @@ import SimpleMdeReact from "react-simplemde-editor";
 import { toast } from "sonner";
 import { createMajor, updateMajor } from "../actions";
 import { createMajorSchema, MajorSchema } from "@/app/(admin)/validation";
+import ImageDropzone from "../../_components/ImageDropzone";
 
 const MajorForm = ({ major } : { major ?: Major }) => {
   const [isLoading, setLoading] = useState(false);
@@ -79,6 +81,16 @@ const MajorForm = ({ major } : { major ?: Major }) => {
           {errors.description && (
             <p className="text-red-500">{errors.description.message}</p>
           )}
+          <Controller
+            name="images"
+            control={control}
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <>
+                <ImageDropzone value={value} onChange={onChange} />
+                {error && <FieldError>{error.message}</FieldError>}
+              </>
+            )}
+          />
           <Field>
             <Button
               className="cursor-pointer"
