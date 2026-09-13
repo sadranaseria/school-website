@@ -5,7 +5,7 @@ import { cache } from "react";
 import { utapi } from "@/server/uploadthing";
 
 export const fetchMajor = cache(async (majorId: number) =>
-  prisma.major.findUnique({ where: { id: majorId } }),
+  prisma.major.findUnique({ where: { id: majorId } , include : { images : true } }),
 );
 
 export async function deleteImage(key: string) {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import MarkDown from "react-markdown";
 import { fetchMajor } from "../../action";
 import DeleteMajorButton from "./_components/DeleteMajorButton";
+import Image from "next/image";
 
 const MajorDetalisPage = async ({
   params,
@@ -14,24 +15,34 @@ const MajorDetalisPage = async ({
   const { id } = await params;
   const major = await fetchMajor(parseInt(id));
   return (
-    <div className="flex flex-col gap-4 w-full max-w-3xl h-100">
-      <div className="flex justify-between items-center">
-        <h1>{major?.title}</h1>
-        <div className="flex items-center gap-4">
-          <DeleteMajorButton majorId={parseInt(id)} />
-          <Button className="bg-violet-200 hover:bg-violet-300">
-            <Link href={`/admin/majors/${id}/edit`} className="text-violet-600">
-              ویرایش
-            </Link>
-          </Button>
-        </div>
+    <section className="flex max-w-4xl mx-auto gap-5">
+      <div>
+        {major?.images.map(img => (
+          <Image key={img.id} src={img.url} alt={`Image of major ${img.majorId}`} width={500} height={500} className="rounded-2xl w-150" />
+        ))}
       </div>
-      <Card className="max-w-3xl min-h-100 prose p-4 wrap-anywhere">
-        <ScrollArea className="h-100 w-full rounded-md">
-          <MarkDown>{major?.description}</MarkDown>
-        </ScrollArea>
-      </Card>
-    </div>
+      <div className="flex flex-col gap-4 w-full max-w-3xl h-100">
+        <div className="flex justify-between items-center">
+          <h1>{major?.title}</h1>
+          <div className="flex items-center gap-4">
+            <DeleteMajorButton majorId={parseInt(id)} />
+            <Button className="bg-violet-200 hover:bg-violet-300">
+              <Link
+                href={`/admin/majors/${id}/edit`}
+                className="text-violet-600"
+              >
+                ویرایش
+              </Link>
+            </Button>
+          </div>
+        </div>
+        <Card className="max-w-3xl min-h-100 prose p-4 wrap-anywhere">
+          <ScrollArea className="h-100 w-full rounded-md">
+            <MarkDown>{major?.description}</MarkDown>
+          </ScrollArea>
+        </Card>
+      </div>
+    </section>
   );
 };
 
