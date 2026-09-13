@@ -9,8 +9,12 @@ import {
 } from "@/components/ui/table";
 import { Major } from "@/lib/generated/prisma/client";
 import Link from "next/link";
+import { MajorsWithImages } from "../types";
+import Image from "next/image";
+import Markdown from "react-markdown";
+import { Button } from "@/components/ui/button";
 
-const MajorsTable = ({ majors }: { majors: Major[] }) => {
+const MajorsTable = ({ majors }: { majors: MajorsWithImages[] }) => {
   return (
     <ScrollArea className="h-100 rounded-md border">
       <Table>
@@ -26,11 +30,16 @@ const MajorsTable = ({ majors }: { majors: Major[] }) => {
         <TableBody>
           {majors.map((major) => (
             <TableRow key={major.id}>
+              <TableCell>{major.id}</TableCell>
               <TableCell>
-                <Link href={`/admin/majors/${major.id}`}>{major.title}</Link>
+                <Image src={major.images[0].url} alt={`Image of major ${major.images[0].majorId}`} width={500} height={500} className="w-30 rounded-lg" />
               </TableCell>
-              <TableCell className='hidden md:table-cell'>{major.cretedAt.toDateString()}</TableCell>
-              <TableCell className='hidden md:table-cell'>{major.updatedAt.toDateString()}</TableCell>
+              <TableCell>
+                <Button variant='link'><Link href={`/admin/majors/${major.id}`}>{major.title}</Link></Button>
+              </TableCell>
+              <TableCell>
+                <Markdown>{major.description}</Markdown>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -39,10 +48,11 @@ const MajorsTable = ({ majors }: { majors: Major[] }) => {
   );
 };
 
-const columns: { label: string; value: keyof Major , className ?: string }[] = [
+const columns: { label: string; value: keyof MajorsWithImages , className ?: string }[] = [
+  { label: "آی دی", value: "id" },
+  { label: "عکس", value: "images" },
   { label: "عنوان", value: "title" },
-  { label: "ساخته شده", value: "cretedAt" , className : 'hidden md:table-cell' },
-  { label: "آپدیت شده", value: "updatedAt" , className : 'hidden md:table-cell' },
+  { label: "توضیحات", value: "description" },
 ];
 
 export default MajorsTable;

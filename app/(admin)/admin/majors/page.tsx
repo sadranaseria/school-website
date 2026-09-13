@@ -5,10 +5,13 @@ import MajorsTable from "./_components/MajorsTable";
 import { Metadata } from "next";
 
 const MajorsPage = async () => {
-  const majors = await prisma.major.findMany({ orderBy : { cretedAt : 'desc' }});
+  const majors = await prisma.major.findMany({
+    orderBy: { cretedAt: "desc" },
+    include: { images: true },
+  });
   return (
     <div className="max-w-5xl mx-auto overflow-y-auto">
-      <Button className='mb-5'>
+      <Button className="mb-5">
         <Link href="/admin/majors/new">رشته جدید</Link>
       </Button>
       <MajorsTable majors={majors} />
@@ -18,9 +21,10 @@ const MajorsPage = async () => {
 
 export const dynamic = "force-dynamic";
 
-export const metadata : Metadata = {
-  title : 'طهرانی ادمین - رشته ها',
-  description : 'This page for admin and just admin can enter it. And admin can see majors'
-}
+export const metadata: Metadata = {
+  title: "طهرانی ادمین - رشته ها",
+  description:
+    "This page for admin and just admin can enter it. And admin can see majors",
+};
 
 export default MajorsPage;
