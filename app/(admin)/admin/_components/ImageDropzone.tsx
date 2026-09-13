@@ -19,6 +19,8 @@ interface Props {
 const ImageDropzone = ({ onChange, value }: Props) => {
   const [images, setImages] = useState<ImageType>(value ?? []);
 
+  console.log(value);
+
   const handleDelete = async (key: string) => {
     setImages((prev) =>
       prev.map((img) => (img.key === key ? { ...img, deletting: true } : img)),

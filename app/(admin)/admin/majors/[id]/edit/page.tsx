@@ -14,6 +14,8 @@ const EditMajorPage = async ({
   return <EditForm major={major} />;
 };
 
+
+
 export async function generateMetadata({
   params,
 }: {
