@@ -11,10 +11,10 @@ const QusetionAccordion = () => {
   return (
     <Accordion
       dir="rtl"
-      className="max-w-7xl mx-auto p-4 space-y-10"
+      className="max-w-7xl mx-auto p-4 space-y-10 grid grid-cols-1 sm:grid-cols-2 items-start gap-4"
       defaultValue={["billing"]}
     >
-      <AccordionItem className="border-2 border-thertiary p-1 md:p-4 rounded-3xl">
+      <AccordionItem className="border-2 border-thertiary p-1 md:p-2 rounded-3xl">
         <AccordionTrigger className="flex items-center gap-4 hover:underline-offset-2 decoration-blue-superlight">
           <div className="flex items-center gap-2">
             <p className="size-8 md:size-12 flex justify-center items-center bg-blue-superlight text-secondary text-sm md:text-xl rounded-full">
@@ -30,7 +30,7 @@ const QusetionAccordion = () => {
           voluptates! Suscipit, blanditiis!
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem className="border-2 border-thertiary p-1 md:p-4 rounded-3xl">
+      <AccordionItem className="border-2 border-thertiary p-1 md:p-2 rounded-3xl">
         <AccordionTrigger className="flex items-center gap-4 hover:underline-offset-2 decoration-blue-superlight">
           <div className="flex items-center gap-2">
             <p className="size-8 md:size-12 flex justify-center items-center bg-blue-superlight text-secondary text-sm md:text-xl rounded-full">
