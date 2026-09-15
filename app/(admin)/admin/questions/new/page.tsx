@@ -6,22 +6,25 @@ import {
   FieldError,
   FieldGroup,
   FieldLabel,
+  FieldLegend,
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { QuestionSchema, questionSchema } from "../validation";
 import { createQuestion } from "../actions";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
+import MarkdownEditor from "../../_components/MarkdownEditor";
 
 const NewQuestionPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<QuestionSchema>({ resolver: zodResolver(questionSchema) });
   const [isLoading, setLoading] = useState(false);
 
@@ -42,6 +45,7 @@ const NewQuestionPage = () => {
     <div className="max-w-3xl mx-auto">
       <form onSubmit={onSubmit}>
         <FieldSet>
+          <FieldLegend>ساخت سوال جدید</FieldLegend>
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="title">متن سوال</FieldLabel>
@@ -50,7 +54,13 @@ const NewQuestionPage = () => {
             </Field>
             <Field>
               <FieldLabel htmlFor="anwser">متن جواب</FieldLabel>
-              <Input id="anwser" {...register("anwser")} />
+              <Controller
+                name="anwser"
+                control={control}
+                render={({ field : { value , onChange }}) => (
+                  <MarkdownEditor id="anwser" value={value} onChange={onChange} />
+                )}
+              />
               {errors.anwser && (
                 <FieldError>{errors.anwser.message}</FieldError>
               )}
