@@ -15,6 +15,7 @@ import { QuestionSchema, questionSchema } from "../validation";
 import { createQuestion } from "../actions";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 const NewQuestionPage = () => {
   const {
@@ -28,8 +29,10 @@ const NewQuestionPage = () => {
     try {
       setLoading(true);
       await createQuestion(data);
+      toast.success('سوال با موفقیت ساخته شد');
     } catch (error) {
       console.log(error);
+      toast.error('سوال ساخته نشد');
     } finally {
       setLoading(false);
     }
