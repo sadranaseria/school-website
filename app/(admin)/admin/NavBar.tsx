@@ -11,10 +11,11 @@ import { FaUniversity } from "react-icons/fa";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { TbCirclePlus } from "react-icons/tb";
+import { FaRegQuestionCircle } from "react-icons/fa";
 
 const NavBar = () => {
   const pathName = usePathname();
-
+  
   return (
     <ul className="mt-3">
       {sidebarItems.map((sidebarItem) => (
@@ -43,6 +44,7 @@ const sidebarItems: { lable: string; value: string; href: string , icon : ReactN
   { lable: "رشته ها", value: "majors", href: "/admin/majors" , icon : <PiStudentBold className="size-4" /> , quickLink : true},
   { lable: "اخبار", value: "news", href: "/admin/news" , icon : <HiOutlineNewspaper className="size-4" /> , quickLink : true},
   { lable: "قبول شدگان دانشگاه", value: "passUnivercity", href: "/admin/passeds" , icon : <FaUniversity className="size-4" /> , quickLink : true},
+  { lable: "سوالات متداول", value: "questions", href: "/admin/questions" , icon : <FaRegQuestionCircle className="size-4" /> , quickLink : true},
 ];
 
 export default NavBar;
