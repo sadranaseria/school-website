@@ -71,3 +71,9 @@ model PassedImage {
     passedId Int
     passed Passed @relation(fields : [passedId] , references : [id] , onDelete : Cascade)
 }
+
+model Question {
+    id Int @id @default(autoincrement())
+    title String
+    anwser String @db.Text
+}
