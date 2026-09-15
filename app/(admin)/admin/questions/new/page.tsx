@@ -6,11 +6,20 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { QuestionSchema ,  questionSchema} from '../validation';
+import { createQuestion } from "../actions";
 
 const NewQuestionPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<QuestionSchema>({ resolver: zodResolver(questionSchema) });
 
-  const onSubmit = handleSubmit(async (data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await createQuestion(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      
+    }
+  });
   
   return (
     <div className="max-w-3xl mx-auto">
