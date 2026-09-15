@@ -2,6 +2,7 @@
 
 import { prisma } from "@/prisma/client";
 import { questionSchema, QuestionSchema } from "./validation";
+import { refresh } from "next/cache";
 
 export async function createQuestion(data : QuestionSchema) {
   const validation = questionSchema.safeParse(data);
@@ -16,4 +17,6 @@ export async function createQuestion(data : QuestionSchema) {
       anwser,
     }
   })
+
+  refresh();
 }
