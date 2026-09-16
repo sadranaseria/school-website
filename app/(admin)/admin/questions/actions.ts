@@ -20,3 +20,17 @@ export async function createQuestion(data : QuestionSchema) {
 
   refresh();
 }
+
+export async function deleteQuestion(id : number) {
+  const question = await prisma.question.findUnique({
+    where : { id }
+  })
+
+  if (!question) throw new Error('This question does not exist');
+
+  await prisma.question.delete({
+    where : { id }
+  })
+
+  refresh();
+}

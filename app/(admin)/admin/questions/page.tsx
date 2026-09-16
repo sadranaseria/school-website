@@ -38,7 +38,7 @@ const QuestionsPage = async () => {
               </DropdownMenu>
             </CardContent>
             <CardFooter className="p-0">
-              <DeleteButton />
+              <DeleteButton id={q.id} />
             </CardFooter>
           </Card>
         ))}
