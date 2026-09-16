@@ -41,7 +41,7 @@ const QuestionForm = ({ question }: { question?: Question }) => {
     try {
       setLoading(true);
       if (question) {
-        await editQuestion(questionj.id, data);
+        await editQuestion(question.id, data);
         toast.success("سوال با موفقیت ویرایش شد");
       } else {
         await createQuestion(data);
@@ -82,12 +82,13 @@ const QuestionForm = ({ question }: { question?: Question }) => {
       </FieldSet>
       <Button className="w-full mt-4" type="submit">
         {isLoading ? (
-          <div className="flex gap-2 items-center">
-            <Spinner /> در حال ساختن سوال
+          <div className="flex items-center gap-4">
+            <Spinner />
+            {question ? 'در حال ویرایش سوال' : 'در حال ساخت سوال'}
           </div>
-        ) : (
-          "ساخت سوال"
-        )}
+        ) :
+          <div>{question ? 'ویرایش سوال' : 'ساخت سوال'}</div>
+        }
       </Button>
     </form>
   );

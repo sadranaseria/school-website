@@ -105,7 +105,7 @@ const NewsForm = ({ news } : { news ?: NewsWithImages }) => {
       />
       <Button className="w-full mt-4" type="submit">
         {loading ? (
-          <div className="flex items-center gpa-4">
+          <div className="flex items-center gap-4">
             <Spinner />
             {news ? 'در حال ویرایش' : 'در حال ساخت'}
           </div>
