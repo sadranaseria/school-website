@@ -1,6 +1,13 @@
-'use client';
+"use client";
 
-import { Field, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import MarkdownEditor from "../../_components/MarkdownEditor";
 import { Button } from "@/components/ui/button";
@@ -14,7 +21,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
 import { Question } from "@/lib/generated/prisma/client";
 
-const QuestionForm = ({ question } : { question ?: Question }) => {
+const QuestionForm = ({ question }: { question?: Question }) => {
   const {
     register,
     handleSubmit,
@@ -23,9 +30,9 @@ const QuestionForm = ({ question } : { question ?: Question }) => {
   } = useForm<QuestionSchema>({
     resolver: zodResolver(questionSchema),
     defaultValues: {
-      title : question?.title,
-      anwser : question?.anwser
-    }
+      title: question?.title,
+      anwser: question?.anwser,
+    },
   });
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
@@ -33,20 +40,23 @@ const QuestionForm = ({ question } : { question ?: Question }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      if (question)
-        await editQuestion(question.id, data);
-      else
+      if (question) {
+        await editQuestion(questionj.id, data);
+        toast.success("سوال با موفقیت ویرایش شد");
+      } else {
         await createQuestion(data);
-      toast.success('سوال با موفقیت ساخته شد');
+        toast.success("سوال با موفقیت ساخته شد");
+      }
     } catch (error) {
       console.log(error);
-      toast.error('سوال ساخته نشد');
+      if (question) toast.error("سوال ویرایش نشد");
+      else toast.error("سوال ساخته نشد");
     } finally {
       setLoading(false);
-      router.push('/admin/questions');
+      router.push("/admin/questions");
     }
   });
-  
+
   return (
     <form onSubmit={onSubmit}>
       <FieldSet>
@@ -62,13 +72,11 @@ const QuestionForm = ({ question } : { question ?: Question }) => {
             <Controller
               name="anwser"
               control={control}
-              render={({ field : { value , onChange }}) => (
+              render={({ field: { value, onChange } }) => (
                 <MarkdownEditor id="anwser" value={value} onChange={onChange} />
               )}
             />
-            {errors.anwser && (
-              <FieldError>{errors.anwser.message}</FieldError>
-            )}
+            {errors.anwser && <FieldError>{errors.anwser.message}</FieldError>}
           </Field>
         </FieldGroup>
       </FieldSet>
@@ -82,7 +90,7 @@ const QuestionForm = ({ question } : { question ?: Question }) => {
         )}
       </Button>
     </form>
-  )
+  );
 };
 
 export default QuestionForm;
