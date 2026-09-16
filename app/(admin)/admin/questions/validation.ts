@@ -4,4 +4,9 @@ export const questionSchema = z.object({
   anwser : z.string().min(1 , { error : 'پاسخ سوال الزامی است'})
 });
 
+export const editQuestionSchema = z.object({
+  title: z.string().min(1, { error: 'عنوان سوال الزامی است' }).optional(),
+  anwser : z.string().min(1 , { error : 'پاسخ سوال الزامی است'}).optional()
+});
+
 export type QuestionSchema = z.infer<typeof questionSchema>;

@@ -8,7 +8,7 @@ import { Controller, useForm } from "react-hook-form";
 import { questionSchema, QuestionSchema } from "../validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { createQuestion } from "../actions";
+import { createQuestion, editQuestion } from "../actions";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
@@ -33,7 +33,10 @@ const QuestionForm = ({ question } : { question ?: Question }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      await createQuestion(data);
+      if (question)
+        await editQuestion(question.id, data);
+      else
+        await createQuestion(data);
       toast.success('سوال با موفقیت ساخته شد');
     } catch (error) {
       console.log(error);
