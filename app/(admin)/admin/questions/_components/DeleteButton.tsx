@@ -2,20 +2,25 @@
 
 import { Button } from "@/components/ui/button";
 import { deleteQuestion } from "../actions";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
-const DeleteButton = ({ id } : { id : number }) => {
+const DeleteButton = ({ id }: { id: number }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleDelete = async () => {
     try {
+      setIsLoading(true);
       await deleteQuestion(id);
     } catch (error) {
       console.log(error);
     } finally {
-      
+      setIsLoading(false);
     }
   }
   
   return (
-    <Button variant="destructive" onClick={handleDelete}>حذف سوال</Button>
+    <Button variant="destructive" onClick={handleDelete}>{isLoading ? <div className="flex gap-2 items-center"><Spinner /> در حال حذف</div> : "حذف سوال"}</Button>
   )
 };
 
