@@ -12,14 +12,21 @@ import { createQuestion } from "../actions";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
+import { Question } from "@/lib/generated/prisma/client";
 
-const QuestionForm = () => {
+const QuestionForm = ({ question } : { question ?: Question }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<QuestionSchema>({ resolver: zodResolver(questionSchema) });
+  } = useForm<QuestionSchema>({
+    resolver: zodResolver(questionSchema),
+    defaultValues: {
+      title : question?.title,
+      anwser : question?.anwser
+    }
+  });
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 

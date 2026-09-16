@@ -1,9 +1,18 @@
+import { prisma } from "@/prisma/client";
 import QuestionForm from "../../_components/QuestionForm";
 
-const EditQuestionPage = () => {
+const EditQuestionPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+
+  const question = await prisma.question.findUnique({
+    where : { id : parseInt(id) }
+  })
+
+  if (!question) return null;
+  
   return (
     <div className="max-w-3xl mx-auto">
-      <QuestionForm />
+      <QuestionForm question={question} />
     </div>
   );
 };
