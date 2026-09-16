@@ -8,6 +8,7 @@ import {
 import { prisma } from "@/prisma/client";
 import Markdown from "react-markdown";
 import DeleteButton from "./_components/DeleteButton";
+import Link from "next/link";
 
 const QuestionsPage = async () => {
   const questions = await prisma.question.findMany();
@@ -37,8 +38,9 @@ const QuestionsPage = async () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </CardContent>
-            <CardFooter className="p-0">
+            <CardFooter className="p-0 space-x-4">
               <DeleteButton id={q.id} />
+              <Button className='bg-violet-400 hover:bg-violet-500'><Link href={`/admin/questions/${q.id}/edit`}>ویرایش سوال</Link></Button>
             </CardFooter>
           </Card>
         ))}
