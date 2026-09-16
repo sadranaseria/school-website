@@ -1,8 +1,11 @@
+import { prisma } from "@/prisma/client";
 import ObserverProvider from "./components/ObserverProvider";
 import SectionTitle from "./components/SectionTitle";
 import QusetionAccordion from "./QusetionAccordion";
 
-const QuestionsSection = () => {
+const QuestionsSection = async () => {
+  const questions = await prisma.question.findMany();
+  
   return (
     <ObserverProvider id="questions">
       <SectionTitle title="سوالات متداول" href="#questions" />
@@ -15,7 +18,7 @@ const QuestionsSection = () => {
           را مشاهده کنید
         </p>
       </div>
-      <QusetionAccordion />
+      <QusetionAccordion questions={questions} />
     </ObserverProvider>
   );
 };

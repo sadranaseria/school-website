@@ -41,8 +41,8 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon size={30} className="pointer-events-none stroke-primary bg-blue-superlight rounded-full shrink-0 group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon size={30} className="pointer-events-none stroke-primary bg-blue-superlight rounded-full hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
+        <ChevronDownIcon className="pointer-events-none stroke-primary bg-blue-superlight rounded-full shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+        <ChevronUpIcon className="pointer-events-none stroke-primary bg-blue-superlight rounded-full hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
