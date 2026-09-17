@@ -12,6 +12,7 @@ import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { TbCirclePlus } from "react-icons/tb";
 import { FaRegQuestionCircle } from "react-icons/fa";
+import { RiRoadMapLine } from "react-icons/ri";
 
 const NavBar = () => {
   const pathName = usePathname();
@@ -45,6 +46,7 @@ const sidebarItems: { lable: string; value: string; href: string , icon : ReactN
   { lable: "اخبار", value: "news", href: "/admin/news" , icon : <HiOutlineNewspaper className="size-4" /> , quickLink : true},
   { lable: "قبول شدگان دانشگاه", value: "passUnivercity", href: "/admin/passeds" , icon : <FaUniversity className="size-4" /> , quickLink : true},
   { lable: "سوالات متداول", value: "questions", href: "/admin/questions" , icon : <FaRegQuestionCircle className="size-4" /> , quickLink : true},
+  { lable: "قدم های ثبت نام", value: "registerRoadmap", href: "/admin/register-roadmap" , icon : <RiRoadMapLine className="size-4" />},
 ];
 
 export default NavBar;
