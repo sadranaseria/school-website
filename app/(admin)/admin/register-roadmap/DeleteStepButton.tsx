@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { deleteRoadmapStep } from "./actions";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 const DeleteStepButton = ({ stepId }: { stepId: number }) => {
   const [isLoading , setLoading] = useState(false);
@@ -12,8 +13,10 @@ const DeleteStepButton = ({ stepId }: { stepId: number }) => {
     try {
       setLoading(true);
       await deleteRoadmapStep(stepId);
+      toast.success('مرحله با موفقیت حذف شد')
     } catch (error) {
       console.log(error);
+      toast.error('مرحله حذف نشد');
     } finally {
       setLoading(false);
     }
