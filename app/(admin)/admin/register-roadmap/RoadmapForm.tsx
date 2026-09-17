@@ -5,13 +5,22 @@ import { Field, FieldError, FieldLabel, FieldLegend, FieldSet } from "@/componen
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
-import { createRoadmapStep, CreateRoadmapStep } from "./validation";
+import { createRoadmapStepSchema, CreateRoadmapStep } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createRoadmapStep } from "./actions";
 
 const RoadmapForm = ({ showForm }: { showForm: boolean }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<CreateRoadmapStep>({ resolver: zodResolver(createRoadmapStep) });
+  const { register, handleSubmit, formState: { errors } } = useForm<CreateRoadmapStep>({ resolver: zodResolver(createRoadmapStepSchema) });
 
-  const onSubmit = handleSubmit(async (data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await createRoadmapStep(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      
+    }
+  });
   
   return (
     <form onSubmit={onSubmit} className={cn(
