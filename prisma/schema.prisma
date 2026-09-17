@@ -77,3 +77,9 @@ model Question {
     title String
     anwser String @db.Text
 }
+
+model Roadmap {
+    id Int @id @default(autoincrement())
+    title String
+    description String
+}
