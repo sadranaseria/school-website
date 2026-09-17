@@ -1,14 +1,24 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { prisma } from "@/prisma/client";
 import RoadmapForm from "./RoadmapForm";
 
-const RegisterRoadmapPage = () => {
+const RegisterRoadmapPage = async () => {
+  const steps = await prisma.roadmap.findMany();
+
   return (
     <section className="max-w-sm mx-auto">
-      <div className="w-full h-20 border-2 border-primary text-center rounded-lg flex items-center justify-center">
-        Something
-      </div>
-      <div className="w-0.5 bg-primary h-20 rounded-full mx-auto"></div>
-
-      <RoadmapForm />
+      {steps.map((step, i) => (
+        <div key={step.id}>
+          <Card className="w-full gap-0 border-2 border-primary text-center rounded-lg">
+            <CardHeader>{i + 1}</CardHeader>
+            <CardContent>
+              <RoadmapForm step={step} />
+            </CardContent>
+          </Card>
+          <div className="w-0.5 bg-primary h-20 rounded-full mx-auto"></div>
+        </div>
+      ))}
+      <RoadmapForm /> {/* as a button */}
     </section>
   );
 };

@@ -18,9 +18,10 @@ import { useState } from "react";
 import { TbCirclePlus } from "react-icons/tb";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
+import { Roadmap } from "@/lib/generated/prisma/client";
 
-const RoadmapForm = () => {
-  const [showForm, setShowForm] = useState(false);
+const RoadmapForm = ({ step }: { step?: Roadmap }) => {
+  const [showForm, setShowForm] = useState(step ? true : false);
   const [isLoading, setLoading] = useState(false);
   const {
     register,
@@ -29,6 +30,10 @@ const RoadmapForm = () => {
     reset,
   } = useForm<CreateRoadmapStep>({
     resolver: zodResolver(createRoadmapStepSchema),
+    defaultValues: {
+      title: step?.title,
+      description : step?.description
+    }
   });
 
   const onSubmit = handleSubmit(async (data) => {
@@ -36,11 +41,11 @@ const RoadmapForm = () => {
       setLoading(true);
       await createRoadmapStep(data);
       setShowForm(false);
-      toast.success('مرحله با موفقیت ساخته شد');
+      toast.success("مرحله با موفقیت ساخته شد");
       reset();
     } catch (error) {
       console.log(error);
-      toast.error('مرحله ساخته نشد');
+      toast.error("مرحله ساخته نشد");
     } finally {
       setLoading(false);
     }
@@ -48,34 +53,37 @@ const RoadmapForm = () => {
 
   return (
     <>
-      <Button
-        onClick={() => setShowForm(!showForm)}
-        className={cn(
-          "w-full h-20 border-2 text-center rounded-lg flex items-center justify-center group hover:scale-[1.1] transition-all cursor-pointer",
-          showForm
-            ? "bg-red-400 hover:bg-red-500 text-white border-red-600"
-            : "bg-gray-100 hover:bg-gray-200 text-black border-gray-400",
-        )}
-      >
-        <span>
-          <TbCirclePlus
-            className={cn(
-              "size-6 mx-auto mb-1 transition-transform",
-              showForm
-                ? "stroke-white rotate-45"
-                : "stroke-gray-600 group-hover:rotate-180",
-            )}
-          />
-          {showForm ? "برگشتن" : "ساخت مرحله جدید"}
-        </span>
-      </Button>
+      {!step && (
+        <Button
+          onClick={() => setShowForm(!showForm)}
+          className={cn(
+            "w-full h-20 border-2 text-center rounded-lg flex items-center justify-center group hover:scale-[1.1] transition-all cursor-pointer",
+            showForm
+              ? "bg-red-400 hover:bg-red-500 text-white border-red-600"
+              : "bg-gray-100 hover:bg-gray-200 text-black border-gray-400",
+          )}
+        >
+          <span>
+            <TbCirclePlus
+              className={cn(
+                "size-6 mx-auto mb-1 transition-transform",
+                showForm
+                  ? "stroke-white rotate-45"
+                  : "stroke-gray-600 group-hover:rotate-180",
+              )}
+            />
+            {showForm ? "برگشتن" : "ساخت مرحله جدید"}
+          </span>
+        </Button>
+      )}
       <form
         onSubmit={onSubmit}
         className={cn(
-          "mt-4 shadow-2xl p-4 rounded-2xl transition-all",
+          "mt-4 p-4 rounded-2xl transition-all",
           showForm
             ? "visible opacity-100 translate-y-3"
             : "invisible opacity-0",
+          !step && "shadow-2xl",
         )}
       >
         <FieldSet>
@@ -94,9 +102,23 @@ const RoadmapForm = () => {
               <FieldError>{errors.description.message}</FieldError>
             )}
           </Field>
-          <Button type="submit">
-            {isLoading ? <div className="flex items-center gap-2"><Spinner />در حال ساخت</div> : 'ساخت مرحله'}
-          </Button>
+          {step ? (
+            <div className="space-x-4">
+              <Button variant="destructive">حذف مرحله</Button>
+              <Button variant="edit">ویرایش مرحله</Button>
+            </div>
+          ) : (
+            <Button type="submit">
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  <Spinner />
+                  در حال ساخت
+                </div>
+              ) : (
+                "ساخت مرحله"
+              )}
+            </Button>
+          )}
         </FieldSet>
       </form>
     </>
