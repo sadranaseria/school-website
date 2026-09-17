@@ -19,6 +19,7 @@ import { TbCirclePlus } from "react-icons/tb";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
 import { Roadmap } from "@/lib/generated/prisma/client";
+import DeleteStepButton from "./DeleteStepButton";
 
 const RoadmapForm = ({ step }: { step?: Roadmap }) => {
   const [showForm, setShowForm] = useState(step ? true : false);
@@ -104,7 +105,7 @@ const RoadmapForm = ({ step }: { step?: Roadmap }) => {
           </Field>
           {step ? (
             <div className="space-x-4">
-              <Button variant="destructive">حذف مرحله</Button>
+              <DeleteStepButton stepId={step.id} />
               <Button variant="edit">ویرایش مرحله</Button>
             </div>
           ) : (

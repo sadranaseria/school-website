@@ -20,3 +20,17 @@ export async function createRoadmapStep(data : CreateRoadmapStep) {
 
   refresh();
 }
+
+export async function deleteRoadmapStep(id : number) {
+  const step = prisma.roadmap.findUnique({
+    where : { id }
+  })
+
+  if (!step) throw new Error('This step doesn not exist');
+
+  await prisma.roadmap.delete({
+    where : { id }
+  })
+
+  refresh();
+}
