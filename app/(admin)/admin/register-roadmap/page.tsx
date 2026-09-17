@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { TbCirclePlus } from "react-icons/tb";
+import RoadmapForm from "./RoadmapForm";
 
 const RegisterRoadmapPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -31,23 +32,7 @@ const RegisterRoadmapPage = () => {
           {showForm ? 'برگشتن' : 'ساخت مرحله جدید'}
         </span>
       </Button>
-      <form className={cn(
-        'mt-4 shadow-2xl p-4 rounded-2xl transition-all',
-        showForm ? 'visible opacity-100 translate-y-3' : 'invisible opacity-0'
-      )}>
-        <FieldSet>
-          <FieldLegend className="text-gray-500 text-center">عنوان و توضیحات را وارد کنید</FieldLegend>
-          <Field>
-            <FieldLabel>عنوان</FieldLabel>
-            <Input />
-          </Field>
-          <Field>
-            <FieldLabel>توضیحات</FieldLabel>
-            <Input />
-          </Field>
-          <Button type="submit">ساخت مرحله</Button>
-        </FieldSet>
-      </form>
+      <RoadmapForm showForm={showForm} />
     </section>
   );
 };
