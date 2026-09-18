@@ -9,21 +9,23 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { createRoadmapStepSchema, CreateRoadmapStep } from "./validation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createRoadmapStep } from "./actions";
-import { useState } from "react";
-import { TbCirclePlus } from "react-icons/tb";
 import { Spinner } from "@/components/ui/spinner";
-import { toast } from "sonner";
 import { Roadmap } from "@/lib/generated/prisma/client";
+import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { TbCirclePlus } from "react-icons/tb";
+import { toast } from "sonner";
+import { createRoadmapStep, updateRoadmapStep } from "./actions";
 import DeleteStepButton from "./DeleteStepButton";
+import { CreateRoadmapStep, createRoadmapStepSchema } from "./validation";
 
 const RoadmapForm = ({ step }: { step?: Roadmap }) => {
   const [showForm, setShowForm] = useState(step ? true : false);
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -39,14 +41,23 @@ const RoadmapForm = ({ step }: { step?: Roadmap }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      setLoading(true);
-      await createRoadmapStep(data);
-      setShowForm(false);
-      toast.success("مرحله با موفقیت ساخته شد");
-      reset();
+      setLoading(true)
+      if (step) {
+        await updateRoadmapStep(step.id, data);
+        toast.success('مرحله با موفقیت ویرایش شد');
+      }
+      else {
+        await createRoadmapStep(data);
+        toast.success("مرحله با موفقیت ساخته شد");
+        setShowForm(false);
+        reset();
+      }
     } catch (error) {
       console.log(error);
-      toast.error("مرحله ساخته نشد");
+      if (step)
+        toast.error('مرحله ویرایش نشد');
+      else
+        toast.error("مرحله ساخته نشد");
     } finally {
       setLoading(false);
     }
@@ -106,7 +117,7 @@ const RoadmapForm = ({ step }: { step?: Roadmap }) => {
           {step ? (
             <div className="space-x-4">
               <DeleteStepButton stepId={step.id} />
-              <Button variant="edit">ویرایش مرحله</Button>
+              <Button variant="edit" type="submit">ویرایش مرحله</Button>
             </div>
           ) : (
             <Button type="submit">

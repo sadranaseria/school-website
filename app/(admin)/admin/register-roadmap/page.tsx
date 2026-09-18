@@ -3,7 +3,7 @@ import { prisma } from "@/prisma/client";
 import RoadmapForm from "./RoadmapForm";
 
 const RegisterRoadmapPage = async () => {
-  const steps = await prisma.roadmap.findMany();
+  const steps = await prisma.roadmap.findMany({ orderBy : { id : 'asc' }});
 
   return (
     <section className="max-w-sm mx-auto">
