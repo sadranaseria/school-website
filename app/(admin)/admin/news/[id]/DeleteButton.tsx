@@ -6,12 +6,13 @@ import { useState } from "react";
 import { deleteNews } from "../actions";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const DeleteButton = ({ newsId }: { newsId: number }) => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleDelete = async (newsId: number) => {
+  const handleDelete = async () => {
     try {
       setLoading(true);
       await deleteNews(newsId);
@@ -26,16 +27,29 @@ const DeleteButton = ({ newsId }: { newsId: number }) => {
   };
 
   return (
-    <Button variant='destructive' className="w-full" type="submit" onClick={() => handleDelete(newsId)}>
-      {loading ? (
-        <div className="flex items-center gpa-4">
-          <Spinner />
-          در حال حذف خبر
-        </div>
-      ) : (
-        "حذف خبر"
-      )}
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="destructive">حذف خبر</Button>}
+      />
+      <AlertDialogContent dir="rtl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            آیا از پاک کردن این خبر اطمینان دارید؟
+          </AlertDialogTitle>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>خیر</AlertDialogCancel>
+          <AlertDialogAction
+            disabled={isLoading}
+            variant="destructive"
+            onClick={handleDelete}
+          >
+            {isLoading && <Spinner />}
+            بله
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

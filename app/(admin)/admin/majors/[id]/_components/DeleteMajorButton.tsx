@@ -1,22 +1,21 @@
 "use client";
 
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { deleteMajor } from "../../actions";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 
 const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
   const [isloading, setLoading] = useState(false);
@@ -47,7 +46,11 @@ const DeleteMajorButton = ({ majorId }: { majorId: number }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>خیر</AlertDialogCancel>
-          <AlertDialogAction disabled={isloading} variant='destructive' onClick={onDeletemajor}>
+          <AlertDialogAction
+            disabled={isloading}
+            variant="destructive"
+            onClick={onDeletemajor}
+          >
             بله {isloading && <Spinner />}
           </AlertDialogAction>
         </AlertDialogFooter>
