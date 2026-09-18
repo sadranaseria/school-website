@@ -3,11 +3,11 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AiOutlineDashboard } from "react-icons/ai";
-import { RiGalleryFill } from "react-icons/ri";
-import { PiStudentBold } from "react-icons/pi";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { TbSlideshow } from "react-icons/tb";
+import { HiOutlineBookOpen } from "react-icons/hi";
 import { HiOutlineNewspaper } from "react-icons/hi2";
-import { FaUniversity } from "react-icons/fa";
+import { LuUniversity } from "react-icons/lu";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { TbCirclePlus } from "react-icons/tb";
@@ -40,11 +40,11 @@ const NavBar = () => {
 };
 
 const sidebarItems: { lable: string; value: string; href: string , icon : ReactNode , quickLink ?: boolean }[] = [
-  { lable: "داشبورد", value: "dashboard", href: "/admin" , icon : <AiOutlineDashboard className="size-4" />},
-  { lable: "گالری", value: "gallery", href: "/admin/gallery" , icon : <RiGalleryFill className="size-4" />},
-  { lable: "رشته ها", value: "majors", href: "/admin/majors" , icon : <PiStudentBold className="size-4" /> , quickLink : true},
+  { lable: "داشبورد", value: "dashboard", href: "/admin" , icon : <LuLayoutDashboard className="size-4" />},
+  { lable: "گالری", value: "gallery", href: "/admin/gallery" , icon : <TbSlideshow className="size-4" />},
+  { lable: "رشته ها", value: "majors", href: "/admin/majors" , icon : <HiOutlineBookOpen className="size-4" /> , quickLink : true},
   { lable: "اخبار", value: "news", href: "/admin/news" , icon : <HiOutlineNewspaper className="size-4" /> , quickLink : true},
-  { lable: "قبول شدگان دانشگاه", value: "passUnivercity", href: "/admin/passeds" , icon : <FaUniversity className="size-4" /> , quickLink : true},
+  { lable: "قبول شدگان دانشگاه", value: "passUnivercity", href: "/admin/passeds" , icon : <LuUniversity className="size-4" /> , quickLink : true},
   { lable: "سوالات متداول", value: "questions", href: "/admin/questions" , icon : <FaRegQuestionCircle className="size-4" /> , quickLink : true},
   { lable: "قدم های ثبت نام", value: "registerRoadmap", href: "/admin/register-roadmap" , icon : <RiRoadMapLine className="size-4" />},
 ];
