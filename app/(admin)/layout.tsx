@@ -16,12 +16,16 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <Toaster />
       <SidebarProvider>
         <AppSidebar />
-        <main className="w-full p-4 bg-white">
-          <section className="size-full bg-[#f6f6f8] rounded-2xl p-10">
+        <section className="w-full p-4">
+          <header className="p-4 bg-blue-superlight mb-5 rounded-2xl">
             <SidebarTrigger className="cursor-pointer" />
-            {children}
-          </section>
-        </main>
+          </header>
+          <main className="w-full bg-white">
+            <section className="size-full bg-[#f6f6f8] rounded-2xl p-10">
+              {children}
+            </section>
+          </main>
+        </section>
       </SidebarProvider>
     </>
   );
