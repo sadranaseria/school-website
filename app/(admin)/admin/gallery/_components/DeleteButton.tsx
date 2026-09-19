@@ -1,6 +1,5 @@
 "use client";
 
-import useImage from "@/app/(admin)/admin/gallery/store";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,28 +18,21 @@ import { toast } from "sonner";
 import { deleteImage } from "../actions";
 
 interface Props {
-  cid?: string;
-  imageName: string;
+  imageId: number;
 }
 
-const DeleteButton = ({ cid, imageName }: Props) => {
+const DeleteButton = ({ imageId }: Props) => {
   const [isLoading, setLoading] = useState(false);
-  const deleteImageState = useImage((state) => state.deleteImageState);
   const handleDelete = async () => {
-    if (cid) {
+    try {
       setLoading(true);
-      const result = await deleteImage(cid);
-      if (result.success) {
-        toast.success(`عکس ${imageName} حذف شد`);
-        setLoading(false);
-        deleteImageState(cid);
-      } else {
-        console.log("doesnt work");
-        setLoading(false);
-        toast.error("خطایی رخ داد");
-      }
-    } else {
-      console.log("cid no");
+      await deleteImage(imageId);
+      toast.success(`عکس ${imageId} حذف شد`);
+    } catch (error) {
+      console.log(error);
+      toast.error(`عکس ${imageId} حذف نشد`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,7 +56,11 @@ const DeleteButton = ({ cid, imageName }: Props) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>خیر</AlertDialogCancel>
-          <AlertDialogAction disabled={isLoading} variant='destructive' onClick={handleDelete}>
+          <AlertDialogAction
+            disabled={isLoading}
+            variant="destructive"
+            onClick={handleDelete}
+          >
             بله {isLoading && <Spinner />}
           </AlertDialogAction>
         </AlertDialogFooter>

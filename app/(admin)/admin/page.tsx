@@ -7,7 +7,7 @@ import GalleryLatests from "./GalleryLatests";
 
 const Dashboard = async () => {
   const countOfMajors = await prisma.major.count();
-  const countOfImages = await prisma.image.count();
+  const countOfImages = await prisma.gallery.count();
   const countOfNews = await prisma.news.count();
   const countOfPasseds = await prisma.passed.count();
   const majors = await prisma.major.findMany();

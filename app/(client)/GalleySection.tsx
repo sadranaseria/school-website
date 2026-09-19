@@ -1,27 +1,11 @@
-"use client";
+import { prisma } from "@/prisma/client";
 
-import { SwiperSlide } from "swiper/react";
 import ObserverProvider from "./components/ObserverProvider";
 import SectionTitle from "./components/SectionTitle";
-import Slider from "./components/Slider";
-import { useEffect, useState } from "react";
-import { getImages } from "../(admin)/admin/gallery/actions";
-import Image from "next/image";
+import GallerySlider from "./GalleySlider";
 
-const GalleySection = () => {
-  const [images, setImages] = useState<Array<string>>([]);
-  useEffect(() => {
-    let isMounted = true;
-    async function fetchImages() {
-      const result = await getImages();
-      setImages(result.map((r) => r.url));
-    }
-    fetchImages();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-  console.log(images);
+const GalleySection = async () => {
+  const images = await prisma.gallery.findMany();
 
   return (
     <ObserverProvider id="gallery">
@@ -34,22 +18,8 @@ const GalleySection = () => {
           در این بخش می‌توانید تصاویری از محیط هنرستان، کارگاه‌ها کلاس‌ها و
           فعالیت هنرجویان را مشاهده کنید
         </p>
-          <Slider>
-            <div>
-              {images.map((image) => (
-                <SwiperSlide key={image}>
-                  <Image
-                    src={image}
-                    alt="image"
-                    width={500}
-                    height={500}
-                    className="w-100 h-70 object-cover"
-                  />
-                </SwiperSlide>
-              ))}
-            </div>
-          </Slider>
       </div>
+      <GallerySlider images={images} />
     </ObserverProvider>
   );
 };

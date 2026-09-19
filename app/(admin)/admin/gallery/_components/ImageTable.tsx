@@ -1,54 +1,25 @@
-"use client";
-
-import { Spinner } from "@/components/ui/spinner";
-import { cn } from "@/lib/utils";
+import { prisma } from "@/prisma/client";
 import Image from "next/image";
-import { useEffect } from "react";
-import { getImages } from "../actions";
-import useImage from "../store";
 import DeleteButton from "./DeleteButton";
 
-const ImageTable = () => {
-  const images = useImage((state) => state.images);
-  const setImages = useImage((state) => state.setImages);
-  useEffect(() => {
-    let isMounted = true;
-    async function fetchImages() {
-      const result = await getImages();
-      if (isMounted) setImages(result);
-    }
-    fetchImages();
-    return () => {
-      isMounted = false;
-    };
-  }, [setImages]);
+const ImageTable = async () => {
+  const images = await prisma.gallery.findMany();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-      {images.map(({ image, cid, isUploading, url }) => (
-        <div
-          key={cid || url || image.name + Date.now()}
-          className="relative group cursor-pointer"
-        >
+      {images.map((image) => (
+        <div key={image.id} className="relative group cursor-pointer">
           <div className="relative overflow-hidden rounded-lg">
             <Image
-              src={url ? url : URL.createObjectURL(image)}
-              alt={image.name}
+              src={image.url}
+              alt={`Image of index ${image.id}`}
               width={200}
               height={200}
-              className={cn(
-                isUploading ? "opacity-50" : "",
-                "size-36 object-cover hover:scale-107 transition-transform",
-              )}
+              className="size-36 object-cover hover:scale-107 transition-transform"
               loading="eager"
             />
-            {isUploading && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <Spinner />
-              </div>
-            )}
           </div>
-          {!isUploading && <DeleteButton cid={cid} imageName={image.name} />}
+          <DeleteButton imageId={image.id} />
         </div>
       ))}
     </div>
