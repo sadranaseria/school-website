@@ -3,6 +3,7 @@ import Summery from "./Summery";
 import { prisma } from "@/prisma/client";
 import DashboardHeader from "./DashboardHeader";
 import DataChart from "./DataChart";
+import GalleryLatests from "./GalleryLatests";
 
 const Dashboard = async () => {
   const countOfMajors = await prisma.major.count();
@@ -23,6 +24,7 @@ const Dashboard = async () => {
         />
         <DataChart majors={majors} />
       </div>
+      <GalleryLatests />
     </section>
   );
 };

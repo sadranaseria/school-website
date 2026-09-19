@@ -2,7 +2,7 @@
 
 import { Major } from "@/lib/generated/prisma/client";
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
-import { Bar, BarChart, CartesianGrid, Line, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Line, Tooltip, XAxis, YAxis } from "recharts";
 
 const DataChart = ({ majors }: { majors: Major[] }) => {
   const chartData: { name: string, students: number }[] = majors.map(major => ({
@@ -21,6 +21,7 @@ const DataChart = ({ majors }: { majors: Major[] }) => {
     <ChartContainer config={chartConfig} className="w-160">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
+        <Tooltip defaultIndex={2} wrapperClassName="rounded-lg" />
         <XAxis dataKey="name" />
         <YAxis />
         <Bar dataKey="students" className="fill-secondary" radius={20} />
