@@ -4,6 +4,7 @@ import { prisma } from "@/prisma/client";
 import DashboardHeader from "./DashboardHeader";
 import DataChart from "./DataChart";
 import GalleryLatests from "./GalleryLatests";
+import NewsLatests from "./NewsLatests";
 
 const Dashboard = async () => {
   const countOfMajors = await prisma.major.count();
@@ -24,7 +25,10 @@ const Dashboard = async () => {
         />
         <DataChart majors={majors} />
       </div>
-      <GalleryLatests />
+      <div className="flex gap-6">
+        <GalleryLatests />
+        <NewsLatests />
+      </div>
     </section>
   );
 };

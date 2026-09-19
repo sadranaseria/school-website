@@ -11,7 +11,7 @@ const GalleryLatests = async () => {
   });
 
   return (
-    <Card className="max-w-200">
+    <Card className="w-1/2">
       <CardHeader className="flex items-center justify-between">
         <h2 className="text-[18px]">عکس های اخیر</h2>
         <Button variant="outline">

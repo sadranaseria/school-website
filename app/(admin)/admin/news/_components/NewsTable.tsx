@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { NewsWithImages } from "../types";
+import { columns } from "../../varaibles";
 
 const NewsTable = ({ news }: { news: NewsWithImages[] }) => {
   return (
@@ -57,16 +58,5 @@ const NewsTable = ({ news }: { news: NewsWithImages[] }) => {
     </ScrollArea>
   );
 };
-
-const columns: {
-  label: string;
-  value: keyof NewsWithImages;
-  className?: string;
-}[] = [
-  { label: "آی دی", value: "id" },
-  { label: "عکس", value: "images" },
-  { label: "عنوان", value: "title" },
-  { label: "توضیحات", value: "description", className: "hidden md:table-cell" },
-];
 
 export default NewsTable;
