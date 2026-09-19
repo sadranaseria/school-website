@@ -19,7 +19,7 @@ export async function createMajor(data: MajorSchema) {
 
   if (!validation.success) return;
 
-  const { title, description, images } = validation.data;
+  const { title, description, images , students } = validation.data;
 
   await prisma.major.create({
     data: {
@@ -28,6 +28,7 @@ export async function createMajor(data: MajorSchema) {
       images: {
         create: images.map(({ url, key }) => ({ url, key })),
       },
+      students
     },
   });
 

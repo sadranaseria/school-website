@@ -21,7 +21,10 @@ const MajorsTable = ({ majors }: { majors: MajorsWithImages[] }) => {
         <TableHeader>
           <TableRow className="w-20">
             {columns.map((column) => (
-              <TableHead className={`text-right ${column.className}`} key={column.value}>
+              <TableHead
+                className={`text-right ${column.className}`}
+                key={column.value}
+              >
                 {column.label}
               </TableHead>
             ))}
@@ -32,11 +35,20 @@ const MajorsTable = ({ majors }: { majors: MajorsWithImages[] }) => {
             <TableRow key={major.id}>
               <TableCell>{major.id}</TableCell>
               <TableCell>
-                <Image src={major.images[0].url} alt={`Image of major ${major.images[0].majorId}`} width={500} height={500} className="w-30 rounded-lg" />
+                <Image
+                  src={major.images[0].url}
+                  alt={`Image of major ${major.images[0].majorId}`}
+                  width={500}
+                  height={500}
+                  className="w-30 rounded-lg"
+                />
               </TableCell>
               <TableCell>
-                <Button variant='link'><Link href={`/admin/majors/${major.id}`}>{major.title}</Link></Button>
+                <Button variant="link">
+                  <Link href={`/admin/majors/${major.id}`}>{major.title}</Link>
+                </Button>
               </TableCell>
+              <TableCell>{major.students}</TableCell>
               <TableCell>
                 <Markdown>{major.description}</Markdown>
               </TableCell>
@@ -48,10 +60,15 @@ const MajorsTable = ({ majors }: { majors: MajorsWithImages[] }) => {
   );
 };
 
-const columns: { label: string; value: keyof MajorsWithImages , className ?: string }[] = [
+const columns: {
+  label: string;
+  value: keyof MajorsWithImages;
+  className?: string;
+}[] = [
   { label: "آی دی", value: "id" },
   { label: "عکس", value: "images" },
   { label: "عنوان", value: "title" },
+  { label: "تعداد هنرجویان", value: "students" },
   { label: "توضیحات", value: "description" },
 ];
 

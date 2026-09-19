@@ -21,6 +21,7 @@ model Major {
   cretedAt    DateTime @default(now())
   updatedAt   DateTime @updatedAt
   images MajorImage[]
+  students Int
 }
 
 model MajorImage {

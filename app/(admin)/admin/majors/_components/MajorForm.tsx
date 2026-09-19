@@ -60,18 +60,24 @@ const MajorForm = ({ major }: { major?: MajorsWithImages }) => {
       <FieldSet>
         <FieldLegend>ساخت رشته</FieldLegend>
         <FieldGroup>
-          <Field>
-            <FieldLabel htmlFor="title">عنوان رشته</FieldLabel>
-            <Input
-              id="title"
-              className="w-full"
-              defaultValue={major?.title}
-              {...register("title")}
-            />
-            {errors.title && (
-              <p className="text-red-500">{errors.title.message}</p>
-            )}
-          </Field>
+          <div className="flex gap-5">
+            <Field>
+              <FieldLabel htmlFor="title">عنوان رشته</FieldLabel>
+              <Input
+                id="title"
+                className="w-full"
+                defaultValue={major?.title}
+                {...register("title")}
+              />
+              {errors.title && (
+                <p className="text-red-500">{errors.title.message}</p>
+              )}
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="students">تعداد هنرجویان</FieldLabel>
+              <Input id="students" type="number" {...register("students" , { valueAsNumber : true })} />
+            </Field>
+          </div>
           <Field>
             <FieldLabel htmlFor="description">توضیحات رشته</FieldLabel>
             <Controller
@@ -86,10 +92,10 @@ const MajorForm = ({ major }: { major?: MajorsWithImages }) => {
                 />
               )}
             />
+            {errors.description && (
+              <p className="text-red-500">{errors.description.message}</p>
+            )}
           </Field>
-          {errors.description && (
-            <p className="text-red-500">{errors.description.message}</p>
-          )}
           <Controller
             name="images"
             control={control}
