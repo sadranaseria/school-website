@@ -35,7 +35,7 @@ const DashboardHeader = () => {
   }, [day]);
 
   return (
-    <section className="space-y-2">
+    <section className="space-y-2 mt-5">
       <div className="flex items-center gap-3 text-[14px]">
         امروز‌:
         <div className="flex items-center gap-2">

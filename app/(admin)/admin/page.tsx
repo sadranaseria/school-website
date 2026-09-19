@@ -12,16 +12,18 @@ const Dashboard = async () => {
   const majors = await prisma.major.findMany();
 
   return (
-    <div>
+    <section className="space-y-7">
       <DashboardHeader />
-      <Summery
-        majors={countOfMajors}
-        images={countOfImages}
-        news={countOfNews}
-        passeds={countOfPasseds}
-      />
-      <DataChart majors={majors} />
-    </div>
+      <div className="flex items-center justify-center gap-20">
+        <Summery
+          majors={countOfMajors}
+          images={countOfImages}
+          news={countOfNews}
+          passeds={countOfPasseds}
+        />
+        <DataChart majors={majors} />
+      </div>
+    </section>
   );
 };
 
