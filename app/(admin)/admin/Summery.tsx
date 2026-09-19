@@ -46,7 +46,7 @@ const Summery = ({ images, majors, news, passeds }: Props) => {
     <section>
       <div className="grid grid-cols-2 gap-4">
         {summeryCards.map((sumCard, index) => (
-          <Card className="w-70 h-40 relative group hover:scale-95 transition-all" key={index}>
+          <Card className="w-70 h-40 relative group hover:scale-95 transition-all cursor-pointer" key={index}>
             <div className="absolute top-0 left-0 w-full h-full bg-linear-to-bl from-primary/50 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <CardHeader className="absolute top-4 right-00 left-0 w-full text-xl flex items-center justify-between group-hover:text-white">
               {sumCard.label}

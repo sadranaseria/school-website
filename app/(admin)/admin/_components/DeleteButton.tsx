@@ -15,7 +15,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useState } from "react";
 import { LuX } from "react-icons/lu";
 import { toast } from "sonner";
-import { deleteImage } from "../actions";
+import { deleteImage } from "../gallery/actions";
 
 interface Props {
   imageId: number;

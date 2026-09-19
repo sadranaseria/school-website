@@ -15,7 +15,7 @@ const Dashboard = async () => {
   return (
     <section className="space-y-7">
       <DashboardHeader />
-      <div className="flex items-center justify-center gap-20">
+      <div className="flex items-center justify-between">
         <Summery
           majors={countOfMajors}
           images={countOfImages}

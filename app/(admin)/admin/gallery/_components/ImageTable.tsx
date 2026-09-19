@@ -1,6 +1,6 @@
 import { prisma } from "@/prisma/client";
 import Image from "next/image";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "../../_components/DeleteButton";
 
 const ImageTable = async () => {
   const images = await prisma.gallery.findMany();
