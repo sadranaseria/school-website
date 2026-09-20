@@ -17,11 +17,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <SidebarProvider>
         <AppSidebar />
         <section className="w-full p-4">
-          <header className="p-4 bg-blue-superlight mb-5 rounded-2xl">
-            <SidebarTrigger className="cursor-pointer" />
-          </header>
-          <main className="w-full bg-white">
+          <main className="size-full bg-white">
             <section className="size-full bg-[#f6f6f8] rounded-2xl p-10">
+              <SidebarTrigger className="cursor-pointer" />
               {children}
             </section>
           </main>

@@ -1,43 +1,56 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import './styles.css'
-import Imagesource from '@/public/jellies.webp';
-import { useEffect, useState } from 'react';
+import Image from "next/image";
+import "./styles.css";
+import headerContentImage from "@/public/jellies.webp";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { HiArrowDown } from "react-icons/hi2";
+import Link from "next/link";
 
 const HeaderContent = () => {
-  const [scrollY, setScrollY] = useState(3);
+  const [scrollY, setScrollY] = useState(80); // By rem
 
   useEffect(() => {
-      const handleScroll = () => {
-        setScrollY(scrollY - window.scrollY / 100);
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
-  
+    const handleScroll = () => {
+      setScrollY(scrollY + (window.scrollY * 2.5) / 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div style={{ paddingInline : `${scrollY}rem`}} className='h-screen py-4'>
-      <div className="header-content size-ful h-full text-center mx-auto rounded-[50px] overflow-hidden">
-        <div className='relative z-10 backdrop-blur-2xl size-full flex flex-col gap-10 items-center justify-between'>
-          <div className='mt-50'>
-            <h1 className="text-center text-4xl md:text-9xl font-bold text-white">
-              هنرستان
-            </h1>
-            <h1 className="text-center text-4xl md:text-9xl font-bold text-white">
-              شهید طهرانی مقدم
-            </h1>
-          </div>
-          <div className='max-w-400 w-full h-100 rounded-t-[200px] overflow-hidden'>
-            <Image src={Imagesource} alt='jellies.webp' width={500} height={500} className='size-full object-cover' />
-          </div>
-        </div>
+    <section className="h-screen mb-120">
+      <div className="max-w-4xl h-200 flex justify-center items-center mx-auto text-center">
+        <h1 className="text-8xl">
+          هنرستان <br />
+          <span className="bg-linear-to-l from-primary/50 to-indigo-600 bg-clip-text text-transparent font-extrabold">
+            شهید طهرانی مقدم
+          </span>
+          <Button className="border-2 border-indigo-600 hover:border-0 p-2 mt-10 mx-auto rounded-full size-12 flex items-center justify-center bg-white cursor-pointer hover:scale-95 hover:bg-indigo-600 group">
+            <Link href="#info">
+              <HiArrowDown className="size-6 text-primary group-hover:text-white" />
+            </Link>
+          </Button>
+        </h1>
       </div>
-    </div>
+      <div
+        style={{ maxWidth: `${scrollY}rem` }}
+        className="mx-auto rounded-[40px] overflow-hidden"
+      >
+        <Image
+          src={headerContentImage}
+          alt="header_content_image"
+          width={500}
+          height={500}
+          className="w-full"
+        />
+      </div>
+    </section>
   );
 };
 
