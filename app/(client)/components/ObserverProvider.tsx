@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { useObserver } from "../hooks/useObserver";
+import { cn } from "@/lib/utils";
 
 const ObserverProvider = ({
   children,
@@ -14,11 +15,12 @@ const ObserverProvider = ({
   return (
     <div
       ref={ref}
-      className={
+      className={cn(
+        'py-36',
         isVisible
           ? "opacity-100 translate-y-0 transition-all duration-700 pt-5"
           : "opacity-0 translate-y-5 transition-all duration-700 pt-5"
-      }
+      )}
       id={id}
     >
       {children}

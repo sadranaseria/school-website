@@ -24,7 +24,7 @@ export default function RootLayout({
     <>
       <NavBar />
       <HeaderContent />
-      <main className="md:p-6 w-full">{children}</main>
+      <main className="md:p-6 container mx-auto">{children}</main>
       <Footer />
     </>
   );
