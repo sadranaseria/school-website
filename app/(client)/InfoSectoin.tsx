@@ -7,7 +7,7 @@ const InfoSection = () => {
   return (
     <ObserverProvider id="info">
       <SectionTitle title="درباره هنرستان" href="#info" />
-      <div className="flex justify-between px-30">
+      <div className="flex justify-between px-10">
         <Image src={Imagesource} alt="image" width={500} height={500} className="size-100 object-cover rounded-4xl" />
         <div className="max-w-4xl space-y-4">
           <h2 className="text-2xl text-primary">هنرستان طهرانی مقدم</h2>

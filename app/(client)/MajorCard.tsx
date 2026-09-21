@@ -6,7 +6,7 @@ const MajorCard = ({ major }: { major: MajorsWithImages }) => {
   return (
     <ObserverProvider id="majors">
       <div
-        className={`flex w-full px-25 justify-around mx-auto ${major.id % 2 === 0 && "flex-row-reverse"}`}
+        className={`flex gap-30 max-w-7xl mx-auto text-right ${major.id % 2 === 0 && "flex-row-reverse"}`}
       >
         <Image
           src={major.images[0].url}

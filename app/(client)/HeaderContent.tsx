@@ -24,7 +24,7 @@ const HeaderContent = () => {
   }, []);
 
   return (
-    <section className="h-screen mb-200">
+    <section className="h-screen mb-130">
       <div className="max-w-4xl h-200 flex justify-center items-center mx-auto text-center">
         <h1 className="text-8xl">
           هنرستان <br />

@@ -16,7 +16,7 @@ const ObserverProvider = ({
     <div
       ref={ref}
       className={cn(
-        'py-36',
+        'my-30',
         isVisible
           ? "opacity-100 translate-y-0 transition-all duration-700 pt-5"
           : "opacity-0 translate-y-5 transition-all duration-700 pt-5"

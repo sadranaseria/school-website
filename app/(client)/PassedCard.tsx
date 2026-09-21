@@ -10,7 +10,7 @@ import "./styles.css";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FaUniversity } from "react-icons/fa";
-import Image from 'next/image';
+import Image from "next/image";
 
 const PassedCard = ({ passed }: { passed: PassedWithImages }) => {
   return (
@@ -19,7 +19,7 @@ const PassedCard = ({ passed }: { passed: PassedWithImages }) => {
         loop={true}
         autoplay={{
           delay: 1000,
-          disableOnInteraction: false,
+          disableOnInteraction:  false,
         }}
         spaceBetween={3}
         pagination={{
@@ -28,7 +28,7 @@ const PassedCard = ({ passed }: { passed: PassedWithImages }) => {
         modules={[Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
+        <SwiperSlide className="">
           <Card className="max-w-90 w-full flex flex-row items-center">
             <CardHeader className="w-35">
               <Image

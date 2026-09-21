@@ -11,13 +11,13 @@ const MajorSection = async () => {
   return (
     <>
       <ObserverProvider id="majors">
-        <SectionTitle title="رشته ها" href="#majors" />
-      </ObserverProvider>
+        <SectionTitle title="رشته ها" href="#majors" center={true} />
       <div className="space-y-10">
         {majors.map((major) => (
           <MajorCard key={major.id} major={major} />
-        ))}
-      </div>
+          ))}
+        </div>
+      </ObserverProvider>
     </>
   );
 };
