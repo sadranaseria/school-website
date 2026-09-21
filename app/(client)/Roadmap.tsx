@@ -1,5 +1,6 @@
 import {
   Timeline,
+  TimelineContent,
   TimelineDate,
   TimelineHeader,
   TimelineIndicator,
@@ -11,56 +12,47 @@ import { cn } from "@/lib/utils";
 
 const Roadmap = () => {
   return (
-    <Timeline dir="ltr">
-      {milestones.map((item) => (
+    <Timeline
+      orientation="horizontal"
+      className="w-full max-w-xl mx-auto mt-20"
+      dir="rtl"
+    >
+      {items.map((item) => (
         <TimelineItem
           key={item.id}
           step={item.id}
-          className={cn(
-            "w-[calc(50%-1.5rem)] wrap-anywhere odd:ms-auto even:me-auto even:text-right even:group-data-[orientation=vertical]/timeline:ms-0 even:group-data-[orientation=vertical]/timeline:me-8",
-            "even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-indicator]:-right-6 even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-indicator]:left-auto",
-            "even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-indicator]:translate-x-1/2 even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-separator]:-right-6",
-            "even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-separator]:left-auto even:group-data-[orientation=vertical]/timeline:**:data-[slot=timeline-separator]:translate-x-1/2",
-          )}
+          className="group-data-[orientation=horizontal]/timeline:mt-2"
         >
           <TimelineHeader>
-            <TimelineSeparator />
-            <TimelineDate>{item.title}</TimelineDate>
-            <TimelineTitle>{item.description}</TimelineTitle>
-            <TimelineIndicator />
+            <TimelineSeparator className="group-data-[orientation=horizontal]/timeline:top-8 left-0" />
+            <TimelineDate className="mb-10">{item.title}</TimelineDate>
+            <TimelineIndicator className="group-data-[orientation=horizontal]/timeline:top-8 right-0 bg-primary size-5" />
           </TimelineHeader>
+          <TimelineContent>{item.description}</TimelineContent>
         </TimelineItem>
       ))}
     </Timeline>
   );
 };
 
-const milestones = [
+const items = [
   {
     id: 1,
-    title: "مرحله اول",
-    description:
-      "بللبلريالبلّبللبلريالبلّبللبلريالبلّبللبلريالبلّبللبلريالبلّبللبلريالبلّبللبلريالبلّبللبلريالبلّ",
+    date: "Oct 2024",
+    title: "Kickoff",
+    description: "Defining project goals and core team selection.",
   },
   {
     id: 2,
-    title: "مرحله دوم",
-    description: "بللبلريالبلّ",
+    date: "Nov 2024",
+    title: "Discovery",
+    description: "User research and requirements gathering phase.",
   },
   {
     id: 3,
-    title: "مرحله سوم",
-    description: "بللبلريالبلّ",
-  },
-  {
-    id: 4,
-    title: "مرحله چهارم",
-    description: "Series A",
-  },
-  {
-    id: 5,
-    title: "مرحله پنجم",
-    description: "Global Expansion",
+    date: "Dec 2024",
+    title: "Implementation",
+    description: "Core development and sprint execution.",
   },
 ];
 
