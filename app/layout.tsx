@@ -23,7 +23,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       dir="rtl"
     >
       <body
-        className="min-h-full flex flex-col bg-[#FDFBFB]"
+        className="min-h-full flex flex-col bg-stone-100"
       >
         <AuthProvider>{children}</AuthProvider>
       </body>
