@@ -29,16 +29,16 @@ const PassedCard = ({ passed }: { passed: PassedWithImages }) => {
         className="mySwiper"
       >
         <SwiperSlide className="">
-          <Card className="max-w-90 w-full flex flex-row items-center">
-            <CardHeader className="w-35">
+          <Card className="max-w-90 h-30 w-full flex flex-row items-center p-0 rounded-3xl ring-0">
+            <div className="w-30 h-full">
               <Image
                 src={passed.images[0].url}
                 alt={`Image of passed ${passed.images[0].passedId}`}
                 width={500}
                 height={500}
-                className="size-20 object-cover rounded-full"
+                className="h-full object-cover rounded-3xl"
               />
-            </CardHeader>
+            </div>
             <div className="space-y-2">
               <CardTitle>{passed.name}</CardTitle>
               <Badge className="p-2">
