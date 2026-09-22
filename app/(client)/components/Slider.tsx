@@ -5,11 +5,11 @@ import { PropsWithChildren, useState } from "react";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper } from "swiper/react";
 import "./styles.css";
+import { PaginationOptions } from "swiper/types";
 
 const Slider = ({ children }: PropsWithChildren) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -21,9 +21,16 @@ const Slider = ({ children }: PropsWithChildren) => {
     setIsEnd(swiper.isEnd);
   };
 
+  const paginationConfig: PaginationOptions = {
+    bulletActiveClass: 'swiper-pagination-bullet-active',
+    clickable: true,
+    dynamicBullets: true,
+  }
+
   return (
     <section className="p-30">
       <Swiper
+        pagination={paginationConfig}
         onSwiper={setSwiper}
         onSlideChange={syncEdge}
         onBreakpoint={syncEdge}
@@ -43,9 +50,6 @@ const Slider = ({ children }: PropsWithChildren) => {
           },
         }}
         spaceBetween={5}
-        pagination={{
-          clickable: true,
-        }}
         navigation={true}
         modules={[Pagination]}
         className="mySwiper pb-14!"
