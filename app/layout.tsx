@@ -18,7 +18,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html
       lang="fa"
-      className={cn("h-full", "antialiased", vazirmatn.className)}
+      className={cn("h-full font-molasaq", "antialiased")}
       data-scroll-behavior="smooth"
       dir="rtl"
     >

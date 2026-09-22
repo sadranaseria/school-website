@@ -6,10 +6,12 @@ import PassedsSection from "./PassedsSection";
 import QuestionsSection from "./QuestionsSection";
 import RoadMapSeciton from "./RoadMapSeciton";
 import InfoSection from "./InfoSectoin";
+import HeaderContent from "./HeaderContent";
 
 export default function Home() {
   return (
     <>
+      <HeaderContent />
       <InfoSection />
       <MajorSection />
       <PassedsSection />
