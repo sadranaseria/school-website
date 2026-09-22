@@ -9,7 +9,7 @@ const PassedsSection = async () => {
   });
 
   return (
-    <>
+    <section className="py-20">
       <ObserverProvider id="passeds">
         <SectionTitle title="قبولی ها" href="#passeds" />
           <div className="flex gap-4 my-20">
@@ -18,7 +18,7 @@ const PassedsSection = async () => {
             ))}
           </div>
       </ObserverProvider>
-    </>
+    </section>
   );
 };
 

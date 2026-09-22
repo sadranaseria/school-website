@@ -19,7 +19,7 @@ const NewsSection = async () => {
   });
 
   return (
-    <>
+    <section className="py-20">
       <ObserverProvider id="news">
         <SectionTitle title="اخبار" href="#news" />
         <div className="flex gap-5 my-20">
@@ -47,7 +47,7 @@ const NewsSection = async () => {
           ))}
         </div>
       </ObserverProvider>
-    </>
+    </section>
   );
 };
 
