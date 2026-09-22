@@ -22,7 +22,7 @@ const NewsSection = async () => {
   return (
     <section className="py-20">
       <ObserverProvider id="news">
-        <SectionTitle title="اخبار" href="#news" />
+        <SectionTitle title="اخبار" href="#news" viewMore={true} viewMoreText="همه اخبار" viewMoreLink="/news" />
         <div className="flex gap-5 my-20">
           {news.map((n) => (
             <Card
