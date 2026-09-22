@@ -28,7 +28,7 @@ const NewsCard = ({ news }: { news: NewsWithImages }) => {
       </CardHeader>
       <div className="h-full flex flex-col justify-between">
         <CardContent>
-          <CardTitle>{news.title}</CardTitle>
+          <CardTitle><Link href={`/news/${news.id}`} className="hover:text-primary transition-colors">{news.title}</Link></CardTitle>
           <CardDescription>{news.description}</CardDescription>
         </CardContent>
         <CardFooter className="relative">
