@@ -7,7 +7,7 @@ import logo from "../../public/icon0.svg";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-stretch bg-linear-to-b from-[#f0f0f0] to-indigo-500 text-white px-14 py-16">
+    <footer className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-stretch bg-linear-to-b from-[#f0f0f0] to-primary text-white px-14 py-16">
       <div className="w-60 flex flex-col items-center gap-3">
         <div className="size-20 pt-1.5 flex justify-center items-center bg-white rounded-full">
           <Image src={logo} alt="footer-logo" />

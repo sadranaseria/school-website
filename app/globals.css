@@ -144,9 +144,8 @@
 }
 
 @theme {
-  --color-primary : #1169B4;
-  --color-secondary : #04307C;
-  --color-thertiary : #00549C;
+  --color-primary : oklch(39.8% 0.195 277.366);
+  --color-secondary : oklch(25.7% 0.09 281.288);   
   --color-blue-light : #0077FF;
   --color-blue-superlight : #D3DFFF;
 }
@@ -160,6 +159,6 @@
     @apply font-sans scroll-smooth duration-200;
   }
   Button {
-    @apply cursor-pointer;
+    @apply cursor-pointer bg-indigo-800;
   }
 }

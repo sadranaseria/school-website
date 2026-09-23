@@ -16,10 +16,10 @@ const QusetionAccordion = ({ questions }: { questions: Question[] }) => {
       defaultValue={["billing"]}
     >
       {questions.map((q, i) => (
-        <AccordionItem className="" key={q.id}>
-          <AccordionTrigger className="flex items-center gap-4 hover:underline-offset-2 decoration-blue-superlight">
+        <AccordionItem className='' key={q.id}>
+          <AccordionTrigger className="bg-[#f0f0f0] flex items-center gap-4 hover:underline-offset-2 decoration-blue-superlight">
             <div className="flex items-center gap-2">
-              <p className="size-8 md:size-7 flex justify-center items-center bg-blue-superlight text-secondary text-sm md:text-md rounded-full pt-1">
+              <p className="size-8 md:size-7 flex justify-center items-center bg-blue-superlight text-sm md:text-md rounded-full pt-1">
                 {i + 1}
               </p>
               <p className="text-secondary text-lg md:text-xl">{q.title}</p>
