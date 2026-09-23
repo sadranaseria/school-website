@@ -10,14 +10,14 @@ const MajorSection = async () => {
 
   return (
     <section className="py-20">
-      <ObserverProvider id="majors">
+      {/*<ObserverProvider id="majors">*/}
         <SectionTitle title="رشته ها" href="#majors" />
       <div className="space-y-10">
         {majors.map((major) => (
           <MajorCard key={major.id} major={major} />
           ))}
         </div>
-      </ObserverProvider>
+      {/*</ObserverProvider>*/}
     </section>
   );
 };

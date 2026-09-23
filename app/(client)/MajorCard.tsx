@@ -3,6 +3,7 @@ import { MajorsWithImages } from "../(admin)/admin/majors/types";
 import ObserverProvider from "./components/ObserverProvider";
 
 const MajorCard = ({ major }: { major: MajorsWithImages }) => {
+    console.log(major.images)
   return (
     <ObserverProvider id="majors">
       <div

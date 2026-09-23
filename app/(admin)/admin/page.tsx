@@ -25,7 +25,7 @@ const Dashboard = async () => {
         />
         <DataChart majors={majors} />
       </div>
-      <div className="flex gap-6">
+      <div className="flex gap-6 items-start">
         <GalleryLatests />
         <NewsLatests />
       </div>

@@ -16,7 +16,7 @@ const Roadmap = ({ steps }: { steps: Roadmap[] }) => {
   return (
     <Timeline
       orientation="horizontal"
-      className="w-full max-w-xl mx-auto mt-20"
+      className="w-full max-w-4xl mx-auto mt-20"
       dir="rtl"
     >
       {steps.map((step) => (

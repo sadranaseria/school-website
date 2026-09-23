@@ -54,7 +54,7 @@ const Summery = ({ images, majors, news, passeds }: Props) => {
             </CardHeader>
             <CardContent className="absolute bottom-4 right-0 left-0 w-full flex items-center justify-between">
               <p className="text-3xl group-hover:text-white">
-                {sumCard.value}
+                {sumCard.value.toLocaleString('fa-IR')}
               </p>
               <Link href={sumCard.link}><HiArrowTopRightOnSquare className="size-6 text-indigo-500 group-hover:text-white p-1 inline-block cursor-pointer border border-indigo-500 group-hover:border-white rounded-sm" /></Link>
             </CardContent>

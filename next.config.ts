@@ -10,12 +10,6 @@ const nextConfig: NextConfig = {
     ],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "coral-causal-meadowlark-743.mypinata.cloud",
-        port: "",
-        pathname: "/**",
-      },
-      {
         protocol: 'https',
         hostname: 'w0mj5ud6qk.ufs.sh',
         port: '',

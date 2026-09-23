@@ -6,7 +6,7 @@ export const columns: {
   className?: string;
 }[] = [
   { label: "آی دی", value: "id" },
-  { label: "عکس", value: "images" },
+  { label: "عکس", value: "images", className : 'w-400' },
   { label: "عنوان", value: "title" },
   { label: "توضیحات", value: "description", className: "hidden md:table-cell" },
 ];

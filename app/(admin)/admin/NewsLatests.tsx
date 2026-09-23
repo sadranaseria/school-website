@@ -34,12 +34,12 @@ const NewsLatest = async () => {
           <TableBody>
             {news.map(n => (
               <TableRow key={n.id}>
-                <TableCell>{n.id}</TableCell>
-                <TableCell>
-                  <Image src={n.images[0].url} alt={`Image of news ${n.images[0].newsId}`} width={500} height={500} className="w-25 rounded-lg object-cover" />
+                <TableCell>{n.id.toLocaleString('fa-IR')}</TableCell>
+                <TableCell className='size-15'>
+                  <Image src={n.images[0].url} alt={`Image of news ${n.images[0].newsId}`} width={500} height={500} className="size-full object-cover rounded-md" />
                 </TableCell>
-                <TableCell><Button variant="link"><Link href={`/admin/news/${n.id}`}>{n.title}</Link></Button></TableCell>
-                <TableCell><Markdown>{n.description}</Markdown></TableCell>
+                <TableCell><Button className='bg-white text-primary hover:bg-gray-100/10 hover:underline underline-offset-4'><Link href={`/admin/news/${n.id}`}>{n.title}</Link></Button></TableCell>
+                <TableCell className='flex items-center'><Markdown>{n.description.substring(0 , 10)}</Markdown>{n.description.length >= 10 && '...'}</TableCell>
               </TableRow>
             ))}
           </TableBody>
