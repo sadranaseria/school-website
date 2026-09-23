@@ -14,7 +14,7 @@ import { NewsWithImages } from "@/app/(admin)/admin/news/types";
 
 const NewsCard = ({ news }: { news: NewsWithImages }) => {
   return (
-    <Card className="w-80 h-120 ring-0 p-0 rounded-2xl group cursor-pointer shadow-xm overflow-visible">
+    <Card className="w-80 h-120 ring-0 p-0 rounded-2xl group cursor-pointer shadow-xs overflow-visible">
       <CardHeader className="p-0">
         <div className="rounded-2xl overflow-hidden">
           <Image
@@ -28,8 +28,8 @@ const NewsCard = ({ news }: { news: NewsWithImages }) => {
       </CardHeader>
       <div className="h-full flex flex-col justify-between">
         <CardContent>
-          <CardTitle><Link href={`/news/${news.id}`} className="hover:text-primary transition-colors">{news.title}</Link></CardTitle>
-          <CardDescription>{news.description}</CardDescription>
+          <CardTitle><Link href={`/news/${news.id}`} className="hover:text-primary transition-colors text-caption font-extrabold">{news.title}</Link></CardTitle>
+          <CardDescription className="text-label">{news.description}</CardDescription>
         </CardContent>
         <CardFooter className="relative">
           <Button className="absolute -top-6 left-0 mx-auto right-0 w-60 rounded-lg h-12">

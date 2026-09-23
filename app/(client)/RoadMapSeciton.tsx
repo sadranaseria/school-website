@@ -12,8 +12,8 @@ const RoadMapSeciton = async () => {
         <SectionTitle title="قدم های ثبت نام" href="#roadmap" />
         <div className="w-full text-center mx-auto p-4">
           <div className="space-y-10">
-            <h2 className="text-thertiary text-2xl md:text-6xl font-black">راهنمای <span className="text-blue-light">ثبت نام</span> در هنرستان</h2>
-            <p className="text-thertiary font-extralight text-lg md:text-4xl">برای ثبت نام در هنرستان مراحل زیر را دنبال کنید.</p>
+            <h2 className="text-thertiary text-body md:text-t2 font-black">راهنمای <span className="text-blue-light">ثبت نام</span> در هنرستان</h2>
+            <p className="text-thertiary font-extralight text-body md:text-caption">برای ثبت نام در هنرستان مراحل زیر را دنبال کنید.</p>
           </div>
           <Roadmap steps={steps} />
         </div>

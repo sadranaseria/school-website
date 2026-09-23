@@ -16,7 +16,7 @@ const SectionTitle = ({ title, href , viewMore , viewMoreText , viewMoreLink }: 
   return (
     <div className='mb-20 flex gap-10 items-center'>
       {!viewMore && <div className="w-full h-px bg-linear-to-r from-gray-300 to-gray-200"></div>}
-      <h2 className='group gap-2 text-primary text-xl md:text-[24px] font-bold flex items-center justify-center shrink-0'>
+      <h2 className='group gap-2 text-primary text-xl md:text-t2 font-bold flex items-center justify-center shrink-0'>
         {title}
         <Link href={href} className="hidden group-hover:block">
           <LuLink className="size-4 stroke-primary" />

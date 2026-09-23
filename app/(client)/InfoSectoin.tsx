@@ -8,7 +8,7 @@ const InfoSection = () => {
     <section className="py-20">
       <ObserverProvider id="info">
         <SectionTitle title="درباره هنرستان" href="#info" />
-        <div className="flex justify-between px-10">
+        <div className="flex justify-between md:gap-15 px-5">
           <Image
             src={Imagesource}
             alt="image"
@@ -17,8 +17,8 @@ const InfoSection = () => {
             className="size-100 object-cover rounded-4xl"
           />
           <div className="max-w-4xl space-y-4">
-            <h2 className="text-2xl text-primary">هنرستان طهرانی مقدم</h2>
-            <p className="text-lg leading-8">
+            <h2 className="text-t2 text-primary">هنرستان طهرانی مقدم</h2>
+            <p className="text-body md:text-caption leading-8">
               متن تستی جهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت
               نمایشجهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت نمایشجهت
               نمایش{" "}

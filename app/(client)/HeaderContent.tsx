@@ -26,7 +26,7 @@ const HeaderContent = () => {
   return (
     <section className="h-screen mb-130">
       <div className="max-w-4xl h-200 flex justify-center items-center mx-auto text-center">
-        <h1 className="text-8xl">
+        <h1 className="text-display">
           هنرستان <br />
           <span className="bg-linear-to-l from-primary/50 to-indigo-600 bg-clip-text text-transparent font-extrabold">
             شهید طهرانی مقدم
