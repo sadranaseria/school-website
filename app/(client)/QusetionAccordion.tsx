@@ -12,7 +12,7 @@ const QusetionAccordion = ({ questions }: { questions: Question[] }) => {
   return (
     <Accordion
       dir="rtl"
-      className='w-1/2 divide-y divide-primary ring-2 ring-primary rounded-2xl p-4'
+      className='w-full md:w-1/2 divide-y divide-primary ring-2 ring-primary rounded-2xl p-4'
       defaultValue={["billing"]}
     >
       {questions.map((q, i) => (

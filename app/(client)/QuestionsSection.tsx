@@ -7,7 +7,7 @@ const QuestionsSection = async () => {
   const questions = await prisma.question.findMany();
   
   return (
-    <section className="py-20">
+    <section className="py-20 px-5">
       <ObserverProvider id="questions">
         <SectionTitle title="سوالات متداول" href="#questions" />
         <section className="flex flex-col items-center xl:flex-row xl:items-start gap-20">
