@@ -48,9 +48,9 @@ const MajorsTable = ({ majors }: { majors: MajorsWithImages[] }) => {
                   <Link href={`/admin/majors/${major.id}`}>{major.title}</Link>
                 </Button>
               </TableCell>
-              <TableCell>{major.students}</TableCell>
-              <TableCell>
-                <Markdown>{major.description}</Markdown>
+              <TableCell className='hidden md:table-cell'>{major.students}</TableCell>
+              <TableCell className='hidden md:table-cell'>
+                <Markdown>{major.description.length >= 10 ? major.description.substring(0 , 10) + '...' : major.description}</Markdown>
               </TableCell>
             </TableRow>
           ))}
@@ -68,8 +68,8 @@ const columns: {
   { label: "آی دی", value: "id" },
   { label: "عکس", value: "images" },
   { label: "عنوان", value: "title" },
-  { label: "تعداد هنرجویان", value: "students" },
-  { label: "توضیحات", value: "description" },
+  { label: "تعداد هنرجویان", value: "students" , className : 'hidden md:table-cell' },
+  { label: "توضیحات", value: "description" , className : 'hidden md:table-cell' },
 ];
 
 export default MajorsTable;

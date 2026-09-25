@@ -33,7 +33,7 @@ const NavBar = () => {
         <ul
           className={cn(
             "fixed md:static top-0 bottom-0 bg-white p-6 space-y-4 md:space-y-0 md:flex items-center gap-5 md:p-0 rounded-l-xl transition-all",
-            isShow ? "right-0" : "-right-100",
+            isShow ? "right-0 w-80" : "-right-100",
           )}
         >
           {links.map((link) => (
@@ -57,11 +57,10 @@ const NavBar = () => {
         </ul>
       </div>
       <Button
-        variant="ghost"
         onClick={() => setShow(true)}
-        className="md:hidden"
+        className="md:hidden bg-white hover:bg-white"
       >
-        <RxHamburgerMenu className="size-5 cursor-pointer" />
+        <RxHamburgerMenu className="size-5 cursor-pointer text-primary" />
       </Button>
     </nav>
   );

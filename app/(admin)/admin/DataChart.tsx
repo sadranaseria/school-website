@@ -18,13 +18,13 @@ const DataChart = ({ majors }: { majors: Major[] }) => {
   } satisfies ChartConfig
   
   return (
-    <ChartContainer config={chartConfig} className="w-160">
+    <ChartContainer config={chartConfig} className="w-full mt-5 xl:w-160">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
         <Tooltip defaultIndex={2} wrapperClassName="rounded-lg" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Bar dataKey="students" className="fill-secondary" radius={20} />
+        <Bar dataKey="students" className="fill-primary" radius={20} />
       </BarChart>
     </ChartContainer>
   )

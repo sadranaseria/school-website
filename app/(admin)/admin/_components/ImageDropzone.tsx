@@ -28,7 +28,7 @@ const ImageDropzone = ({ onChange, value , action }: Props) => {
     setImages((prev) =>
       prev.map((img) => (img.key === key ? { ...img, deletting: true } : img)),
     );
-    const { success, message } = await deleteImage(key);
+    const { success, message } = action ? await deleteImage(key , true) : await deleteImage(key);
     const deletedImage = images.filter(img => img.key !== key);
     if (success !== undefined) {
       setImages(deletedImage);
@@ -84,8 +84,8 @@ const ImageDropzone = ({ onChange, value , action }: Props) => {
               src={image.url}
               alt="image"
               className="size-40 object-cover rounded-xl"
-              width={200}
-              height={200}
+              width={500}
+              height={500}
               loading="eager"
             />
             <Button

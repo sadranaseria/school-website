@@ -8,7 +8,7 @@ const GalleySection = async () => {
   const images = await prisma.gallery.findMany();
 
   return (
-    <section className="py-20">
+    <section className="container py-20">
       <ObserverProvider id="gallery">
         <SectionTitle title="گالری" href="#gallery" />
         <div className="flex flex-col items-center gap-5 mx-auto">

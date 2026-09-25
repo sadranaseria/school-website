@@ -7,14 +7,14 @@ const MajorCard = ({ major }: { major: MajorsWithImages }) => {
   return (
     <ObserverProvider id="majors">
       <div
-        className={`flex gap-40 items-start max-w-7xl mx-auto text-right ${major.id % 2 === 0 && "flex-row-reverse"}`}
+        className={`flex flex-col lg:flex-row items-center text-center gap-10 xl:gap-40 lg:items-start max-w-7xl mx-auto lg:text-right ${major.id % 2 === 0 && "flex-row-reverse"}`}
       >
         <Image
           src={major.images[0].url}
           alt="Major Image"
           width={500}
           height={500}
-          className="w-100 h-90 rounded-[40px]"
+          className="size-60 xl:w-100 xl:h-90 rounded-2xl"
         />
         <div>
           <h3 className="text-t3 text-secondary mb-5">{major.title}</h3>

@@ -10,7 +10,7 @@ const QuestionsSection = async () => {
     <section className="py-20">
       <ObserverProvider id="questions">
         <SectionTitle title="سوالات متداول" href="#questions" />
-        <section className="flex gap-20">
+        <section className="flex flex-col items-center xl:flex-row xl:items-start gap-20">
           <div className="text-center space-y-6">
             <h2 className="text-2xl md:text-t2 text-secondary font-bold">
               به پرسش های شما پاسخ می‌دهیم

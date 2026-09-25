@@ -15,7 +15,7 @@ const NewsLatest = async () => {
   });
 
   return (
-    <Card className="w-1/2">
+    <Card className="w-full xl:w-1/2">
       <CardHeader className="flex items-center justify-between">
         <h2 className="text-[18px]">اخبار های جدید</h2>
         <Button variant="outline">

@@ -6,8 +6,6 @@ import { SwiperSlide } from "swiper/react";
 import Slider from "./components/Slider";
 
 const GallerySlider = ({ images }: { images: Gallery[] }) => {
-
-  console.log(images);
   return (
     <Slider>
       <div>
@@ -18,7 +16,7 @@ const GallerySlider = ({ images }: { images: Gallery[] }) => {
               alt={`Image of index ${image.id}`}
               width={500}
               height={500}
-              className="w-100 h-70 object-cover"
+              className="w-100 h-60 object-cover"
             />
           </SwiperSlide>
         ))}

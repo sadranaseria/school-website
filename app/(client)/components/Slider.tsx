@@ -28,7 +28,7 @@ const Slider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <section className="p-30">
+    <section>
       <Swiper
         pagination={paginationConfig}
         onSwiper={setSwiper}

@@ -15,6 +15,7 @@ const QuestionsPage = async () => {
 
   return (
     <section>
+        <Button className='mt-5'><Link href='/admin/questions/new'>ساخت سوال</Link></Button>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
         {questions.map((q) => (
           <Card key={q.id} className="p-4 wrap-break-word">

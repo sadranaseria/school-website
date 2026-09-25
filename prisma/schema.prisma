@@ -15,73 +15,73 @@ datasource db {
 }
 
 model Major {
-  id          Int      @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   title       String
-  description String   @db.Text
-  cretedAt    DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  images MajorImage[]
-  students Int
+  description String       @db.Text
+  cretedAt    DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  images      MajorImage[]
+  students    Int
 }
 
 model MajorImage {
-    id Int @id @default(autoincrement())
-    url String
-    key String
-    majorId Int
-    major Major @relation(fields: [majorId], references: [id] , onDelete: Cascade)
+  id      Int    @id @default(autoincrement())
+  url     String
+  key     String
+  majorId Int
+  major   Major  @relation(fields: [majorId], references: [id], onDelete: Cascade)
 }
 
 model Admin {
-  id    String    @id
+  id    String @id
   name  String
   email String
 }
 
 model Gallery {
-  id Int @id @default(autoincrement())
+  id  Int    @id @default(autoincrement())
   url String
-  key String
+  key String @unique
 }
 
 model News {
-    id Int @id @default(autoincrement())
-    title String
-    description String @db.Text
-    images NewsImage[]
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String      @db.Text
+  images      NewsImage[]
 }
 
 model NewsImage {
-    id Int @id @default(autoincrement())
-    url String
-    key String
-    newsId Int
-    news News @relation(fields: [newsId], references: [id] , onDelete: Cascade)
+  id     Int    @id @default(autoincrement())
+  url    String
+  key    String
+  newsId Int
+  news   News   @relation(fields: [newsId], references: [id], onDelete: Cascade)
 }
 
 model Passed {
-    id Int @id @default(autoincrement())
-    images PassedImage[]
-    name String
-    univercity String
+  id         Int           @id @default(autoincrement())
+  images     PassedImage[]
+  name       String
+  univercity String
 }
 
 model PassedImage {
-    id Int @id @default(autoincrement())
-    url String
-    key String
-    passedId Int
-    passed Passed @relation(fields : [passedId] , references : [id] , onDelete : Cascade)
+  id       Int    @id @default(autoincrement())
+  url      String
+  key      String
+  passedId Int
+  passed   Passed @relation(fields: [passedId], references: [id], onDelete: Cascade)
 }
 
 model Question {
-    id Int @id @default(autoincrement())
-    title String
-    anwser String @db.Text
+  id     Int    @id @default(autoincrement())
+  title  String
+  anwser String @db.Text
 }
 
 model Roadmap {
-    id Int @id @default(autoincrement())
-    title String
-    description String
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
 }

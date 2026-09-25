@@ -16,7 +16,7 @@ const Dashboard = async () => {
   return (
     <section className="space-y-7">
       <DashboardHeader />
-      <div className="flex items-center justify-between">
+      <div className="xl:flex items-center justify-between">
         <Summery
           majors={countOfMajors}
           images={countOfImages}
@@ -25,7 +25,7 @@ const Dashboard = async () => {
         />
         <DataChart majors={majors} />
       </div>
-      <div className="flex gap-6 items-start">
+      <div className="flex flex-col xl:flex-row gap-6 items-start">
         <GalleryLatests />
         <NewsLatests />
       </div>

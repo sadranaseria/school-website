@@ -20,13 +20,13 @@ const NewsDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
   if (!news) return null;
   
   return (
-    <section className="mt-50 mb-20 flex justify-center gap-10">
+    <section className="mt-50 mb-20 flex justify-center items-start gap-10">
       <div className="max-w-3xl bg-white p-6 rounded-3xl space-y-5">
         <h1 className="text-xl font-extrabold">{news?.title}</h1>
         <Image src={news?.images[0]?.url} alt="" width={500} height={500} className="w-full object-cover rounded-3xl" />
         <div className="text-justify"><Markdown>{news.description}</Markdown></div>
       </div>
-      <div className="bg-white max-w-lg w-full h-30 rounded-3xl p-6">
+      <div className="bg-white max-w-lg w-full rounded-3xl space-y-2 p-6">
         <p className="flex items-center gap-2 mb-2"><HiLink />جدیدترین اخبار</p>
         {latestNews.map(news => (
           <Link className="block bg-gray-300 p-2 rounded-lg w-full hover:bg-gray-200 transition-colors" key={news.id} href={`/news/${news.id}`}>{news.title}</Link>

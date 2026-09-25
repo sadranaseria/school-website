@@ -11,7 +11,7 @@ const GalleryLatests = async () => {
   });
 
   return (
-    <Card className="">
+    <Card className="w-full xl:max-w-1/2">
       <CardHeader className="flex items-center justify-between">
         <h2 className="text-[18px]">عکس های اخیر</h2>
         <Button variant="outline">
@@ -19,13 +19,13 @@ const GalleryLatests = async () => {
         </Button>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto w-50 sm:w-full">
           {images.map((image) => (
             <div key={image.id} className="relative col-span-1 group">
               <Image
                 src={image.url}
                 alt={`Image of index ${image.id}`}
-                className="object-cover rounded-2xl size-30"
+                className="object-cover rounded-2xl w-60 h-30"
                 width={500}
                 height={500}
               />

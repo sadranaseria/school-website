@@ -11,9 +11,11 @@ const NewsPage = async () => {
   return (
     <section>
       <NewsPageHeader newsCount={newsCount} />
-      {news.map((news) => (
-        <NewsCard key={news.id} news={news} />
-      ))}
+      <div className='mx-auto w-fit sm:w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10'>
+        {news.map((news) => (
+            <NewsCard key={news.id} news={news} />
+        ))}
+      </div>
     </section>
   );
 };

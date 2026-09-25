@@ -9,7 +9,7 @@ const MajorSection = async () => {
   });
 
   return (
-    <section className="py-20">
+    <section className="container py-20">
       {/*<ObserverProvider id="majors">*/}
         <SectionTitle title="رشته ها" href="#majors" />
       <div className="space-y-10">
